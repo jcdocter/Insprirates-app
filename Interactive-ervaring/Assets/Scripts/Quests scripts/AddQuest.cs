@@ -6,31 +6,12 @@ using TMPro;
 
 public class AddQuest : MonoBehaviour
 {
-    public TextMeshProUGUI warningDisplay;
     public GameObject button;
     public GameObject buttonParent;
 
     public List<Quest> questList;
 
     private List<Quest> displayList = new List<Quest>();
-    private float warningDisplayTimer;
-
-    private void Start()
-    {
-        warningDisplay.enabled = false;
-    }
-
-    private void Update()
-    {
-        if (warningDisplayTimer <= 0f)
-        {
-            warningDisplay.enabled = false;
-            warningDisplayTimer = 0f;
-            return;
-        }
-
-        warningDisplayTimer -= Time.deltaTime;
-    }
 
     public void AddNewQuest(string _questID)
     {
