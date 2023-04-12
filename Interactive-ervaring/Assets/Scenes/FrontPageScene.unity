@@ -828,7 +828,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1566655109}
   m_HandleRect: {fileID: 1566655108}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 437732402}
   m_HandleRect: {fileID: 437732401}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1508,7 +1508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988c45baac098be4fbba6fc4bcb1f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningDisplay: {fileID: 1385483876}
   button: {fileID: 7793045069821616637, guid: 9c3ac9e8a748eb64a97e03f4367f846b, type: 3}
   buttonParent: {fileID: 1884233431}
   questList:
@@ -1519,7 +1518,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10eecf5e614bfcf4aa0bc50c5f885f72, type: 2}
   - {fileID: 11400000, guid: a86b5794fcbfd4f4db6457d5edbd4355, type: 2}
   - {fileID: 11400000, guid: c582cc90c215cfd49a46809e3f12eb32, type: 2}
-  - {fileID: 11400000, guid: 5bf93f7560847c64a995036485b3d580, type: 2}
 --- !u!4 &856067336
 Transform:
   m_ObjectHideFlags: 0
@@ -1808,7 +1806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1385483875
 RectTransform:
   m_ObjectHideFlags: 0

@@ -13,11 +13,11 @@ public class QRReader : MonoBehaviour
 
     private WebCamTexture backCam;
     private bool camAvailable;
-    private AddQuest addQuest;
+    private QuestHandler addQuest;
 
     private void Start()
     {
-        addQuest = FindObjectOfType<AddQuest>();
+        addQuest = FindObjectOfType<QuestHandler>();
         StartCamera();
     }
 

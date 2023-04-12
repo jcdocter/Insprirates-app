@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class AddQuest : MonoBehaviour
+public class QuestHandler : MonoBehaviour
 {
     public GameObject button;
     public GameObject buttonParent;
@@ -27,16 +27,24 @@ public class AddQuest : MonoBehaviour
         {
             if(questList[i].id == _questID)
             {
-                displayList.Add(questList[i]);
-
-                DisplayQuest(questList[i].description);
+                DisplayQuest(i);
             }
         }
     }
 
-    private void DisplayQuest(string _description)
+    private void DisplayQuest(int _id)
     {
+        displayList.Add(questList[_id]);
+
         GameObject questButton = Instantiate(button, buttonParent.transform);
-        questButton.GetComponent<QuestButton>().questDescription.text = _description;
+        questButton.GetComponent<QuestButton>().LoadData(_id, questList[_id].description);
+    }
+
+    public void ReplaceQuest(int _id)
+    {
+        if(questList[_id].isStory)
+        {
+            questList[_id] = questList[_id].nextQuest;
+        }
     }
 }
