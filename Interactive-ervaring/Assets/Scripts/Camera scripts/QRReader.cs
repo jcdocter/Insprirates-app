@@ -9,14 +9,15 @@ public class QRReader : MonoBehaviour
 {
     public RawImage background;
     public AspectRatioFitter fit;
-    public TextMeshProUGUI dataText;
     public RectTransform scannerTransform;
 
     private WebCamTexture backCam;
     private bool camAvailable;
+    private QuestHandler addQuest;
 
     private void Start()
     {
+        addQuest = FindObjectOfType<QuestHandler>();
         StartCamera();
     }
 
@@ -68,13 +69,12 @@ public class QRReader : MonoBehaviour
 
             if(result != null)
             {
-                dataText.text = result.Text;
+                addQuest.AddNewQuest(result.Text);
             }
         }
         catch
         {
             Debug.LogError("Can not scan QR");
-            dataText.text = "Can not scan QR";
         }
     }
 }
