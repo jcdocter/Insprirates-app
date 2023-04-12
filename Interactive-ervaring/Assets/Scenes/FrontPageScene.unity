@@ -1904,6 +1904,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   username: {fileID: 1509881922}
+  playerIcon: {fileID: 633987596}
+  iconList:
+  - {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+  - {fileID: 21300000, guid: fd098fb4cf57bad419701c802e442b7e, type: 3}
+  - {fileID: 21300000, guid: e36d1a38d7aa309409e80bf66a089330, type: 3}
 --- !u!1 &2089110258
 GameObject:
   m_ObjectHideFlags: 0
