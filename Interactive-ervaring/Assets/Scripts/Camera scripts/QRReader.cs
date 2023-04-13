@@ -14,6 +14,7 @@ public class QRReader : MonoBehaviour
     private WebCamTexture backCam;
     private QuestHandler questHandler;
     private bool camAvailable;
+    private bool isActive;
     private int timedPressed = 0;
 
     private void Start()
@@ -25,7 +26,7 @@ public class QRReader : MonoBehaviour
 
     private void Update()
     {
-        if(camAvailable == false)
+        if(!camAvailable || !isActive)
         {
             return;
         }
@@ -72,6 +73,7 @@ public class QRReader : MonoBehaviour
             if(result != null)
             {
                 questHandler.AddNewQuest(result.Text);
+                isActive = false;
                 scanner.SetActive(false);
             }
         }
@@ -83,6 +85,7 @@ public class QRReader : MonoBehaviour
 
     public void ActivateCamera()
     {
+        isActive = true;
         timedPressed++;
 
         if (timedPressed >= 2)
