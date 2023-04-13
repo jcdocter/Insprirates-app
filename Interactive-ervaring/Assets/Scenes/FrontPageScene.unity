@@ -1089,8 +1089,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 173.1199}
-  m_SizeDelta: {x: 382.896, y: 346.24}
+  m_AnchoredPosition: {x: 0.000030518, y: 78.258}
+  m_SizeDelta: {x: 594.298, y: 607.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633987596
 MonoBehaviour:
@@ -1423,7 +1423,6 @@ GameObject:
   - component: {fileID: 1189762168}
   - component: {fileID: 1189762170}
   - component: {fileID: 1189762169}
-  - component: {fileID: 1189762171}
   m_Layer: 5
   m_Name: Background telescope
   m_TagString: Untagged
@@ -1449,7 +1448,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 5.0214844}
+  m_SizeDelta: {x: -2.8171387, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189762169
 MonoBehaviour:
@@ -1471,7 +1470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 133da31d5c2bfd74588b7b04c82ad219, type: 3}
+  m_Texture: {fileID: 2800000, guid: 31076622bc9342e469b0ebacc13107a9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1486,20 +1485,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189762167}
   m_CullTransparentMesh: 1
---- !u!114 &1189762171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189762167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 4
-  m_AspectRatio: 0.5610063
 --- !u!1 &1193657475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1711,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 245.729}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489482457
 MonoBehaviour:
@@ -1775,7 +1760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 3
+  m_AspectMode: 4
   m_AspectRatio: 0.9748507
 --- !u!1 &1509881920
 GameObject:
@@ -1812,7 +1797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -285}
+  m_AnchoredPosition: {x: 0.000015259, y: -335}
   m_SizeDelta: {x: 500.017, y: 119.326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1509881922
@@ -2175,8 +2160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 885.1644, y: 908}
+  m_AnchoredPosition: {x: -44.174, y: 748.292}
+  m_SizeDelta: {x: 1553.447, y: 1347.794}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1811952831
 GameObject:
