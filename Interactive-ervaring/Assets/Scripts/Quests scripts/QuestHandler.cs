@@ -9,10 +9,34 @@ public class QuestHandler : MonoBehaviour
 {
     public GameObject button;
     public GameObject buttonParent;
+    public GameObject tutorial;
 
     public List<Quest> questList;
 
     private List<Quest> displayList = new List<Quest>();
+    private bool isFirstQuest = true;
+    private float setTimer;
+
+    private void Awake()
+    {
+        Tutorial.assignTutorial(tutorial);
+    }
+
+    private void Start()
+    {
+        Tutorial.questTutorial.enabled = true;
+        Tutorial.telescopeTutorial.enabled = true;
+        Tutorial.scanTutorial.enabled = false;
+        Tutorial.firstQuestTutorial.enabled = false;
+    }
+
+    private void Update()
+    {
+        if(setTimer > 0 && isFirstQuest)
+        {
+            TutorialTimer();
+        }
+    }
 
     public void AddNewQuest(string _questID)
     {
@@ -31,6 +55,25 @@ public class QuestHandler : MonoBehaviour
                 DisplayQuest(i);
             }
         }
+
+        if(isFirstQuest)
+        {
+            setTimer = 10f;
+        }
+
+    }
+
+    private void TutorialTimer()
+    {
+        setTimer -= Time.deltaTime;
+        Tutorial.scanTutorial.enabled = false;
+        Tutorial.firstQuestTutorial.enabled = true;
+
+        if(setTimer <= 0f)
+        {
+            isFirstQuest = false;
+            Destroy(tutorial);
+        }
     }
 
     private void DisplayQuest(int _id)
@@ -47,5 +90,8 @@ public class QuestHandler : MonoBehaviour
         {
             questList[_id] = questList[_id].nextQuest;
         }
+
+        isFirstQuest = false;
+        Destroy(tutorial);
     }
 }
