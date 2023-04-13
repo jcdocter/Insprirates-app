@@ -87,7 +87,7 @@ public class QRReader : MonoBehaviour
 
         if (timedPressed >= 2)
         {
-            questHandler.isFirstQuest = true;
+            questHandler.isFirstQuest = false;
         }
 
         Tutorial.questTutorial.enabled = false;
