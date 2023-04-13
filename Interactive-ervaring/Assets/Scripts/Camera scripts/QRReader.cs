@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 using ZXing;
 
 public class QRReader : MonoBehaviour
@@ -84,6 +83,10 @@ public class QRReader : MonoBehaviour
 
     public void ActivateCamera()
     {
+        Tutorial.questTutorial.enabled = false;
+        Tutorial.telescopeTutorial.enabled = false;
+        Tutorial.scanTutorial.enabled = true;
+
         scanner.SetActive(true);
     }
 }
