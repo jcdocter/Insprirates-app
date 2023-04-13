@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 using ZXing;
 
 public class QRReader : MonoBehaviour
@@ -10,14 +11,16 @@ public class QRReader : MonoBehaviour
     public RawImage background;
     public AspectRatioFitter fit;
     public RectTransform scannerTransform;
+    public GameObject scanner;
 
     private WebCamTexture backCam;
     private bool camAvailable;
-    private QuestHandler addQuest;
+    private QuestHandler questHandler;
 
     private void Start()
     {
-        addQuest = FindObjectOfType<QuestHandler>();
+        scanner.SetActive(false);
+        questHandler = FindObjectOfType<QuestHandler>();
         StartCamera();
     }
 
@@ -69,12 +72,18 @@ public class QRReader : MonoBehaviour
 
             if(result != null)
             {
-                addQuest.AddNewQuest(result.Text);
+                questHandler.AddNewQuest(result.Text);
+                scanner.SetActive(false);
             }
         }
         catch
         {
             Debug.LogError("Can not scan QR");
         }
+    }
+
+    public void ActivateCamera()
+    {
+        scanner.SetActive(true);
     }
 }
