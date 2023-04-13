@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
 
 public class QuestHandler : MonoBehaviour
 {
+    public bool isFirstQuest = true;
+    
     public GameObject button;
     public GameObject buttonParent;
     public GameObject tutorial;
@@ -14,7 +13,6 @@ public class QuestHandler : MonoBehaviour
     public List<Quest> questList;
 
     private List<Quest> displayList = new List<Quest>();
-    private bool isFirstQuest = true;
     private float setTimer;
 
     private void Awake()
@@ -32,7 +30,7 @@ public class QuestHandler : MonoBehaviour
 
     private void Update()
     {
-        if(setTimer > 0 && isFirstQuest)
+        if(setTimer > 0)
         {
             TutorialTimer();
         }
@@ -40,6 +38,8 @@ public class QuestHandler : MonoBehaviour
 
     public void AddNewQuest(string _questID)
     {
+        Tutorial.scanTutorial.enabled = false;
+
         for (int i = 0; i < displayList.Count; i++)
         {
             if(displayList[i].id == _questID)
@@ -60,19 +60,24 @@ public class QuestHandler : MonoBehaviour
         {
             setTimer = 10f;
         }
-
     }
 
     private void TutorialTimer()
     {
-        setTimer -= Time.deltaTime;
-        Tutorial.scanTutorial.enabled = false;
-        Tutorial.firstQuestTutorial.enabled = true;
-
-        if(setTimer <= 0f)
+        if (isFirstQuest)
         {
+            while (setTimer > 0f)
+            {
+                setTimer -= Time.deltaTime;
+                Tutorial.firstQuestTutorial.enabled = true;
+            }
+
             isFirstQuest = false;
-            Destroy(tutorial);
+        }
+        else
+        {
+
+            Tutorial.firstQuestTutorial.enabled = false;
         }
     }
 
@@ -92,6 +97,6 @@ public class QuestHandler : MonoBehaviour
         }
 
         isFirstQuest = false;
-        Destroy(tutorial);
+        Tutorial.firstQuestTutorial.enabled = false;
     }
 }
