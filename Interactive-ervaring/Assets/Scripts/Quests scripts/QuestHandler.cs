@@ -81,7 +81,7 @@ public class QuestHandler : MonoBehaviour
         displayList.Add(questList[_id]);
 
         GameObject questButton = Instantiate(button, buttonParent.transform);
-        questButton.GetComponent<QuestButton>().LoadData(_id, questList[_id].description);
+        questButton.GetComponent<QuestButton>().LoadData(_id, questList[_id].description, questList[_id].isStory);
     }
 
     public void ReplaceQuest(int _id)
