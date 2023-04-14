@@ -7,14 +7,17 @@ public class IconData : MonoBehaviour
     public int id;
     public GameObject outline;
 
+    private Confirm confirm;
+
     public void Start()
     {
+        confirm = FindObjectOfType<Confirm>();
         outline.SetActive(false);
     }
 
     public void Update()
     {
-        if(Confirm.iconId != id)
+        if(confirm.iconId != id)
         {
             outline.SetActive(false);
         }
@@ -22,8 +25,8 @@ public class IconData : MonoBehaviour
 
     public void ChooseIcon()
     {
-        Confirm.iconId = id;
-        Confirm.choseIcon = true;
+        confirm.iconId = id;
+        confirm.choseIcon = true;
         outline.SetActive(true);
     }
 }
