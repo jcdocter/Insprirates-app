@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 248.53601, y: 0.5010071}
+  m_SizeDelta: {x: -645.709, y: -243.117}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1601641841394914653
 CanvasRenderer:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -173,8 +173,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 22.12091, y: -74.30507}
+  m_SizeDelta: {x: 636.7262, y: 178.6101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1294542006790857874
 CanvasRenderer:
@@ -284,3 +284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   questDescription: {fileID: 9145705650244102800}
+  buttonImage:
+  - {fileID: 21300000, guid: 96cc77aa77fbae1428a5ba120aae3c56, type: 3}
+  - {fileID: 21300000, guid: 67524b3a7d1f2a947bd0a1ef79a3690d, type: 3}

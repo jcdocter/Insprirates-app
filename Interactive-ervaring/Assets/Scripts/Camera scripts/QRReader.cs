@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using ZXing;
 
 public class QRReader : MonoBehaviour
@@ -13,8 +12,10 @@ public class QRReader : MonoBehaviour
     public GameObject scanner;
 
     private WebCamTexture backCam;
-    private bool camAvailable;
     private QuestHandler questHandler;
+    private bool camAvailable;
+    private bool isActive;
+    private int timedPressed = 0;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class QRReader : MonoBehaviour
 
     private void Update()
     {
-        if(camAvailable == false)
+        if(!camAvailable || !isActive)
         {
             return;
         }
@@ -72,6 +73,7 @@ public class QRReader : MonoBehaviour
             if(result != null)
             {
                 questHandler.AddNewQuest(result.Text);
+                isActive = false;
                 scanner.SetActive(false);
             }
         }
@@ -83,8 +85,17 @@ public class QRReader : MonoBehaviour
 
     public void ActivateCamera()
     {
+        isActive = true;
+        timedPressed++;
+
+        if (timedPressed >= 2)
+        {
+            questHandler.isFirstQuest = false;
+        }
+
         Tutorial.questTutorial.enabled = false;
         Tutorial.telescopeTutorial.enabled = false;
+        Tutorial.firstQuestTutorial.enabled = false;
         Tutorial.scanTutorial.enabled = true;
 
         scanner.SetActive(true);
