@@ -11,13 +11,19 @@ public class QuestHandler : MonoBehaviour
     public GameObject tutorial;
 
     public List<Quest> questList;
-
-    private List<Quest> displayList = new List<Quest>();
     private float setTimer;
 
     private void Awake()
     {
         Tutorial.assignTutorial(tutorial);
+
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if(questList[i].canDisplayQuest)
+            {
+                DisplayQuest(questList[i]);
+            }
+        }
     }
 
     private void Start()
@@ -34,25 +40,24 @@ public class QuestHandler : MonoBehaviour
         {
             TutorialTimer();
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            AddNewQuest("A1");
+            AddNewQuest("A2");
+            AddNewQuest("V1");
+        }
     }
 
     public void AddNewQuest(string _questID)
     {
         Tutorial.scanTutorial.enabled = false;
 
-        for (int i = 0; i < displayList.Count; i++)
-        {
-            if(displayList[i].id == _questID)
-            {
-                return;
-            }
-        }
-
         for (int i = 0; i < questList.Count; i++)
         {
-            if(questList[i].id == _questID)
+            if(questList[i].id == _questID && !questList[i].canDisplayQuest)
             {
-                DisplayQuest(i);
+                DisplayQuest(questList[i]);
             }
         }
 
@@ -76,27 +81,14 @@ public class QuestHandler : MonoBehaviour
         }
         else
         {
-
             Tutorial.firstQuestTutorial.enabled = false;
         }
     }
 
-    private void DisplayQuest(int _id)
+    private void DisplayQuest(Quest _quest)
     {
-        displayList.Add(questList[_id]);
-
         GameObject questButton = Instantiate(button, buttonParent.transform);
-        questButton.GetComponent<QuestButton>().LoadData(_id, questList[_id].description, questList[_id].isStory);
-    }
-
-    public void ReplaceQuest(int _id)
-    {
-        if(questList[_id].isStory)
-        {
-            questList[_id] = questList[_id].nextQuest;
-        }
-
-        isFirstQuest = false;
-        Tutorial.firstQuestTutorial.enabled = false;
+        _quest.canDisplayQuest = true;
+        questButton.GetComponent<QuestButton>().LoadData(_quest);
     }
 }

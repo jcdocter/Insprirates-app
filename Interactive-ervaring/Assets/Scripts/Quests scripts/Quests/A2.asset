@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: A2
   m_EditorClassIdentifier: 
   id: A2
-  isMainStory: 0
+  canDisplayQuest: 0
   isDone: 0
   description: Versier een boot
+  isStory: 0
+  nextQuest: {fileID: 0}
