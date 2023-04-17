@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: V2
   m_EditorClassIdentifier: 
   id: V2
+  canDisplayQuest: 0
+  isDone: 0
+  description: Story 2 quest
   isStory: 1
   nextQuest: {fileID: 0}
-  description: Story 2 quest

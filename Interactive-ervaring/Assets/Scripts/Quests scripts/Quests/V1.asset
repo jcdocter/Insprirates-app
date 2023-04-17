@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: V1
   m_EditorClassIdentifier: 
   id: V1
+  canDisplayQuest: 0
+  isDone: 0
+  description: Story 1 quest
   isStory: 1
   nextQuest: {fileID: 11400000, guid: 5bf93f7560847c64a995036485b3d580, type: 2}
-  description: Story 1 quest

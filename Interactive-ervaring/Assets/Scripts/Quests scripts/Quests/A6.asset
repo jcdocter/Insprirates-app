@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: A6
   m_EditorClassIdentifier: 
   id: A6
-  isMainStory: 0
+  canDisplayQuest: 0
   isDone: 0
   description: Hang deze vlag op een goeie plek op, zodat iedereen deze kan zien!
+  isStory: 0
+  nextQuest: {fileID: 0}

@@ -6,16 +6,18 @@ using UnityEngine.UI;
 
 public class QuestButton : MonoBehaviour
 {
-    public int id;
     public TextMeshProUGUI questDescription;
     public Sprite[] buttonImage;
+
+    private Quest quest;
     private QuestHandler questHandler;
 
-    public void LoadData(int _id, string _description, bool _isStory)
+    public void LoadData(Quest _quest)
     {
         questHandler = FindObjectOfType<QuestHandler>();
+        quest = _quest;
 
-        if(_isStory)
+        if(quest.isStory)
         {
             this.gameObject.transform.GetComponent<Image>().sprite = buttonImage[1];
         }
@@ -24,8 +26,13 @@ public class QuestButton : MonoBehaviour
             this.gameObject.transform.GetComponent<Image>().sprite = buttonImage[0];
         }
 
-        id = _id;
-        questDescription.text = _description;
+        questDescription.text = quest.description;
+
+        if (quest.isDone)
+        {
+            CheckOff();
+            return;
+        }
     }
 
     public void CheckOff()
@@ -33,6 +40,11 @@ public class QuestButton : MonoBehaviour
         questDescription.fontStyle = FontStyles.Strikethrough;
         this.enabled = false;
 
-        questHandler.ReplaceQuest(id);
+        quest.CompleteQuest();
+
+        if(quest.isStory)
+        {
+            questHandler.questList.Add(quest.nextQuest);
+        }
     }
 }

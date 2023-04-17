@@ -72,9 +72,9 @@ public class QRReader : MonoBehaviour
 
             if(result != null)
             {
-                questHandler.AddNewQuest(result.Text);
-                isActive = false;
                 scanner.SetActive(false);
+                isActive = false;
+                questHandler.AddNewQuest(result.Text);
             }
         }
         catch

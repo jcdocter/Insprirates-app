@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: A5
   m_EditorClassIdentifier: 
   id: A5
-  isMainStory: 0
+  canDisplayQuest: 0
   isDone: 0
   description: Offer een van je creaties op aan de heilige Quacken
+  isStory: 0
+  nextQuest: {fileID: 0}

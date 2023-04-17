@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
-public class PlayerData : MonoBehaviour
+[System.Serializable]
+public class PlayerData
 {
-    public TextMeshProUGUI username;
-    public Image playerIcon;
-    public List<Sprite> iconList;
+    public string name;
+    public int iconId;
+    public bool hasAccount;
 
-    public void Start()
+    public PlayerData(Confirm _data)
     {
-        username.text = PlayerPrefs.GetString("username");
-        playerIcon.sprite = iconList[PlayerPrefs.GetInt("Icon")];
+        name = _data.userName.text;
+        iconId = _data.iconId;
+        hasAccount = _data.hasAccount;
     }
 }

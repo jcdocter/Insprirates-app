@@ -6,16 +6,28 @@ using TMPro;
 
 public class Confirm : MonoBehaviour
 {
-    public static int iconId;
-    public static bool choseIcon = false;
+    public bool choseIcon = false;
+    public bool hasAccount;
+    public int iconId;
     public TMP_InputField userName;
+
+    public void Awake()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        hasAccount = data.hasAccount;
+
+        if (hasAccount)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
 
     public void nextScene()
     {
         if (userName.text != "" && choseIcon)
         {
-            PlayerPrefs.SetString("username", userName.text);
-            PlayerPrefs.SetInt("Icon", iconId);
+            hasAccount = true;
+            SaveSystem.SavePlayer(this);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

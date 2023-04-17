@@ -1,29 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
     public string id;
-    public bool isStory;
-    public Quest nextQuest;
+    public bool canDisplayQuest;
+    public bool isDone;
     public string description;
+
+    public bool isStory;
+
+    [HideInInspector]
+    public Quest nextQuest;
+
+    public void CompleteQuest()
+    {
+        isDone = true;
+    }
 }
 
-/*[CustomEditor(typeof(Quest))]
+#if UNITY_EDITOR
+[CustomEditor(typeof(Quest))]
 public class QuestScriptEditor : Editor
 {
-    private void OnInspectorGUI()
+    public override void OnInspectorGUI()
     {
-        var script = target as Quest;
+        base.OnInspectorGUI();
 
-        script.isStory = GUILayout.Toggle(script.isStory, "Flag");
+        Quest script = (Quest)target;
 
-        if(script.isStory)
+        if (script.isStory)
         {
-            script.nextQuest = EditorGUILayout.ObjectField(script, target);
+            script.nextQuest = EditorGUILayout.ObjectField("Next Quest", script.nextQuest, typeof(Quest), true) as Quest;
         }
     }
-}*/
+}
+#endif
