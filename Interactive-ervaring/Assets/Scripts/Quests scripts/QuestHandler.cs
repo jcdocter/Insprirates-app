@@ -17,9 +17,12 @@ public class QuestHandler : MonoBehaviour
     {
         Tutorial.assignTutorial(tutorial);
 
+        SaveSystem.questList = questList;
+        SaveSystem.LoadQuest();
+
         for (int i = 0; i < questList.Count; i++)
         {
-            if(questList[i].canDisplayQuest)
+            if (questList[i].canDisplayQuest)
             {
                 DisplayQuest(questList[i]);
             }
@@ -90,5 +93,7 @@ public class QuestHandler : MonoBehaviour
         GameObject questButton = Instantiate(button, buttonParent.transform);
         _quest.canDisplayQuest = true;
         questButton.GetComponent<QuestButton>().LoadData(_quest);
+
+        SaveSystem.SaveQuest();
     }
 }

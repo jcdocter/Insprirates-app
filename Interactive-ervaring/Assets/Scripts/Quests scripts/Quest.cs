@@ -25,6 +25,7 @@ public class Quest : ScriptableObject
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Quest))]
 public class QuestScriptEditor : Editor
 {
@@ -40,3 +41,4 @@ public class QuestScriptEditor : Editor
         }
     }
 }
+#endif
