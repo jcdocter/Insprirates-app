@@ -42,6 +42,8 @@ public class QuestButton : MonoBehaviour
 
         quest.CompleteQuest();
 
+        transform.SetAsFirstSibling();
+
         if(quest.isStory)
         {
             questHandler.questList.Add(quest.nextQuest);

@@ -12,8 +12,9 @@ public class QuestHandler : MonoBehaviour
 
     public List<Quest> questList;
     private float setTimer;
+    private int debugIndex = 1;
 
-    private void Awake()
+    private void Start()
     {
         Tutorial.assignTutorial(tutorial);
 
@@ -49,9 +50,8 @@ public class QuestHandler : MonoBehaviour
         //Debug function
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            AddNewQuest("A1");
-            AddNewQuest("A2");
-            AddNewQuest("V1");
+            AddNewQuest("A" + debugIndex);
+            debugIndex++;
         }
     }
 
