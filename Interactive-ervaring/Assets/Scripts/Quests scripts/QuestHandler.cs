@@ -17,6 +17,11 @@ public class QuestHandler : MonoBehaviour
     {
         Tutorial.assignTutorial(tutorial);
 
+        Tutorial.questTutorial.enabled = true;
+        Tutorial.telescopeTutorial.enabled = true;
+        Tutorial.scanTutorial.enabled = false;
+        Tutorial.firstQuestTutorial.enabled = false;
+
         SaveSystem.questList = questList;
         SaveSystem.LoadQuest();
 
@@ -24,17 +29,14 @@ public class QuestHandler : MonoBehaviour
         {
             if (questList[i].canDisplayQuest)
             {
+                Tutorial.questTutorial.enabled = false;
+                Tutorial.telescopeTutorial.enabled = false;
+                Tutorial.firstQuestTutorial.enabled = false;
+                isFirstQuest = false;
+
                 DisplayQuest(questList[i]);
             }
         }
-    }
-
-    private void Start()
-    {
-        Tutorial.questTutorial.enabled = true;
-        Tutorial.telescopeTutorial.enabled = true;
-        Tutorial.scanTutorial.enabled = false;
-        Tutorial.firstQuestTutorial.enabled = false;
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class QuestHandler : MonoBehaviour
             TutorialTimer();
         }
 
+        //Debug function
         if(Input.GetKeyDown(KeyCode.Space))
         {
             AddNewQuest("A1");
@@ -93,6 +96,11 @@ public class QuestHandler : MonoBehaviour
         GameObject questButton = Instantiate(button, buttonParent.transform);
         _quest.canDisplayQuest = true;
         questButton.GetComponent<QuestButton>().LoadData(_quest);
+
+        if(_quest.isDone)
+        {
+            questButton.GetComponent<QuestButton>().CheckOff();
+        }
 
         SaveSystem.SaveQuest();
     }
