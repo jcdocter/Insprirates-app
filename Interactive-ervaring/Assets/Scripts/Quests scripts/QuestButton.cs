@@ -46,5 +46,9 @@ public class QuestButton : MonoBehaviour
         {
             questHandler.questList.Add(quest.nextQuest);
         }
+
+        questHandler.isFirstQuest = false;
+        Tutorial.firstQuestTutorial.enabled = false;
+        SaveSystem.SaveQuest();
     }
 }
