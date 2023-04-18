@@ -17,7 +17,7 @@ public class QRReader : MonoBehaviour
     private bool isActive;
     private int timedPressed = 0;
 
-    private void Start()
+    private void Awake()
     {
         scanner.SetActive(false);
         questHandler = FindObjectOfType<QuestHandler>();
