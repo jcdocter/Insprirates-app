@@ -50,7 +50,7 @@ public class QuestButton : MonoBehaviour
         }
 
         questHandler.isFirstQuest = false;
-        Tutorial.firstQuestTutorial.enabled = false;
+        Tutorial.instance.firstQuestTutorial.SetActive(false);
         SaveSystem.SaveQuest();
     }
 }

@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public static class Tutorial
+public class Tutorial : MonoBehaviour
 {
-    public static Image questTutorial;
-    public static Image telescopeTutorial;
-    public static Image scanTutorial;
-    public static Image firstQuestTutorial;
+    public static Tutorial instance;
 
-    public static void assignTutorial(GameObject _tutorialObject)
+    public GameObject questTutorial;
+
+    public GameObject telescopeTutorial;
+    public GameObject firstQuestTutorial;
+    public GameObject scanTutorial;
+    public GameObject acceptTutorial;
+
+    public void Awake()
     {
-        questTutorial = _tutorialObject.transform.GetChild(0).GetComponent<Image>();
-        telescopeTutorial = _tutorialObject.transform.GetChild(1).GetComponent<Image>();
-        scanTutorial = _tutorialObject.transform.GetChild(2).GetComponent<Image>();
-        firstQuestTutorial = _tutorialObject.transform.GetChild(3).GetComponent<Image>();
+        instance = this;
     }
+
 }

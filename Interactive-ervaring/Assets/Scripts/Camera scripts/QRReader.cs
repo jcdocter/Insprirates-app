@@ -93,10 +93,10 @@ public class QRReader : MonoBehaviour
             questHandler.isFirstQuest = false;
         }
 
-        Tutorial.questTutorial.enabled = false;
-        Tutorial.telescopeTutorial.enabled = false;
-        Tutorial.firstQuestTutorial.enabled = false;
-        Tutorial.scanTutorial.enabled = true;
+        Tutorial.instance.questTutorial.SetActive(false);
+        Tutorial.instance.telescopeTutorial.SetActive(false);
+        Tutorial.instance.firstQuestTutorial.SetActive(false);
+        Tutorial.instance.scanTutorial.SetActive(true);
 
         scanner.SetActive(true);
     }
