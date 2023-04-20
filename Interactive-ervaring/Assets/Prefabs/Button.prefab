@@ -282,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1972819df67cd2c4bbf97523d1fafc6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   questDescription: {fileID: 9145705650244102800}
   buttonImage:
   - {fileID: 21300000, guid: 96cc77aa77fbae1428a5ba120aae3c56, type: 3}

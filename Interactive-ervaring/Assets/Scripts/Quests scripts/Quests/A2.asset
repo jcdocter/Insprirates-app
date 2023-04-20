@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: A2
   m_EditorClassIdentifier: 
   id: A2
-  canDisplayQuest: 0
+  canDisplayQuest: 1
   isDone: 0
   description: Versier een boot
   isStory: 0
