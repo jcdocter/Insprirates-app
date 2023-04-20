@@ -12,15 +12,15 @@ public class QuestHandler : MonoBehaviour
 
     public List<Quest> questList;
     private float setTimer;
+    private int debugIndex = 1;
 
-    private void Awake()
+    private void Start()
     {
-        Tutorial.assignTutorial(tutorial);
-
-        Tutorial.questTutorial.enabled = true;
-        Tutorial.telescopeTutorial.enabled = true;
-        Tutorial.scanTutorial.enabled = false;
-        Tutorial.firstQuestTutorial.enabled = false;
+        Tutorial.instance.questTutorial.SetActive(true);
+        Tutorial.instance.telescopeTutorial.SetActive(true);
+        Tutorial.instance.firstQuestTutorial.SetActive(false);
+        Tutorial.instance.scanTutorial.SetActive(false);
+        Tutorial.instance.acceptTutorial.SetActive(false);
 
         SaveSystem.questList = questList;
         SaveSystem.LoadQuest();
@@ -29,9 +29,9 @@ public class QuestHandler : MonoBehaviour
         {
             if (questList[i].canDisplayQuest)
             {
-                Tutorial.questTutorial.enabled = false;
-                Tutorial.telescopeTutorial.enabled = false;
-                Tutorial.firstQuestTutorial.enabled = false;
+                Tutorial.instance.questTutorial.SetActive(false);
+                Tutorial.instance.telescopeTutorial.SetActive(false);
+                Tutorial.instance.firstQuestTutorial.SetActive(false);
                 isFirstQuest = false;
 
                 DisplayQuest(questList[i]);
@@ -49,15 +49,14 @@ public class QuestHandler : MonoBehaviour
         //Debug function
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            AddNewQuest("A1");
-            AddNewQuest("A2");
-            AddNewQuest("V1");
+            AddNewQuest("A" + debugIndex);
+            debugIndex++;
         }
     }
 
     public void AddNewQuest(string _questID)
     {
-        Tutorial.scanTutorial.enabled = false;
+        Tutorial.instance.scanTutorial.SetActive(false);
 
         for (int i = 0; i < questList.Count; i++)
         {
@@ -80,14 +79,14 @@ public class QuestHandler : MonoBehaviour
             while (setTimer > 0f)
             {
                 setTimer -= Time.deltaTime;
-                Tutorial.firstQuestTutorial.enabled = true;
+                Tutorial.instance.firstQuestTutorial.SetActive(true);
             }
 
             isFirstQuest = false;
         }
         else
         {
-            Tutorial.firstQuestTutorial.enabled = false;
+            Tutorial.instance.firstQuestTutorial.SetActive(false);
         }
     }
 

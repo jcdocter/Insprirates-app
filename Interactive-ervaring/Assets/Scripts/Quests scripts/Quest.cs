@@ -18,11 +18,6 @@ public class Quest : ScriptableObject
 
     [HideInInspector]
     public Quest nextQuest;
-
-    public void CompleteQuest()
-    {
-        isDone = true;
-    }
 }
 
 #if UNITY_EDITOR

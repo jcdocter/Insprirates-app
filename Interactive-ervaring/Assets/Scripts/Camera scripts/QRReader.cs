@@ -10,16 +10,19 @@ public class QRReader : MonoBehaviour
     public AspectRatioFitter fit;
     public RectTransform scannerTransform;
     public GameObject scanner;
+    public GameObject acceptButton;
 
     private WebCamTexture backCam;
     private QuestHandler questHandler;
     private bool camAvailable;
     private bool isActive;
     private int timedPressed = 0;
+    private static string resultText;
 
     private void Start()
     {
         scanner.SetActive(false);
+        acceptButton.SetActive(false);
         questHandler = FindObjectOfType<QuestHandler>();
         StartCamera();
     }
@@ -72,9 +75,11 @@ public class QRReader : MonoBehaviour
 
             if(result != null)
             {
-                scanner.SetActive(false);
-                isActive = false;
-                questHandler.AddNewQuest(result.Text);
+                resultText = result.Text;
+
+                acceptButton.SetActive(true);
+                Tutorial.instance.acceptTutorial.SetActive(true);
+                //questHandler.AddNewQuest(result.Text);
             }
         }
         catch
@@ -93,11 +98,22 @@ public class QRReader : MonoBehaviour
             questHandler.isFirstQuest = false;
         }
 
-        Tutorial.questTutorial.enabled = false;
-        Tutorial.telescopeTutorial.enabled = false;
-        Tutorial.firstQuestTutorial.enabled = false;
-        Tutorial.scanTutorial.enabled = true;
+        Tutorial.instance.questTutorial.SetActive(false);
+        Tutorial.instance.telescopeTutorial.SetActive(false);
+        Tutorial.instance.firstQuestTutorial.SetActive(false);
+        Tutorial.instance.scanTutorial.SetActive(true);
 
         scanner.SetActive(true);
+    }
+
+    public void AcceptQuest()
+    {
+        questHandler.AddNewQuest(resultText);
+
+        scanner.SetActive(false);
+        isActive = false;
+
+        Tutorial.instance.acceptTutorial.SetActive(false);
+        acceptButton.SetActive(false);
     }
 }

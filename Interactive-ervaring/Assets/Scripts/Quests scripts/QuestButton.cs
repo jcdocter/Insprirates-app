@@ -37,18 +37,33 @@ public class QuestButton : MonoBehaviour
 
     public void CheckOff()
     {
-        questDescription.fontStyle = FontStyles.Strikethrough;
-        this.enabled = false;
-
-        quest.CompleteQuest();
-
-        if(quest.isStory)
+        if(!quest.isDone)
         {
-            questHandler.questList.Add(quest.nextQuest);
+            questDescription.fontStyle = FontStyles.Strikethrough;
+
+            quest.isDone = true;
+            transform.SetAsFirstSibling();
+
+            if (quest.isStory)
+            {
+                questHandler.questList.Add(quest.nextQuest);
+            }
+        }
+        else
+        {
+            questDescription.fontStyle = FontStyles.Normal;
+
+            quest.isDone = false;
+            transform.SetAsLastSibling();
+
+            if (quest.isStory)
+            {
+                questHandler.questList.Remove(quest.nextQuest);
+            }
         }
 
         questHandler.isFirstQuest = false;
-        Tutorial.firstQuestTutorial.enabled = false;
+        Tutorial.instance.firstQuestTutorial.SetActive(false);
         SaveSystem.SaveQuest();
     }
 }
