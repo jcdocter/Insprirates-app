@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tutorial : MonoBehaviour
+[System.Serializable]
+public struct QuestTutorial
 {
-    public static Tutorial instance;
-
     public GameObject questTutorial;
 
     public GameObject telescopeTutorial;
     public GameObject firstQuestTutorial;
+}
+
+[System.Serializable]
+public struct ScanTutorial
+{
     public GameObject scanTutorial;
     public GameObject acceptTutorial;
-
-    public void Awake()
-    {
-        instance = this;
-    }
-
 }
