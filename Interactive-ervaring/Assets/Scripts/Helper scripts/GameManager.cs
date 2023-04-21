@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Image playerIcon;
     public List<Sprite> iconList;
 
-    public void Start()
+   private void Start()
     {
         PlayerData data = SaveSystem.LoadPlayer();
 

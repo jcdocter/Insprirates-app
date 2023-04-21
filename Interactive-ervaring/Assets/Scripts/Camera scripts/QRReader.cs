@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using ZXing;
+
 
 public class QRReader : MonoBehaviour
 {
@@ -13,23 +15,19 @@ public class QRReader : MonoBehaviour
     public GameObject acceptButton;
 
     private WebCamTexture backCam;
-    private QuestHandler questHandler;
     private bool camAvailable;
-    private bool isActive;
-    private int timedPressed = 0;
     private static string resultText;
 
     private void Start()
     {
-        scanner.SetActive(false);
         acceptButton.SetActive(false);
-        questHandler = FindObjectOfType<QuestHandler>();
+
         StartCamera();
     }
 
     private void Update()
     {
-        if(!camAvailable || !isActive)
+        if(!camAvailable)
         {
             return;
         }
@@ -78,8 +76,6 @@ public class QRReader : MonoBehaviour
                 resultText = result.Text;
 
                 acceptButton.SetActive(true);
-                Tutorial.instance.acceptTutorial.SetActive(true);
-                //questHandler.AddNewQuest(result.Text);
             }
         }
         catch
@@ -88,32 +84,10 @@ public class QRReader : MonoBehaviour
         }
     }
 
-    public void ActivateCamera()
-    {
-        isActive = true;
-        timedPressed++;
-
-        if (timedPressed >= 2)
-        {
-            questHandler.isFirstQuest = false;
-        }
-
-        Tutorial.instance.questTutorial.SetActive(false);
-        Tutorial.instance.telescopeTutorial.SetActive(false);
-        Tutorial.instance.firstQuestTutorial.SetActive(false);
-        Tutorial.instance.scanTutorial.SetActive(true);
-
-        scanner.SetActive(true);
-    }
-
     public void AcceptQuest()
     {
-        questHandler.AddNewQuest(resultText);
+        PlayerPrefs.SetString("questID", resultText);
 
-        scanner.SetActive(false);
-        isActive = false;
-
-        Tutorial.instance.acceptTutorial.SetActive(false);
-        acceptButton.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
