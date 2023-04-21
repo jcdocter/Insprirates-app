@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class QuestButton : MonoBehaviour
 {
     public TextMeshProUGUI questDescription;
-    public Sprite[] buttonImage;
+    public GameObject checkmark;
+    public Image textBackground;
 
     private Quest quest;
     private QuestHandler questHandler;
@@ -17,13 +18,13 @@ public class QuestButton : MonoBehaviour
         questHandler = FindObjectOfType<QuestHandler>();
         quest = _quest;
 
-        if(quest.isStory)
+        if (quest.isStory)
         {
-            this.gameObject.transform.GetComponent<Image>().sprite = buttonImage[1];
+            textBackground.color = new Color(255f/255f, 212f/255f, 180f/255f);
         }
         else
         {
-            this.gameObject.transform.GetComponent<Image>().sprite = buttonImage[0];
+            textBackground.color = new Color(181f/255f, 249f/255f, 249f/255f);
         }
 
         questDescription.text = quest.description;
@@ -31,7 +32,6 @@ public class QuestButton : MonoBehaviour
         if (quest.isDone)
         {
             CheckOff();
-            return;
         }
     }
 
@@ -39,6 +39,7 @@ public class QuestButton : MonoBehaviour
     {
         if(!quest.isDone)
         {
+            checkmark.SetActive(true);
             questDescription.fontStyle = FontStyles.Strikethrough;
 
             quest.isDone = true;
@@ -51,6 +52,7 @@ public class QuestButton : MonoBehaviour
         }
         else
         {
+            checkmark.SetActive(false);
             questDescription.fontStyle = FontStyles.Normal;
 
             quest.isDone = false;

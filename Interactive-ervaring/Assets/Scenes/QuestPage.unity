@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2336,7 +2336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFirstQuest: 1
-  button: {fileID: 7793045069821616637, guid: 9c3ac9e8a748eb64a97e03f4367f846b, type: 3}
+  button: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   buttonParent: {fileID: 1884233431}
   tutorial: {fileID: 1521233676}
   questList:

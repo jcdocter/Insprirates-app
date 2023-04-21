@@ -9,18 +9,26 @@ using ZXing;
 public class QRReader : MonoBehaviour
 {
     public RawImage background;
-    public AspectRatioFitter fit;
     public RectTransform scannerTransform;
     public GameObject scanner;
     public GameObject acceptButton;
+    public GameObject acceptTutorial;
 
     private WebCamTexture backCam;
+    private AspectRatioFitter fit;
+    private List<Quest> questList = new List<Quest>();
+
     private bool camAvailable;
     private static string resultText;
 
     private void Start()
     {
+        fit = FindObjectOfType<AspectRatioFitter>();
+
+        questList = SaveSystem.questList;
+
         acceptButton.SetActive(false);
+        acceptTutorial.SetActive(false);
 
         StartCamera();
     }
@@ -76,12 +84,38 @@ public class QRReader : MonoBehaviour
                 resultText = result.Text;
 
                 acceptButton.SetActive(true);
+                acceptTutorial.SetActive(true);
+
+                acceptButton.GetComponent<Image>().color = DisplayButtonColor();
+
             }
         }
         catch
         {
             Debug.LogError("Can not scan QR");
         }
+    }
+
+    private Color DisplayButtonColor()
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if (questList[i].id != resultText)
+            {
+                continue;
+            }
+
+            if (questList[i].isStory)
+            {
+                return new Color(255f/255f, 212f/255f, 180f/255f);
+            }
+            else
+            {
+                return new Color(181f/255f, 249f/255f, 249f/255f);
+            }
+        }
+
+        return Color.white;
     }
 
     public void AcceptQuest()
