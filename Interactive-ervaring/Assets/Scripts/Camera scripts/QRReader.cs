@@ -15,11 +15,15 @@ public class QRReader : MonoBehaviour
     public GameObject acceptButton;
 
     private WebCamTexture backCam;
+    private List<Quest> questList = new List<Quest>();
+
     private bool camAvailable;
     private static string resultText;
 
     private void Start()
     {
+        questList = SaveSystem.questList;
+
         acceptButton.SetActive(false);
 
         StartCamera();
@@ -76,12 +80,37 @@ public class QRReader : MonoBehaviour
                 resultText = result.Text;
 
                 acceptButton.SetActive(true);
+
+                acceptButton.GetComponent<Image>().color = DisplayButtonColor();
+
             }
         }
         catch
         {
             Debug.LogError("Can not scan QR");
         }
+    }
+
+    private Color DisplayButtonColor()
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if (questList[i].id != resultText)
+            {
+                continue;
+            }
+
+            if (questList[i].isStory)
+            {
+                return Color.blue;
+            }
+            else
+            {
+                return Color.red;
+            }
+        }
+
+        return Color.white;
     }
 
     public void AcceptQuest()
