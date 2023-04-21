@@ -224,8 +224,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1900123767}
   - {fileID: 1414841251}
+  - {fileID: 1900123767}
   m_Father: {fileID: 1312617133}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -739,10 +739,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 2089892514}
-  fit: {fileID: 2089892513}
   scannerTransform: {fileID: 2089892512}
   scanner: {fileID: 1436797031}
   acceptButton: {fileID: 721031507}
+  acceptTutorial: {fileID: 1900123766}
 --- !u!1001 &1414841250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417351045383261571, guid: 954817004b91c624387dcfaec9a17a83, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5417351045383261571, guid: 954817004b91c624387dcfaec9a17a83, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1077,7 +1077,7 @@ RectTransform:
   m_Children:
   - {fileID: 656514518}
   m_Father: {fileID: 58327600}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

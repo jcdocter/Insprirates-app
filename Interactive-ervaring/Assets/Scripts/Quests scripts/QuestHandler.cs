@@ -40,9 +40,15 @@ public class QuestHandler : MonoBehaviour
         }
 
         //Debug function
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.A))
         {
             AddNewQuest("A" + debugIndex);
+            debugIndex++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            AddNewQuest("V1");
             debugIndex++;
         }
     }
