@@ -4,11 +4,22 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct ButtonLayout
+{
+    public Sprite checkmarkBox;
+    public Sprite textBackground;
+}
+
 public class QuestButton : MonoBehaviour
 {
     public TextMeshProUGUI questDescription;
     public GameObject checkmark;
+
+    public Image checkmarkBox;
     public Image textBackground;
+
+    public List<ButtonLayout> buttonLayoutList = new List<ButtonLayout>();
 
     private Quest quest;
     private QuestHandler questHandler;
@@ -20,11 +31,13 @@ public class QuestButton : MonoBehaviour
 
         if (quest.isStory)
         {
-            textBackground.color = new Color(255f/255f, 212f/255f, 180f/255f);
+            checkmarkBox.sprite = buttonLayoutList[1].checkmarkBox;
+            textBackground.sprite = buttonLayoutList[1].textBackground;
         }
         else
         {
-            textBackground.color = new Color(181f/255f, 249f/255f, 249f/255f);
+            checkmarkBox.sprite = buttonLayoutList[0].checkmarkBox;
+            textBackground.sprite = buttonLayoutList[0].textBackground;
         }
 
         questDescription.text = quest.description;
