@@ -30,7 +30,7 @@ public class QRReader : MonoBehaviour
         acceptButton.SetActive(false);
         acceptTutorial.SetActive(false);
 
-        StartCamera();
+        StartCoroutine(StartCamera());
     }
 
     private void Update()
@@ -49,14 +49,14 @@ public class QRReader : MonoBehaviour
         Scan();
     }
 
-    private void StartCamera()
+    private IEnumerator StartCamera()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
 
         if(devices.Length == 0)
         {
             camAvailable = false;
-            return;
+            yield return new WaitForSeconds(0.0f);
         }
 
         for (int i = 0; i < devices.Length; i++)
@@ -67,7 +67,9 @@ public class QRReader : MonoBehaviour
             }
         }
 
+
         backCam.Play();
+        yield return new WaitForSeconds(5.0f);
         background.texture = backCam;
         camAvailable = true;
     }
