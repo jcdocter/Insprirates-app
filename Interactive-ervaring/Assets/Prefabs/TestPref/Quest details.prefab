@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2473814020504664014}
         m_TargetAssemblyTypeName: QuestButton, Assembly-CSharp
-        m_MethodName: CheckOff
+        m_MethodName: DoQuest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

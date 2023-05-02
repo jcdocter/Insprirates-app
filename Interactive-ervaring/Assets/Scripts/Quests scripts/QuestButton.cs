@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct ButtonLayout
@@ -23,6 +24,7 @@ public class QuestButton : MonoBehaviour
 
     private Quest quest;
     private QuestHandler questHandler;
+    private string questScene = "QuestScene";
 
     public void LoadData(Quest _quest)
     {
@@ -46,6 +48,11 @@ public class QuestButton : MonoBehaviour
         {
             CheckOff();
         }
+    }
+
+    public void DoQuest()
+    {
+        SceneManager.LoadScene(questScene);
     }
 
     public void CheckOff()
