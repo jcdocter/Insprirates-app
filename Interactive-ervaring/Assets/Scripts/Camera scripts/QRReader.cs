@@ -6,72 +6,31 @@ using UnityEngine.UI;
 using ZXing;
 
 
-public class QRReader : MonoBehaviour
+public class QRReader : RecCamera
 {
-    public RawImage background;
-    public RectTransform scannerTransform;
     public GameObject scanner;
     public GameObject acceptButton;
     public GameObject acceptTutorial;
 
-    private WebCamTexture backCam;
-    private AspectRatioFitter fit;
     private List<Quest> questList = new List<Quest>();
 
-    private bool camAvailable;
     private static string resultText;
 
-    private void Start()
+    public override void Start()
     {
-        fit = FindObjectOfType<AspectRatioFitter>();
+        base.Start();
 
         questList = SaveSystem.questList;
 
         acceptButton.SetActive(false);
         acceptTutorial.SetActive(false);
-
-        StartCoroutine(StartCamera());
     }
 
-    private void Update()
+    public override void Update()
     {
-        if(!camAvailable)
-        {
-            return;
-        }
-
-        float ratio = (float)backCam.width / (float)backCam.height;
-        fit.aspectRatio = ratio;
-
-        int orient = -backCam.videoRotationAngle;
-        background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+        base.Update();
 
         Scan();
-    }
-
-    private IEnumerator StartCamera()
-    {
-        WebCamDevice[] devices = WebCamTexture.devices;
-
-        if(devices.Length == 0)
-        {
-            camAvailable = false;
-            yield return new WaitForSeconds(0.0f);
-        }
-
-        for (int i = 0; i < devices.Length; i++)
-        {
-            if(!devices[i].isFrontFacing)
-            {
-                backCam = new WebCamTexture(devices[i].name, (int)scannerTransform.rect.width, (int)scannerTransform.rect.height);
-            }
-        }
-
-
-        backCam.Play();
-        yield return new WaitForSeconds(5.0f);
-        background.texture = backCam;
-        camAvailable = true;
     }
 
     private void Scan()
@@ -89,7 +48,6 @@ public class QRReader : MonoBehaviour
                 acceptTutorial.SetActive(true);
 
                 acceptButton.GetComponent<Image>().color = DisplayButtonColor();
-
             }
         }
         catch
