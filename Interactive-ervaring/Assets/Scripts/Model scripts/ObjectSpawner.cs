@@ -6,22 +6,38 @@ using UnityEngine;
 [Serializable]
 public class Models
 {
-    public int id;
+    public string[] ids;
     public GameObject model;
+
+    public bool CheckID()
+    {
+        for (int i = 0; i < ids.Length; i++)
+        {
+            if (PlayerPrefs.GetString("modelID") == ids[i])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 public class ObjectSpawner : MonoBehaviour
 {
+    public static string questID;
     public List<Models> modelList = new List<Models>();
 
-    public void Start()
+    private void Start()
     {
         for (int i = 0; i < modelList.Count; i++)
         {
-            if(/*playerPrefs.GetInt("modelid")*/ 0 == modelList[i].id)
+            if(modelList[i].CheckID())
             {
                 GameObject model = Instantiate(modelList[i].model, transform.position, Quaternion.identity);
                 model.transform.parent = transform;
+
+                questID = PlayerPrefs.GetString("modelID");
             }
         }
     }

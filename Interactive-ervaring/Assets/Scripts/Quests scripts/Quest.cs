@@ -13,7 +13,6 @@ public class Quest : ScriptableObject
     public bool canDisplayQuest;
     public bool isDone;
     public string description;
-    public int prefabID;
 
     public bool isStory;
 

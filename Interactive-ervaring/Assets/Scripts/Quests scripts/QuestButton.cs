@@ -44,33 +44,36 @@ public class QuestButton : MonoBehaviour
 
         questDescription.text = quest.description;
 
-        if (quest.isDone)
+        Debug.Log(quest.id + " " + quest.isDone);
+
+        if (quest.isDone || _quest.id == PlayerPrefs.GetString("buttonID"))
         {
             CheckOff();
         }
+
+        PlayerPrefs.SetString("buttonID", " ");
     }
 
     public void DoQuest()
     {
+        PlayerPrefs.SetString("modelID", quest.id);
         SceneManager.LoadScene(questScene);
     }
 
     public void CheckOff()
     {
-        if(!quest.isDone)
+        checkmark.SetActive(true);
+        questDescription.fontStyle = FontStyles.Strikethrough;
+
+        quest.isDone = true;
+        transform.SetAsFirstSibling();
+
+        if (quest.isStory)
         {
-            checkmark.SetActive(true);
-            questDescription.fontStyle = FontStyles.Strikethrough;
-
-            quest.isDone = true;
-            transform.SetAsFirstSibling();
-
-            if (quest.isStory)
-            {
-                questHandler.questList.Add(quest.nextQuest);
-            }
+            questHandler.questList.Add(quest.nextQuest);
         }
-        else
+
+/*        else
         {
             checkmark.SetActive(false);
             questDescription.fontStyle = FontStyles.Normal;
@@ -82,7 +85,7 @@ public class QuestButton : MonoBehaviour
             {
                 questHandler.questList.Remove(quest.nextQuest);
             }
-        }
+        }*/
 
         questHandler.isFirstQuest = false;
         questHandler.questTutorial.firstQuestTutorial.SetActive(false);

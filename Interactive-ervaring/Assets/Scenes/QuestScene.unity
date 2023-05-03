@@ -294,7 +294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelList:
-  - id: 0
+  - ids:
+    - A1
     model: {fileID: 5294364932301317698, guid: 47a57ae5d8d090c46bdab2c299343dcf, type: 3}
 --- !u!1 &1194842112
 GameObject:
