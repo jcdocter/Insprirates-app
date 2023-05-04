@@ -94,12 +94,8 @@ public class QuestHandler : MonoBehaviour
 
         GameObject questButton = Instantiate(button, buttonParent.transform);
         _quest.canDisplayQuest = true;
-        questButton.GetComponent<QuestButton>().LoadData(_quest);
 
-        if(_quest.isDone)
-        {
-            questButton.GetComponent<QuestButton>().CheckOff();
-        }
+        questButton.GetComponent<QuestButton>().LoadData(_quest);
 
         SaveSystem.SaveQuest();
     }
@@ -124,5 +120,7 @@ public class QuestHandler : MonoBehaviour
                 DisplayQuest(questList[i]);
             }
         }
+
+        PlayerPrefs.SetString("buttonID", " ");
     }
 }

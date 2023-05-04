@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using ZXing;
 
 
-public class QRReader : RecCamera
+public class QuestScanner : ARecCamera
 {
     public GameObject scanner;
     public GameObject acceptButton;
@@ -16,7 +16,7 @@ public class QRReader : RecCamera
 
     private static string resultText;
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
 
@@ -26,14 +26,7 @@ public class QRReader : RecCamera
         acceptTutorial.SetActive(false);
     }
 
-    public override void Update()
-    {
-        base.Update();
-
-        Scan();
-    }
-
-    private void Scan()
+    protected override void Scan()
     {
         try
         {
