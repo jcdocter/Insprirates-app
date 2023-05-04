@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class BreakKeyLock : MonoBehaviour, IDone
+public class BreakKeyLock : ADone
 {
-    public string questSceneProperty { get; set; }
-
     public GameObject creatureObject;
     private Animator animator;
-    private ObjectSpawner spawner;
-    private bool canSpin;
 
     private int ticks;
     private int playerTicks;
 
     private void Start()
     {
-        questSceneProperty = "QuestPage";
+        SetRules();
 
         ticks = Random.Range(2, 10);
         animator = GetComponent<Animator>();
@@ -28,7 +23,6 @@ public class BreakKeyLock : MonoBehaviour, IDone
         if(Input.GetMouseButtonDown(0))
         {
             playerTicks++;
-            //canSpin = !canSpin;
         }
 
         if(playerTicks >= ticks)
@@ -40,11 +34,5 @@ public class BreakKeyLock : MonoBehaviour, IDone
     public void Unlocked()
     {
         CheckOffQuest();
-    }
-
-    public void CheckOffQuest()
-    {
-        PlayerPrefs.SetString("buttonID", ObjectSpawner.questID);
-        SceneManager.LoadScene(questSceneProperty);
     }
 }

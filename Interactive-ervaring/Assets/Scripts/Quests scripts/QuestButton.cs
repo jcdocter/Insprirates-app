@@ -44,14 +44,12 @@ public class QuestButton : MonoBehaviour
 
         questDescription.text = quest.description;
 
-        Debug.Log(quest.id + " " + quest.isDone);
+        Debug.Log(_quest.id + " == " + PlayerPrefs.GetString("buttonID"));
 
         if (quest.isDone || _quest.id == PlayerPrefs.GetString("buttonID"))
         {
             CheckOff();
         }
-
-        PlayerPrefs.SetString("buttonID", " ");
     }
 
     public void DoQuest()

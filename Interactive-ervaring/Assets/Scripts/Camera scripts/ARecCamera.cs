@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RecCamera : MonoBehaviour
+public abstract class ARecCamera : MonoBehaviour
 {
     public RawImage background;
     public RectTransform scannerTransform;
@@ -13,14 +13,14 @@ public class RecCamera : MonoBehaviour
     private AspectRatioFitter fit;
     private bool camAvailable;
 
-    public virtual void Start()
+    protected virtual void Start()
     {
         fit = FindObjectOfType<AspectRatioFitter>();
 
         StartCoroutine(StartCamera());
     }
 
-    public virtual void Update()
+    private void Update()
     {
         if (!camAvailable)
         {
@@ -32,6 +32,8 @@ public class RecCamera : MonoBehaviour
 
         int orient = -backCam.videoRotationAngle;
         background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+
+        Scan();
     }
 
     private IEnumerator StartCamera()
@@ -58,4 +60,6 @@ public class RecCamera : MonoBehaviour
         background.texture = backCam;
         camAvailable = true;
     }
+
+    protected abstract void Scan();
 }

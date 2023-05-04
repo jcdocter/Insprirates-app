@@ -15,6 +15,6 @@ MonoBehaviour:
   id: A2
   canDisplayQuest: 0
   isDone: 0
-  description: Versier een boot
+  description: Bring the statue back
   isStory: 0
   nextQuest: {fileID: 0}

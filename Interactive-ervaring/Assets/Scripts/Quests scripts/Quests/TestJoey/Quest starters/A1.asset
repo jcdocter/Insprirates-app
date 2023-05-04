@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: A1
   m_EditorClassIdentifier: 
   id: A1
-  canDisplayQuest: 1
+  canDisplayQuest: 0
   isDone: 0
   description: 'break the chain '
-  prefabID: 0
   isStory: 0
   nextQuest: {fileID: 0}
