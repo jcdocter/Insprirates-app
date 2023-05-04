@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/ARPage.unity
+    guid: 8ef5ee724a5d8f2479bb687876966e9e
+  - enabled: 1
     path: Assets/Scenes/AccountPage.unity
     guid: c1f9ebf51c1e1504a9291f1eb74e0398
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FrontPageScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/QuestPage.unity
+    guid: 76c8a18060bbae84894b3736567d077c
+  - enabled: 1
+    path: Assets/Scenes/ScanPage.unity
+    guid: 5a30cf7a43d387e4695a9e3129ace814
   m_configObjects: {}

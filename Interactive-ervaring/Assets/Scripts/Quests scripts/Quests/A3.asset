@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: A3
   m_EditorClassIdentifier: 
   id: A3
-  isMainStory: 0
+  canDisplayQuest: 0
   isDone: 0
   description: Kies een haak
+  isStory: 0
+  nextQuest: {fileID: 0}

@@ -1,63 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using ZXing;
 
-public class QRReader : MonoBehaviour
+
+public class QRReader : RecCamera
 {
-    public RawImage background;
-    public AspectRatioFitter fit;
-    public RectTransform scannerTransform;
+    public GameObject scanner;
+    public GameObject acceptButton;
+    public GameObject acceptTutorial;
 
-    private WebCamTexture backCam;
-    private bool camAvailable;
-    private QuestHandler addQuest;
+    private List<Quest> questList = new List<Quest>();
 
-    private void Start()
+    private static string resultText;
+
+    public override void Start()
     {
-        addQuest = FindObjectOfType<QuestHandler>();
-        StartCamera();
+        base.Start();
+
+        questList = SaveSystem.questList;
+
+        acceptButton.SetActive(false);
+        acceptTutorial.SetActive(false);
     }
 
-    private void Update()
+    public override void Update()
     {
-        if(camAvailable == false)
-        {
-            return;
-        }
-
-        float ratio = (float)backCam.width / (float)backCam.height;
-        fit.aspectRatio = ratio;
-
-        int orient = -backCam.videoRotationAngle;
-        background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+        base.Update();
 
         Scan();
-    }
-
-    private void StartCamera()
-    {
-        WebCamDevice[] devices = WebCamTexture.devices;
-
-        if(devices.Length == 0)
-        {
-            camAvailable = false;
-            return;
-        }
-
-        for (int i = 0; i < devices.Length; i++)
-        {
-            if(!devices[i].isFrontFacing)
-            {
-                backCam = new WebCamTexture(devices[i].name, (int)scannerTransform.rect.width, (int)scannerTransform.rect.height);
-            }
-        }
-
-        backCam.Play();
-        background.texture = backCam;
-        camAvailable = true;
     }
 
     private void Scan()
@@ -69,12 +42,46 @@ public class QRReader : MonoBehaviour
 
             if(result != null)
             {
-                addQuest.AddNewQuest(result.Text);
+                resultText = result.Text;
+
+                acceptButton.SetActive(true);
+                acceptTutorial.SetActive(true);
+
+                acceptButton.GetComponent<Image>().color = DisplayButtonColor();
             }
         }
         catch
         {
             Debug.LogError("Can not scan QR");
         }
+    }
+
+    private Color DisplayButtonColor()
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if (questList[i].id != resultText)
+            {
+                continue;
+            }
+
+            if (questList[i].isStory)
+            {
+                return new Color(255f/255f, 212f/255f, 180f/255f);
+            }
+            else
+            {
+                return new Color(181f/255f, 249f/255f, 249f/255f);
+            }
+        }
+
+        return Color.white;
+    }
+
+    public void AcceptQuest()
+    {
+        PlayerPrefs.SetString("questID", resultText);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
