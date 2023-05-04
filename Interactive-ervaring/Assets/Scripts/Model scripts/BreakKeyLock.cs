@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakKeyLock : ADone
+public class BreakKeyLock : Rules
 {
     public GameObject creatureObject;
     private Animator animator;

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
-public class ADone : MonoBehaviour
+public class Rules : MonoBehaviour
 {
     public bool isScannable;
     public bool hasTimer;
-    protected string questScene;
 
+    public float elapsedTime = 300.0f;
+
+    protected string questScene;
     protected GameObject timerObject;
     protected GameObject scanner;
+
+    private TimeSpan timePlaying;
 
     protected void Awake()
     {
@@ -25,6 +30,14 @@ public class ADone : MonoBehaviour
         timerObject.SetActive(hasTimer);
 
         questScene = "QuestPage";
+    }
+
+    protected void Timer()
+    {
+        elapsedTime -= Time.deltaTime;
+        timePlaying = TimeSpan.FromSeconds(elapsedTime);
+        string timeText = timePlaying.ToString("m':'ss'.'ff");
+        timerObject.GetComponent<TextMeshProUGUI>().text = timeText;
     }
 
     protected void CheckOffQuest()
