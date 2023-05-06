@@ -15,6 +15,6 @@ MonoBehaviour:
   id: A3
   canDisplayQuest: 0
   isDone: 0
-  description: Kies een haak
+  description: Take a picture with a crocodile
   isStory: 0
   nextQuest: {fileID: 0}

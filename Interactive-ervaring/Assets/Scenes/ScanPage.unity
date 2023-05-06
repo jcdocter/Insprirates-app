@@ -739,10 +739,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 2089892514}
-  scannerTransform: {fileID: 2089892512}
+  fit: {fileID: 2089892513}
   scanner: {fileID: 1436797031}
   acceptButton: {fileID: 721031507}
   acceptTutorial: {fileID: 1900123766}
+  scannerTransform: {fileID: 2089892512}
 --- !u!1001 &1414841250
 PrefabInstance:
   m_ObjectHideFlags: 0

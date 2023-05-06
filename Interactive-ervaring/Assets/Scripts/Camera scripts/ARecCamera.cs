@@ -9,9 +9,8 @@ public abstract class ARecCamera : MonoBehaviour
     public RectTransform scannerTransform;
 
     protected WebCamTexture backCam;
-
-    private AspectRatioFitter fit;
-    private bool camAvailable;
+    protected AspectRatioFitter fit;
+    protected bool camAvailable;
 
     protected virtual void Start()
     {
@@ -20,7 +19,7 @@ public abstract class ARecCamera : MonoBehaviour
         StartCoroutine(StartCamera());
     }
 
-    private void Update()
+    protected void FitCamera()
     {
         if (!camAvailable)
         {
@@ -32,8 +31,6 @@ public abstract class ARecCamera : MonoBehaviour
 
         int orient = -backCam.videoRotationAngle;
         background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
-
-        Scan();
     }
 
     private IEnumerator StartCamera()
@@ -53,7 +50,6 @@ public abstract class ARecCamera : MonoBehaviour
                 backCam = new WebCamTexture(devices[i].name, (int)scannerTransform.rect.width, (int)scannerTransform.rect.height);
             }
         }
-
 
         backCam.Play();
         yield return new WaitForSeconds(5.0f);
