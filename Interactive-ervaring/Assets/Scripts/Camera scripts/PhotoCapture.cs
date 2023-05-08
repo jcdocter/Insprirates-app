@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,9 @@ public class PhotoCapture
 
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
+
         ShowPhoto();
+        SavePhoto();
     }
 
     private void ShowPhoto()
@@ -32,6 +35,13 @@ public class PhotoCapture
         photoDisplayArea.sprite = photoSprite;
 
         photoDisplayArea.enabled = true;
+    }
+
+    private void SavePhoto()
+    {
+        var Bytes = screenCapture.EncodeToPNG();
+
+        File.WriteAllBytes(Application.dataPath + "/Your-treasure-map/Treasure-map-piece-" + PlayerPrefs.GetString("modelID") + ".png", Bytes);
     }
 
     public Image GetPhoto() 
