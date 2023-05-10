@@ -7,8 +7,7 @@ public class Motion : MonoBehaviour
 {
     private bool gyroEnabled;
     private Gyroscope gyro;
-    private TextMeshProUGUI debugDataText;
-    private Vector3 rotation;
+//    private Vector3 rotation;
     private Vector3 position;
 
     private float fallSpeed = 0.6f;
@@ -17,7 +16,6 @@ public class Motion : MonoBehaviour
     private void Start()
     {
         gyroEnabled = EnableGyro();
-        debugDataText = FindObjectOfType<TextMeshProUGUI>();
         position = transform.position;
     }
 
@@ -39,8 +37,6 @@ public class Motion : MonoBehaviour
                 if (Input.acceleration.y >= 0.0f)
                 {
                     acceleration += new Vector2(0.0f, Input.acceleration.y);
-
-                    debugDataText.text = acceleration.y.ToString();
                     transform.position += new Vector3(0.0f, acceleration.y, 0.0f);
                 }
             }
@@ -60,8 +56,6 @@ public class Motion : MonoBehaviour
         {
             gyro = Input.gyro;
             gyro.enabled = true;
-
-       //     rotation = new Quaternion(0.0f, 1.0f, 0.0f,0.0f);
 
             return true;
         }
