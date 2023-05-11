@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -11,7 +12,7 @@ public class Confirm : MonoBehaviour
     public int iconId;
     public TMP_InputField userName;
 
-    public void Awake()
+    public async void Awake()
     {
         PlayerData data = SaveSystem.LoadPlayer();
         hasAccount = data.hasAccount;
