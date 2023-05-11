@@ -16,6 +16,8 @@ public class QuestHandler : MonoBehaviour
     public QuestTutorial questTutorial;
 
     private float setTimer;
+
+    //For debugging. Can be deleted later
     private int debugIndex = 1;
 
     private void Start()
@@ -39,17 +41,14 @@ public class QuestHandler : MonoBehaviour
             TutorialTimer();
         }
 
-        //Debug function
-        if(Input.GetKeyDown(KeyCode.A))
+        if(!Debugger.OnDevice())
         {
-            AddNewQuest("A" + debugIndex);
-            debugIndex++;
-        }
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            AddNewQuest("V1");
-            debugIndex++;
+            //Debug function
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                AddNewQuest("A" + debugIndex);
+                debugIndex++;
+            }
         }
     }
 
@@ -119,6 +118,8 @@ public class QuestHandler : MonoBehaviour
 
                 DisplayQuest(questList[i]);
             }
+
+            questList[i].ActivateQuest();
         }
 
         PlayerPrefs.SetString("buttonID", " ");

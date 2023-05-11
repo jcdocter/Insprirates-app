@@ -37,10 +37,16 @@ public class QuestScanner : ARecCamera
             {
                 resultText = result.Text;
 
-                acceptButton.SetActive(true);
-                acceptTutorial.SetActive(true);
+                for (int i = 0; i < questList.Count; i++)
+                {
+                    if (questList[i].id == resultText && questList[i].startQuest)
+                    {
+                        acceptButton.SetActive(true);
+                        acceptTutorial.SetActive(true);
 
-                acceptButton.GetComponent<Image>().color = DisplayButtonColor();
+                        acceptButton.GetComponent<Image>().color = DisplayButtonColor(i);
+                    }
+                }
             }
         }
         catch
@@ -49,26 +55,16 @@ public class QuestScanner : ARecCamera
         }
     }
 
-    private Color DisplayButtonColor()
+    private Color DisplayButtonColor(int _index)
     {
-        for (int i = 0; i < questList.Count; i++)
+        if (questList[_index].isStory)
         {
-            if (questList[i].id != resultText)
-            {
-                continue;
-            }
-
-            if (questList[i].isStory)
-            {
-                return new Color(255f/255f, 212f/255f, 180f/255f);
-            }
-            else
-            {
-                return new Color(181f/255f, 249f/255f, 249f/255f);
-            }
+            return new Color(255f/255f, 212f/255f, 180f/255f);
         }
-
-        return Color.white;
+        else
+        {
+            return new Color(181f/255f, 249f/255f, 249f/255f);
+        }
     }
 
     public void AcceptQuest()

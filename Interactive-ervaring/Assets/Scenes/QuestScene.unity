@@ -314,10 +314,14 @@ MonoBehaviour:
   modelList:
   - ids:
     - A1
-    model: {fileID: 5294364932301317698, guid: 47a57ae5d8d090c46bdab2c299343dcf, type: 3}
-  - ids:
     - A2
-    model: {fileID: 9024096143502196871, guid: a7f3848889096684985a091ba8cb7dd6, type: 3}
+    - A3
+    - A4
+    - A5
+    - A6
+    - A7
+    - A8
+    model: {fileID: 5294364932301317698, guid: 47a57ae5d8d090c46bdab2c299343dcf, type: 3}
 --- !u!1 &1194842112
 GameObject:
   m_ObjectHideFlags: 0

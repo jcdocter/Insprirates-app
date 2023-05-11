@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: A3
   m_EditorClassIdentifier: 
   id: A3
+  startQuest: 0
   canDisplayQuest: 0
   isDone: 0
-  description: Kies een haak
+  description: catch a fish
   isStory: 0
-  nextQuest: {fileID: 0}
+  neededQuests: []
