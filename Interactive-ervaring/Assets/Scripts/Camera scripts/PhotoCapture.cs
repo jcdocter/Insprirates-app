@@ -10,7 +10,7 @@ public class PhotoCapture
     private Texture2D screenCapture;
 
     public void SetScreenCapture()
-    {;
+    {
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
     }
 
@@ -39,11 +39,11 @@ public class PhotoCapture
 
     private void SavePhoto()
     {
-        var Bytes = screenCapture.EncodeToPNG();
+        var bytes = screenCapture.EncodeToPNG();
 
         var folder = Directory.CreateDirectory(Application.persistentDataPath + "/Treasure-map-pieces/");
 
-        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetString("modelID") + ".png", Bytes);
+        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetString("modelID") + ".png", bytes);
     }
 
     public Image GetPhoto() 

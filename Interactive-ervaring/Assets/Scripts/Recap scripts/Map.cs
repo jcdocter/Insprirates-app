@@ -1,11 +1,33 @@
+using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR;
+
+[Serializable]
+public class MapPieces
+{
+    public string photoID;
+    public GameObject piece;
+}
 
 public class Map : MonoBehaviour
 {
+    public LayerMask clickableLayer;
+    public List<MapPieces> piecesList = new List<MapPieces>();
+
+    private RawImage photo;
+    private MapPieces mapPiece;
     private bool canRotate;
+    private bool hitPiece;
+    private int tapCount;
+
+    private void Start()
+    {
+        photo = GetComponent<RawImage>();
+    }
 
     private void Update()
     {
@@ -34,6 +56,14 @@ public class Map : MonoBehaviour
             if(screenTouch.phase == TouchPhase.Ended)
             {
                 canRotate = false;
+
+                if(hitPiece)
+                {
+                    tapCount++;
+                    StartCoroutine(OpenPhoto());
+                    hitPiece = false;
+                }
+
             }
         }
     }
@@ -51,6 +81,18 @@ public class Map : MonoBehaviour
                 if(hit.transform.name == this.gameObject.name)
                 {
                     canRotate = !canRotate;
+                }
+            }
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+            {
+                foreach (MapPieces piece in piecesList)
+                {
+                    if (hit.transform.name == piece.piece.gameObject.name)
+                    {
+                        hitPiece = true;
+;                       mapPiece = piece;
+                    }
                 }
             }
         }
@@ -71,12 +113,36 @@ public class Map : MonoBehaviour
 
             float difference = currentMagnitude - prevMagnitude;
 
-            Zoom(difference * 0.1f);
+            Zoom(difference * 0.01f);
         }
     }
 
     private void Zoom(float _increment)
     {
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - _increment, 1.0f, 50.0f);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - _increment, 1.0f, 25.0f);
+    }
+
+    private IEnumerator OpenPhoto()
+    {
+        Debugger.WriteData(tapCount.ToString());
+
+        yield return new WaitForSeconds(0.3f);
+
+        if (tapCount == 2)
+        {
+          this.gameObject.SetActive(false);
+
+            Byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + mapPiece.photoID + ".png");
+
+            Texture2D displayPhoto = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            displayPhoto.LoadImage(bytes);
+
+            if (displayPhoto != null)
+            {
+                photo.texture = displayPhoto;
+            }
+        }
+
+        tapCount = 0;
     }
 }
