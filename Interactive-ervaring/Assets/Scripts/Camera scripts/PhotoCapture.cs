@@ -41,7 +41,9 @@ public class PhotoCapture
     {
         var Bytes = screenCapture.EncodeToPNG();
 
-        File.WriteAllBytes(Application.dataPath + "/Your-treasure-map/Treasure-map-piece-" + PlayerPrefs.GetString("modelID") + ".png", Bytes);
+        var folder = Directory.CreateDirectory(Application.persistentDataPath + "/Treasure-map-pieces/");
+
+        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetString("modelID") + ".png", Bytes);
     }
 
     public Image GetPhoto() 
