@@ -16,6 +16,6 @@ MonoBehaviour:
   startQuest: 0
   canDisplayQuest: 0
   isDone: 0
-  description: catch a fish
+  description: Take a picture with a crocodile
   isStory: 0
   neededQuests: []

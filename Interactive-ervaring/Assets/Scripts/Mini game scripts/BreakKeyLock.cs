@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BreakKeyLock : Rules
 {
-    public GameObject creatureObject;
     private Animator animator;
 
     private int ticks;

@@ -26,6 +26,12 @@ public class QuestScanner : ARecCamera
         acceptTutorial.SetActive(false);
     }
 
+    private void Update()
+    {
+        FitCamera();
+        Scan();
+    }
+
     protected override void Scan()
     {
         try
