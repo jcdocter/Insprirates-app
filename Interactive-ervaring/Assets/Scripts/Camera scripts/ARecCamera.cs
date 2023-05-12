@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public abstract class ARecCamera : MonoBehaviour
 {
-    public RawImage background;
-    public RectTransform scannerTransform;
-
+    protected GameObject scanner;
     protected WebCamTexture backCam;
     protected AspectRatioFitter fit;
     protected bool camAvailable;
 
+    private RawImage background;
+    private RectTransform scannerTransform;
+
     protected virtual void Start()
     {
+        scanner = this.gameObject;
+        background = GetComponentInChildren<RawImage>();
+        scannerTransform = GetComponentInChildren<RawImage>().rectTransform;
         fit = FindObjectOfType<AspectRatioFitter>();
 
         StartCoroutine(StartCamera());

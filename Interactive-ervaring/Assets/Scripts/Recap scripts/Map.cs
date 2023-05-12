@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class MapPieces
@@ -34,6 +35,11 @@ public class Map : MonoBehaviour
         RotateMap();
         HitObject();
         ZoomInOut();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(Rules.questScene);
+        }
     }
 
     private void RotateMap()

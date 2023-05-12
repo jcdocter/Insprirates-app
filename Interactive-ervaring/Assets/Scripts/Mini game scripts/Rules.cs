@@ -14,7 +14,7 @@ public class Rules : MonoBehaviour
 
     public float elapsedTime = 300.0f;
 
-    protected string questScene;
+    public static string questScene = "QuestPage";
     protected GameObject timerObject;
     protected GameObject scanner;
     protected GameObject photoButton;
@@ -33,8 +33,6 @@ public class Rules : MonoBehaviour
         scanner.SetActive(isScannable);
         timerObject.SetActive(hasTimer);
         photoButton.SetActive(canTakePhoto);
-
-        questScene = "QuestPage";
     }
 
     protected void Timer()

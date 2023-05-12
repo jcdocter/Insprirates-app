@@ -47,9 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isScannable: 0
   hasTimer: 0
-  canTakePhoto: 0
+  canTakePhoto: 1
   elapsedTime: 300
-  creatureObject: {fileID: 0}
 --- !u!1001 &2897795411783680541
 PrefabInstance:
   m_ObjectHideFlags: 0

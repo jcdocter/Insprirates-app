@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using ZXing;
 
 public class ActionScanner : ARecCamera
 {
+    [HideInInspector]
     public bool hasScanned = false;
-    public GameObject scanner;
 
     public Image photoDisplayArea;
 
@@ -28,6 +29,11 @@ public class ActionScanner : ARecCamera
     {
         FitCamera();
         Scan();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(Rules.questScene);
+        }
     }
 
     protected override void Scan()
