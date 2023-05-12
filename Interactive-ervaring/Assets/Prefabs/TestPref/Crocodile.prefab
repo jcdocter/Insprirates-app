@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5398267037370213625}
   - component: {fileID: 7041761704044929182}
   - component: {fileID: 7041761704044929181}
+  - component: {fileID: 1696746734}
   m_Layer: 5
   m_Name: Crocodile
   m_TagString: Untagged
@@ -68,7 +69,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isScannable: 0
   hasTimer: 0
+  elapsedTime: 300
   creatureObject: {fileID: 5294364932301317698}
+--- !u!65 &1696746734
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294364932301317698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.4, z: 1}
+  m_Center: {x: 0, y: 0.15, z: -0.12}
 --- !u!1001 &461834967832712090
 PrefabInstance:
   m_ObjectHideFlags: 0

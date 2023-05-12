@@ -66,25 +66,6 @@ public class QuestButton : MonoBehaviour
         quest.isDone = true;
         transform.SetAsFirstSibling();
 
-        if (quest.isStory)
-        {
-            questHandler.questList.Add(quest.nextQuest);
-        }
-
-/*        else
-        {
-            checkmark.SetActive(false);
-            questDescription.fontStyle = FontStyles.Normal;
-
-            quest.isDone = false;
-            transform.SetAsLastSibling();
-
-            if (quest.isStory)
-            {
-                questHandler.questList.Remove(quest.nextQuest);
-            }
-        }*/
-
         questHandler.isFirstQuest = false;
         questHandler.questTutorial.firstQuestTutorial.SetActive(false);
         SaveSystem.SaveQuest();

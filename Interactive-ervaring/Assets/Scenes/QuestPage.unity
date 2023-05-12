@@ -2346,7 +2346,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
   - {fileID: 11400000, guid: 10eecf5e614bfcf4aa0bc50c5f885f72, type: 2}
   - {fileID: 11400000, guid: a86b5794fcbfd4f4db6457d5edbd4355, type: 2}
-  - {fileID: 11400000, guid: c582cc90c215cfd49a46809e3f12eb32, type: 2}
+  - {fileID: 11400000, guid: 77090d919b302bc4bb1ad963fffa4f16, type: 2}
+  - {fileID: 11400000, guid: a48fa5429a825424b9a9c4e280b7b806, type: 2}
   questTutorial:
     questTutorial: {fileID: 1975497085}
     telescopeTutorial: {fileID: 1825595331}
