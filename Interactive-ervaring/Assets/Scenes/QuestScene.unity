@@ -256,7 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8c0e1ed7b00134fa0f71955c2a56ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelList: []
+  modelList:
+  - ids:
+    - A1
+    model: {fileID: 6806943028642601311, guid: e8f239322f56f3042b54da6608c8ad87, type: 3}
 --- !u!1 &1098267104
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +348,7 @@ GameObject:
   - component: {fileID: 1150131069}
   - component: {fileID: 1150131068}
   - component: {fileID: 1150131067}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Picture button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +419,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2126151380}
         m_TargetAssemblyTypeName: ActionScanner, Assembly-CSharp
         m_MethodName: TakePicture
         m_Mode: 1
@@ -973,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108163947302, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108163947302, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1029,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108163947302, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0000034813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108163947302, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1073,31 +1076,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108821588462, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108821588462, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108821588462, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -707.763
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108821588462, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -660.047
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108821588462, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7768340108821588462, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 47
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768340108821588463, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768340108821588463, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
+      propertyPath: m_AspectMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768340110202042135, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 807.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768340110202042135, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 736.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768340110202042135, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00024414
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768340110202042135, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5724503810348797485, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
-    - {fileID: 7768340108821588463, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a98f88bf9976ebd4985c9799d5bee6ce, type: 3}
 --- !u!224 &2126151378 stripped
 RectTransform:
@@ -1121,5 +1147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ece3880d61351428b2d313aca2b6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 1688882955}
   hasScanned: 0
   photoDisplayArea: {fileID: 1098267106}

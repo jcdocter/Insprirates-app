@@ -18,6 +18,8 @@ public class Quest : ScriptableObject
 
     public Quest[] neededQuests;
 
+    public Quest closeQuest;
+
     public void ActivateQuest()
     {
         if(neededQuests == null)
@@ -27,7 +29,7 @@ public class Quest : ScriptableObject
 
         foreach(Quest quest in neededQuests)
         {
-            if (!quest.isDone)
+            if (!quest.isDone || closeQuest.startQuest)
             {
                 this.startQuest = false;
                 return;

@@ -15,11 +15,15 @@ public class QuestScanner : ARecCamera
 
     private static string resultText;
 
+    private void Awake()
+    {
+        acceptButton = FindObjectOfType<Button>().gameObject;
+    }
+
     protected override void Start()
     {
         base.Start();
 
-        acceptButton = FindObjectOfType<Button>().gameObject;
         questList = SaveSystem.questList;
 
         acceptButton.SetActive(false);

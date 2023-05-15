@@ -111,6 +111,11 @@ public class QuestHandler : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void Recap()
+    {
+        SceneManager.LoadScene("RecapScreen");
+    }
+
     private void LoadQuest()
     {
         SaveSystem.questList = questList;

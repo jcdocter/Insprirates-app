@@ -8,22 +8,23 @@ using UnityEngine.UI;
 
 public class Rules : MonoBehaviour
 {
+    public static string questScene = "QuestPage";
+    public static GameObject photoButton;
+
     public bool isScannable;
     public bool hasTimer;
     public bool canTakePhoto;
 
     public float elapsedTime = 300.0f;
 
-    public static string questScene = "QuestPage";
     protected GameObject timerObject;
     protected GameObject scanner;
-    protected GameObject photoButton;
 
     private TimeSpan timePlaying;
 
-    protected void Awake()
+    private void Awake()
     {
-        timerObject = FindObjectOfType<ActionScanner>().GetComponentInChildren<TextMeshProUGUI>().gameObject;
+        timerObject = GameObject.Find("Timer");
         scanner = FindObjectOfType<ActionScanner>().GetComponentInChildren<RawImage>().gameObject;
         photoButton = FindObjectOfType<Button>().gameObject;
     }

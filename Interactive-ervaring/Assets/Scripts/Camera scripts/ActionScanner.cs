@@ -20,9 +20,8 @@ public class ActionScanner : ARecCamera
         photoDisplayArea.enabled = false;
 
         base.Start();
-        resultText = PlayerPrefs.GetString("modelID") + "-1";
 
-        photoCapture.SetScreenCapture();
+        resultText = PlayerPrefs.GetString("modelID") + "-1";
     }
 
     private void Update()
@@ -56,6 +55,8 @@ public class ActionScanner : ARecCamera
 
     public void TakePicture()
     {
+        Rules.photoButton.SetActive(false);
+        photoCapture.SetScreenCapture();
         StartCoroutine(photoCapture.CapturePhoto(photoDisplayArea));
 
         photoDisplayArea = photoCapture.GetPhoto();

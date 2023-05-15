@@ -5,20 +5,17 @@ using UnityEngine.UI;
 
 public abstract class ARecCamera : MonoBehaviour
 {
-    protected GameObject scanner;
     protected WebCamTexture backCam;
     protected AspectRatioFitter fit;
     protected bool camAvailable;
 
-    private RawImage background;
+    public RawImage background;
     private RectTransform scannerTransform;
 
     protected virtual void Start()
     {
-        scanner = this.gameObject;
-        background = GetComponentInChildren<RawImage>();
+        fit = GetComponentInChildren<AspectRatioFitter>();
         scannerTransform = GetComponentInChildren<RawImage>().rectTransform;
-        fit = FindObjectOfType<AspectRatioFitter>();
 
         StartCoroutine(StartCamera());
     }
@@ -51,6 +48,11 @@ public abstract class ARecCamera : MonoBehaviour
         {
             if (!devices[i].isFrontFacing)
             {
+                if(!scannerTransform.gameObject.activeSelf)
+                {
+                    scannerTransform = background.rectTransform;
+                }
+
                 backCam = new WebCamTexture(devices[i].name, (int)scannerTransform.rect.width, (int)scannerTransform.rect.height);
             }
         }
