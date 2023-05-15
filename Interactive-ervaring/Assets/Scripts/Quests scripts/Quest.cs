@@ -10,14 +10,37 @@ using UnityEditor;
 public class Quest : ScriptableObject
 {
     public string id;
+    public bool startQuest;
+
     public bool canDisplayQuest;
     public bool isDone;
     public string description;
 
     public bool isStory;
 
-    [HideInInspector]
-    public Quest nextQuest;
+//    [HideInInspector]
+    public Quest[] neededQuests;
+
+    public void ActivateQuest()
+    {
+        if(neededQuests == null)
+        {
+            return;
+        }
+
+        Debug.Log(id);
+
+        foreach(Quest quest in neededQuests)
+        {
+            if (!quest.isDone)
+            {
+                this.startQuest = false;
+                return;
+            }
+        }
+
+        this.startQuest = true;
+    }
 }
 
 #if UNITY_EDITOR
@@ -32,7 +55,7 @@ public class QuestScriptEditor : Editor
 
         if (script.isStory)
         {
-            script.nextQuest = EditorGUILayout.ObjectField("Next Quest", script.nextQuest, typeof(Quest), true) as Quest;
+            //script.nextQuest = EditorGUILayout.ObjectField("Next Quest", script.nextQuest, typeof(Quest), true) as Quest;
         }
     }
 }
