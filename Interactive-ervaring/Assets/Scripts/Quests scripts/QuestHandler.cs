@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class QuestHandler : MonoBehaviour
 {
+    [HideInInspector]
     public bool isFirstQuest = true;
     
     public GameObject button;
-    public GameObject buttonParent;
     public GameObject tutorial;
 
     public List<Quest> questList;
 
     public QuestTutorial questTutorial;
 
+    private GameObject buttonParent;
     private float setTimer;
 
     //For debugging. Can be deleted later
     private int debugIndex = 1;
+
+    private void Awake()
+    {
+        buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
+    }
 
     private void Start()
     {
@@ -102,6 +109,11 @@ public class QuestHandler : MonoBehaviour
     public void ActivateCamera()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Recap()
+    {
+        SceneManager.LoadScene("RecapScreen");
     }
 
     private void LoadQuest()

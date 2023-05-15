@@ -31,16 +31,8 @@ public class QuestButton : MonoBehaviour
         questHandler = FindObjectOfType<QuestHandler>();
         quest = _quest;
 
-        if (quest.isStory)
-        {
-            checkmarkBox.sprite = buttonLayoutList[1].checkmarkBox;
-            textBackground.sprite = buttonLayoutList[1].textBackground;
-        }
-        else
-        {
-            checkmarkBox.sprite = buttonLayoutList[0].checkmarkBox;
-            textBackground.sprite = buttonLayoutList[0].textBackground;
-        }
+        checkmarkBox.sprite = buttonLayoutList[0].checkmarkBox;
+        textBackground.sprite = buttonLayoutList[0].textBackground;
 
         questDescription.text = quest.description;
 

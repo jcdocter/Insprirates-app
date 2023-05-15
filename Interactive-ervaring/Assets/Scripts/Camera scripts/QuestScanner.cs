@@ -8,13 +8,17 @@ using ZXing;
 
 public class QuestScanner : ARecCamera
 {
-    public GameObject scanner;
-    public GameObject acceptButton;
     public GameObject acceptTutorial;
 
     private List<Quest> questList = new List<Quest>();
+    private GameObject acceptButton;
 
     private static string resultText;
+
+    private void Awake()
+    {
+        acceptButton = FindObjectOfType<Button>().gameObject;
+    }
 
     protected override void Start()
     {
@@ -50,7 +54,7 @@ public class QuestScanner : ARecCamera
                         acceptButton.SetActive(true);
                         acceptTutorial.SetActive(true);
 
-                        acceptButton.GetComponent<Image>().color = DisplayButtonColor(i);
+                        acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
                     }
                 }
             }
@@ -58,18 +62,6 @@ public class QuestScanner : ARecCamera
         catch
         {
             Debug.LogError("Can not scan QR");
-        }
-    }
-
-    private Color DisplayButtonColor(int _index)
-    {
-        if (questList[_index].isStory)
-        {
-            return new Color(255f/255f, 212f/255f, 180f/255f);
-        }
-        else
-        {
-            return new Color(181f/255f, 249f/255f, 249f/255f);
         }
     }
 

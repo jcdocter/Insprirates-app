@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
   m_Name: A5
   m_EditorClassIdentifier: 
-  id: A5
-  startQuest: 0
   canDisplayQuest: 0
   isDone: 0
+  id: A5
+  startQuest: 0
   description: Offer een van je creaties op aan de heilige Quacken
-  isStory: 0
   neededQuests:
   - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
+  closeQuest: {fileID: 11400000, guid: a86b5794fcbfd4f4db6457d5edbd4355, type: 2}

@@ -7,12 +7,18 @@ using TMPro;
 
 public class Confirm : MonoBehaviour
 {
+    [HideInInspector]
     public bool choseIcon = false;
+
+    [HideInInspector]
     public bool hasAccount;
+
+    [HideInInspector]
     public int iconId;
+
     public TMP_InputField userName;
 
-    public async void Awake()
+    public void Awake()
     {
         PlayerData data = SaveSystem.LoadPlayer();
         hasAccount = data.hasAccount;

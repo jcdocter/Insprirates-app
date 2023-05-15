@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using ZXing;
 
 public class ActionScanner : ARecCamera
 {
+    [HideInInspector]
     public bool hasScanned = false;
-    public GameObject scanner;
 
     public Image photoDisplayArea;
 
@@ -19,15 +20,19 @@ public class ActionScanner : ARecCamera
         photoDisplayArea.enabled = false;
 
         base.Start();
-        resultText = PlayerPrefs.GetString("modelID") + "-1";
 
-        photoCapture.SetScreenCapture();
+        resultText = PlayerPrefs.GetString("modelID") + "-1";
     }
 
     private void Update()
     {
         FitCamera();
         Scan();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(Rules.questScene);
+        }
     }
 
     protected override void Scan()
@@ -50,6 +55,8 @@ public class ActionScanner : ARecCamera
 
     public void TakePicture()
     {
+        Rules.photoButton.SetActive(false);
+        photoCapture.SetScreenCapture();
         StartCoroutine(photoCapture.CapturePhoto(photoDisplayArea));
 
         photoDisplayArea = photoCapture.GetPhoto();

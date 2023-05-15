@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 1596695341}
   - component: {fileID: 1596695340}
   m_Layer: 5
-  m_Name: Select textx
+  m_Name: Select text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
