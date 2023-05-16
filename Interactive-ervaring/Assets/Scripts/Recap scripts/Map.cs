@@ -38,7 +38,7 @@ public class Map : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene(Rules.questScene);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 

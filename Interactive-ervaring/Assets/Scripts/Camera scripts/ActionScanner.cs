@@ -28,11 +28,6 @@ public class ActionScanner : ARecCamera
     {
         FitCamera();
         Scan();
-
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(Rules.questScene);
-        }
     }
 
     protected override void Scan()

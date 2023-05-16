@@ -45,7 +45,7 @@ public class BreakKeyLock : Rules
 
         if(playerTicks >= ticks)
         {
-         //   animator.SetBool("canLoad", true);
+            animator.SetBool("canLoad", true);
         }
     }
 

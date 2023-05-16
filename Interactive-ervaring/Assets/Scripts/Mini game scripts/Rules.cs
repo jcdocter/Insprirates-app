@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class Rules : MonoBehaviour
 {
-    public static string questScene = "QuestPage";
     public static GameObject photoButton;
 
     public bool isScannable;
@@ -46,7 +45,7 @@ public class Rules : MonoBehaviour
 
     protected void CheckOffQuest()
     {
-        PlayerPrefs.SetString("buttonID", ObjectSpawner.questID);
-        SceneManager.LoadScene(questScene);
+        PlayerPrefs.SetString("questID", PlayerPrefs.GetString("modelID"));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }

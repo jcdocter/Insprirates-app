@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class QuestHandler : MonoBehaviour
 {
     [HideInInspector]
-    public bool isFirstQuest = true;
+    public static bool isFirstQuest = true;
     
     public GameObject button;
     public GameObject tutorial;
@@ -19,8 +20,8 @@ public class QuestHandler : MonoBehaviour
     private GameObject buttonParent;
     private float setTimer;
 
-    //For debugging. Can be deleted later
-    private int debugIndex = 1;
+    private static bool questTutorialActive = true;
+    private static bool telescopeTutorialActive = true;
 
     private void Awake()
     {
@@ -29,16 +30,11 @@ public class QuestHandler : MonoBehaviour
 
     private void Start()
     {
-        questTutorial.questTutorial.SetActive(true);
-        questTutorial.telescopeTutorial.SetActive(true);
+        questTutorial.questTutorial.SetActive(questTutorialActive);
+        questTutorial.telescopeTutorial.SetActive(telescopeTutorialActive);
         questTutorial.firstQuestTutorial.SetActive(false);
         
         LoadQuest();
-
-        if (PlayerPrefs.GetString("questID") != "")
-        {
-            AddNewQuest(PlayerPrefs.GetString("questID"));
-        }
     }
 
     private void Update()
@@ -46,32 +42,6 @@ public class QuestHandler : MonoBehaviour
         if(setTimer > 0)
         {
             TutorialTimer();
-        }
-
-        if(!Debugger.OnDevice())
-        {
-            //Debug function
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                AddNewQuest("A" + debugIndex);
-                debugIndex++;
-            }
-        }
-    }
-
-    public void AddNewQuest(string _questID)
-    {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            if(questList[i].id == _questID && !questList[i].canDisplayQuest)
-            {
-                DisplayQuest(questList[i]);
-            }
-        }
-
-        if(isFirstQuest)
-        {
-            setTimer = 10f;
         }
     }
 
@@ -95,19 +65,17 @@ public class QuestHandler : MonoBehaviour
 
     private void DisplayQuest(Quest _quest)
     {
-        questTutorial.questTutorial.SetActive(false);
-        questTutorial.telescopeTutorial.SetActive(false);
+        questTutorialActive = false;
 
         GameObject questButton = Instantiate(button, buttonParent.transform);
-        _quest.canDisplayQuest = true;
-
-        questButton.GetComponent<QuestButton>().LoadData(_quest);
+        questButton.GetComponentInChildren<TextMeshProUGUI>().text = _quest.description;
 
         SaveSystem.SaveQuest();
     }
 
     public void ActivateCamera()
     {
+        telescopeTutorialActive = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -123,9 +91,13 @@ public class QuestHandler : MonoBehaviour
 
         for (int i = 0; i < questList.Count; i++)
         {
-            if (questList[i].canDisplayQuest)
+            if (questList[i].id == PlayerPrefs.GetString("questID"))
             {
-                questTutorial.firstQuestTutorial.SetActive(false);
+                questList[i].isDone = true;
+            }
+
+            if (questList[i].isDone)
+            {
                 isFirstQuest = false;
 
                 DisplayQuest(questList[i]);
@@ -133,7 +105,5 @@ public class QuestHandler : MonoBehaviour
 
             questList[i].ActivateQuest();
         }
-
-        PlayerPrefs.SetString("buttonID", " ");
     }
 }

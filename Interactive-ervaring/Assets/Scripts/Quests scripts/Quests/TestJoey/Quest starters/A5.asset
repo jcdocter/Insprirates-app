@@ -16,7 +16,7 @@ MonoBehaviour:
   isDone: 0
   id: A5
   startQuest: 0
-  description: Offer een van je creaties op aan de heilige Quacken
+  description: Lock pick the chest
   neededQuests:
   - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
   closeQuest: {fileID: 11400000, guid: a86b5794fcbfd4f4db6457d5edbd4355, type: 2}

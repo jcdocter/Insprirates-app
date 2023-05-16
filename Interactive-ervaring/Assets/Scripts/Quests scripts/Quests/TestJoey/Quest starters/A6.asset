@@ -16,7 +16,7 @@ MonoBehaviour:
   isDone: 0
   id: A6
   startQuest: 0
-  description: Hang deze vlag op een goeie plek op, zodat iedereen deze kan zien!
+  description: Catch a fish
   neededQuests:
   - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
   closeQuest: {fileID: 11400000, guid: 10eecf5e614bfcf4aa0bc50c5f885f72, type: 2}
