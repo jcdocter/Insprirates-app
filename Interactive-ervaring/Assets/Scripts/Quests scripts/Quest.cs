@@ -6,9 +6,6 @@ using UnityEngine;
 public class Quest : ScriptableObject
 {
     [HideInInspector]
-    public bool canDisplayQuest;
-
-    [HideInInspector]
     public bool isDone;
 
     public string id;

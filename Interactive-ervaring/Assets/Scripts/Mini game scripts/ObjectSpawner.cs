@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class Models
@@ -25,7 +26,6 @@ public class Models
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public static string questID;
     public List<Models> modelList = new List<Models>();
 
     private void Start()
@@ -36,9 +36,15 @@ public class ObjectSpawner : MonoBehaviour
             {
                 GameObject model = Instantiate(modelList[i].model, transform.position, Quaternion.identity);
                 model.transform.parent = transform;
-
-                questID = PlayerPrefs.GetString("modelID");
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         }
     }
 }

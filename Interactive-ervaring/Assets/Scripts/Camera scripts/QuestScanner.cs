@@ -34,6 +34,11 @@ public class QuestScanner : ARecCamera
     {
         FitCamera();
         Scan();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 
     protected override void Scan()
@@ -49,8 +54,13 @@ public class QuestScanner : ARecCamera
 
                 for (int i = 0; i < questList.Count; i++)
                 {
-                    if (questList[i].id == resultText && questList[i].startQuest)
+                    if (questList[i].id == resultText )
                     {
+                        if(!questList[i].startQuest || questList[i].isDone)
+                        {
+                            return;
+                        }
+
                         acceptButton.SetActive(true);
                         acceptTutorial.SetActive(true);
 
@@ -67,8 +77,8 @@ public class QuestScanner : ARecCamera
 
     public void AcceptQuest()
     {
-        PlayerPrefs.SetString("questID", resultText);
+        PlayerPrefs.SetString("modelID", resultText);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
