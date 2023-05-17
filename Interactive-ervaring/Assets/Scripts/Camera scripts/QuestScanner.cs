@@ -8,13 +8,17 @@ using ZXing;
 
 public class QuestScanner : ARecCamera
 {
-    public GameObject scanner;
-    public GameObject acceptButton;
     public GameObject acceptTutorial;
 
     private List<Quest> questList = new List<Quest>();
+    private GameObject acceptButton;
 
     private static string resultText;
+
+    private void Awake()
+    {
+        acceptButton = FindObjectOfType<Button>().gameObject;
+    }
 
     protected override void Start()
     {
@@ -24,6 +28,17 @@ public class QuestScanner : ARecCamera
 
         acceptButton.SetActive(false);
         acceptTutorial.SetActive(false);
+    }
+
+    private void Update()
+    {
+        FitCamera();
+        Scan();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 
     protected override void Scan()
@@ -37,10 +52,21 @@ public class QuestScanner : ARecCamera
             {
                 resultText = result.Text;
 
-                acceptButton.SetActive(true);
-                acceptTutorial.SetActive(true);
+                for (int i = 0; i < questList.Count; i++)
+                {
+                    if (questList[i].id == resultText )
+                    {
+                        if(!questList[i].startQuest || questList[i].isDone)
+                        {
+                            return;
+                        }
 
-                acceptButton.GetComponent<Image>().color = DisplayButtonColor();
+                        acceptButton.SetActive(true);
+                        acceptTutorial.SetActive(true);
+
+                        acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
+                    }
+                }
             }
         }
         catch
@@ -49,32 +75,10 @@ public class QuestScanner : ARecCamera
         }
     }
 
-    private Color DisplayButtonColor()
-    {
-        for (int i = 0; i < questList.Count; i++)
-        {
-            if (questList[i].id != resultText)
-            {
-                continue;
-            }
-
-            if (questList[i].isStory)
-            {
-                return new Color(255f/255f, 212f/255f, 180f/255f);
-            }
-            else
-            {
-                return new Color(181f/255f, 249f/255f, 249f/255f);
-            }
-        }
-
-        return Color.white;
-    }
-
     public void AcceptQuest()
     {
-        PlayerPrefs.SetString("questID", resultText);
+        PlayerPrefs.SetString("modelID", resultText);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

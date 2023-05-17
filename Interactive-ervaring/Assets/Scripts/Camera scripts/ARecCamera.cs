@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public abstract class ARecCamera : MonoBehaviour
 {
-    public RawImage background;
-    public RectTransform scannerTransform;
-
     protected WebCamTexture backCam;
+    protected AspectRatioFitter fit;
+    protected bool camAvailable;
 
-    private AspectRatioFitter fit;
-    private bool camAvailable;
+    public RawImage background;
+    private RectTransform scannerTransform;
 
     protected virtual void Start()
     {
-        fit = FindObjectOfType<AspectRatioFitter>();
+        fit = GetComponentInChildren<AspectRatioFitter>();
+        scannerTransform = GetComponentInChildren<RawImage>().rectTransform;
 
         StartCoroutine(StartCamera());
     }
 
-    private void Update()
+    protected void FitCamera()
     {
         if (!camAvailable)
         {
@@ -32,8 +32,6 @@ public abstract class ARecCamera : MonoBehaviour
 
         int orient = -backCam.videoRotationAngle;
         background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
-
-        Scan();
     }
 
     private IEnumerator StartCamera()
@@ -50,10 +48,14 @@ public abstract class ARecCamera : MonoBehaviour
         {
             if (!devices[i].isFrontFacing)
             {
+                if(!scannerTransform.gameObject.activeSelf)
+                {
+                    scannerTransform = background.rectTransform;
+                }
+
                 backCam = new WebCamTexture(devices[i].name, (int)scannerTransform.rect.width, (int)scannerTransform.rect.height);
             }
         }
-
 
         backCam.Play();
         yield return new WaitForSeconds(5.0f);

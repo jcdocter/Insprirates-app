@@ -2,38 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
-    public string id;
-    public bool canDisplayQuest;
+    [HideInInspector]
     public bool isDone;
+
+    public string id;
+    public bool startQuest;
+
     public string description;
 
-    public bool isStory;
+    public Quest[] neededQuests;
 
-    [HideInInspector]
-    public Quest nextQuest;
-}
+    public Quest closeQuest;
 
-#if UNITY_EDITOR
-[CustomEditor(typeof(Quest))]
-public class QuestScriptEditor : Editor
-{
-    public override void OnInspectorGUI()
+    public void ActivateQuest()
     {
-        base.OnInspectorGUI();
-
-        Quest script = (Quest)target;
-
-        if (script.isStory)
+        if(neededQuests == null)
         {
-            script.nextQuest = EditorGUILayout.ObjectField("Next Quest", script.nextQuest, typeof(Quest), true) as Quest;
+            return;
         }
+
+        foreach(Quest quest in neededQuests)
+        {
+            if (!quest.isDone || closeQuest.startQuest)
+            {
+                this.startQuest = false;
+                return;
+            }
+        }
+
+        this.startQuest = true;
     }
 }
-#endif

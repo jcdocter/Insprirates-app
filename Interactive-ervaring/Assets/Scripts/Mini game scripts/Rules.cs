@@ -4,32 +4,35 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class Rules : MonoBehaviour
 {
+    public static GameObject photoButton;
+
     public bool isScannable;
     public bool hasTimer;
+    public bool canTakePhoto;
 
     public float elapsedTime = 300.0f;
 
-    protected string questScene;
     protected GameObject timerObject;
     protected GameObject scanner;
 
     private TimeSpan timePlaying;
 
-    protected void Awake()
+    private void Awake()
     {
-        timerObject = FindObjectOfType<ActionScanner>().GetComponentInChildren<TextMeshProUGUI>().gameObject;
-        scanner = FindObjectOfType<ActionScanner>().gameObject;
+        timerObject = GameObject.Find("Timer");
+        scanner = FindObjectOfType<ActionScanner>().GetComponentInChildren<RawImage>().gameObject;
+        photoButton = FindObjectOfType<Button>().gameObject;
     }
 
     protected void SetRules()
     {
         scanner.SetActive(isScannable);
         timerObject.SetActive(hasTimer);
-
-        questScene = "QuestPage";
+        photoButton.SetActive(canTakePhoto);
     }
 
     protected void Timer()
@@ -42,7 +45,7 @@ public class Rules : MonoBehaviour
 
     protected void CheckOffQuest()
     {
-        PlayerPrefs.SetString("buttonID", ObjectSpawner.questID);
-        SceneManager.LoadScene(questScene);
+        PlayerPrefs.SetString("questID", PlayerPrefs.GetString("modelID"));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }

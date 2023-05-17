@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: A4
   m_EditorClassIdentifier: 
   id: A4
+  startQuest: 0
   canDisplayQuest: 0
   isDone: 0
-  description: Verberg deze schat voor een andere piraat
+  description: swipe up
   isStory: 0
-  nextQuest: {fileID: 0}
+  neededQuests: []

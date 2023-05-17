@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
   m_Name: A6
   m_EditorClassIdentifier: 
-  id: A6
   canDisplayQuest: 0
   isDone: 0
-  description: Hang deze vlag op een goeie plek op, zodat iedereen deze kan zien!
-  isStory: 0
-  nextQuest: {fileID: 0}
+  id: A6
+  startQuest: 0
+  description: Catch a fish
+  neededQuests:
+  - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
+  closeQuest: {fileID: 11400000, guid: 10eecf5e614bfcf4aa0bc50c5f885f72, type: 2}

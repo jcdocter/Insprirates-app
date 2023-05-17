@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: A2
   m_EditorClassIdentifier: 
   id: A2
+  startQuest: 0
   canDisplayQuest: 0
   isDone: 0
   description: Bring the statue back
   isStory: 0
-  nextQuest: {fileID: 0}
+  neededQuests: []
