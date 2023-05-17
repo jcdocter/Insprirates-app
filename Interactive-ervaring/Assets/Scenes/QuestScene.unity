@@ -388,7 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ece3880d61351428b2d313aca2b6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fit: {fileID: 1688882954}
   background: {fileID: 1688882955}
+  backgroundTransform: {fileID: 1688882953}
   photoDisplayArea: {fileID: 1098267106}
 --- !u!1 &1098267104
 GameObject:
