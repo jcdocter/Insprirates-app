@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
     public bool isDone;
 
     public string id;
-    public string[] ids;
+    public List<string> ids;
     public bool startQuest;
 
     public string description;
@@ -25,6 +25,14 @@ public class Quest : ScriptableObject
         if(neededQuests == null)
         {
             return;
+        }
+
+        for(int i = 0; i < ids.Count; i++)
+        {
+            if (ids[i] == PlayerPrefs.GetString("questID"))
+            {
+                ids.RemoveAt(i);
+            }
         }
 
         foreach(Quest quest in neededQuests)
