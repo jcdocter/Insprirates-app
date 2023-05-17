@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
-  m_Name: A7
+  m_Name: B5
   m_EditorClassIdentifier: 
-  id: A7
-  startQuest: 0
-  canDisplayQuest: 0
   isDone: 0
-  description: Hang deze vlag op een goeie plek op, zodat iedereen deze kan zien!
-  isStory: 0
-  neededQuests:
-  - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
+  id: A1
+  ids:
+  - B1
+  - B2
+  - B3
+  - B4
+  - B5
+  startQuest: 0
+  description: 'break the chain '
+  neededQuests: []
+  closeQuest: {fileID: 0}

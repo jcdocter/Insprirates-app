@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1494,6 +1494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 4258694824988222454, guid: 2781e256e07e463428a84185985eb920, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4258694824988222455, guid: 2781e256e07e463428a84185985eb920, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 2
@@ -2112,6 +2116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 4258694824988222454, guid: 2781e256e07e463428a84185985eb920, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8278505338101024333, guid: 2781e256e07e463428a84185985eb920, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2518,10 +2526,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
   - {fileID: 11400000, guid: d0a22d579295b5c45bbfaf869aed168d, type: 2}
   - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
-  - {fileID: 11400000, guid: 10eecf5e614bfcf4aa0bc50c5f885f72, type: 2}
-  - {fileID: 11400000, guid: a86b5794fcbfd4f4db6457d5edbd4355, type: 2}
-  - {fileID: 11400000, guid: 77090d919b302bc4bb1ad963fffa4f16, type: 2}
-  - {fileID: 11400000, guid: a48fa5429a825424b9a9c4e280b7b806, type: 2}
   questTutorial:
     questTutorial: {fileID: 1975497085}
     telescopeTutorial: {fileID: 1825595331}
@@ -2745,6 +2749,10 @@ PrefabInstance:
     - target: {fileID: 1032501099711044249, guid: 2781e256e07e463428a84185985eb920, type: 3}
       propertyPath: m_Name
       value: Quest tutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258694824988222454, guid: 2781e256e07e463428a84185985eb920, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8278505338101024333, guid: 2781e256e07e463428a84185985eb920, type: 3}
       propertyPath: m_Pivot.x
