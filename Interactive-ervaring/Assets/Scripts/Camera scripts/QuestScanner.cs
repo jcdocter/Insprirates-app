@@ -41,37 +41,48 @@ public class QuestScanner : ARecCamera
         }
     }
 
-    protected override void Scan()
+    private void Scan()
     {
         try
         {
             IBarcodeReader barcodeReader = new BarcodeReader();
             Result result = barcodeReader.Decode(backCam.GetPixels32(), backCam.width, backCam.height);
 
-            if(result != null)
+            if (result == null)
             {
-                resultText = result.Text;
-
-                for (int i = 0; i < questList.Count; i++)
-                {
-                    if (questList[i].id == resultText )
-                    {
-                        if(!questList[i].startQuest || questList[i].isDone)
-                        {
-                            return;
-                        }
-
-                        acceptButton.SetActive(true);
-                        acceptTutorial.SetActive(true);
-
-                        acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
-                    }
-                }
+                return;
             }
+
+            resultText = result.Text;
+
+            ActivateButton();
         }
         catch
         {
             Debug.LogError("Can not scan QR");
+            return;
+        }
+    }
+
+    public void ActivateButton()
+    {
+        foreach(Quest quest in questList)
+        {
+            foreach(string codeID in quest.ids)
+            {
+                if(quest.GetID() == resultText)
+                {
+                    if(!quest.startQuest || quest.isDone)
+                    {
+                        return;
+                    }
+
+                    acceptButton.SetActive(true);
+                    acceptTutorial.SetActive(true);
+
+                    acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
+                }
+            }
         }
     }
 

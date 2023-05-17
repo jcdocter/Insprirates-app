@@ -10,27 +10,23 @@ public class Rules : MonoBehaviour
 {
     public static GameObject photoButton;
 
-    public bool isScannable;
     public bool hasTimer;
     public bool canTakePhoto;
 
     public float elapsedTime = 300.0f;
 
     protected GameObject timerObject;
-    protected GameObject scanner;
 
     private TimeSpan timePlaying;
 
     private void Awake()
     {
         timerObject = GameObject.Find("Timer");
-        scanner = FindObjectOfType<ActionScanner>().GetComponentInChildren<RawImage>().gameObject;
         photoButton = FindObjectOfType<Button>().gameObject;
     }
 
     protected void SetRules()
     {
-        scanner.SetActive(isScannable);
         timerObject.SetActive(hasTimer);
         photoButton.SetActive(canTakePhoto);
     }

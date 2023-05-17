@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
+
     [HideInInspector]
     public bool isDone;
 
     public string id;
+    public string[] ids;
     public bool startQuest;
 
     public string description;
@@ -34,5 +37,15 @@ public class Quest : ScriptableObject
         }
 
         this.startQuest = true;
+    }
+
+    public string GetID()
+    {
+        foreach(string id in ids)
+        {
+            return id;
+        }
+
+        return null;
     }
 }

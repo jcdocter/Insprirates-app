@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
-  m_Name: A4
+  m_Name: B2
   m_EditorClassIdentifier: 
   isDone: 0
-  id: A4
+  id: A1
   ids:
-  - A1
-  - A2
-  - A3
-  - A4
+  - B1
+  - B2
+  - B3
+  - B4
+  - B5
   startQuest: 0
-  description: swipe up
+  description: 'break the chain '
   neededQuests: []
   closeQuest: {fileID: 0}

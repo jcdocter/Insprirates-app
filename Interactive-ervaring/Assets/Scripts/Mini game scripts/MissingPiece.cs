@@ -15,7 +15,7 @@ public class MissingPiece : Rules
     private void Update()
     {
         //input is for debugging. Can be removed later
-        if(actionScanner.hasScanned || Input.GetKeyDown(KeyCode.Space))
+        if(/*actionScanner.hasScanned || */Input.GetKeyDown(KeyCode.Space))
         {
             CheckOffQuest();
         }

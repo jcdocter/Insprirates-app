@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ARecCamera : MonoBehaviour
+public class ARecCamera : MonoBehaviour
 {
     protected WebCamTexture backCam;
     protected AspectRatioFitter fit;
@@ -62,6 +62,4 @@ public abstract class ARecCamera : MonoBehaviour
         background.texture = backCam;
         camAvailable = true;
     }
-
-    protected abstract void Scan();
 }

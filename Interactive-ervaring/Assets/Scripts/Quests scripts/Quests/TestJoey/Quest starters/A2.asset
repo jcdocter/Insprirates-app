@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
   m_Name: A2
   m_EditorClassIdentifier: 
-  id: A2
-  startQuest: 0
-  canDisplayQuest: 0
   isDone: 0
+  id: A2
+  ids:
+  - A1
+  - A2
+  - A3
+  - A4
+  startQuest: 0
   description: Bring the statue back
-  isStory: 0
   neededQuests: []
+  closeQuest: {fileID: 0}
