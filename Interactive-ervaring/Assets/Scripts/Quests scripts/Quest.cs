@@ -2,58 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class QRID
+{
+    public string id;
+    public bool activeQR;
+}
 
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
-
-    [HideInInspector]
     public bool isDone;
-
-    public string id;
-    public List<string> ids;
-    public bool startQuest;
 
     public string description;
 
-    public Quest[] neededQuests;
+    public List<QRID> qrList = new List<QRID>();
+    public Quest[] nextQuests;
 
     public Quest closeQuest;
 
     public void ActivateQuest()
     {
-        if(neededQuests == null)
+        foreach (QRID qr in qrList)
         {
-            return;
-        }
-
-        for(int i = 0; i < ids.Count; i++)
-        {
-            if (ids[i] == PlayerPrefs.GetString("questID"))
+            if(qr.id == PlayerPrefs.GetString("questID"))
             {
-                ids.RemoveAt(i);
+                this.isDone = true;
+                qr.activeQR = false;
             }
         }
 
-        foreach(Quest quest in neededQuests)
-        {
-            if (!quest.isDone || closeQuest.startQuest)
-            {
-                this.startQuest = false;
-                return;
-            }
-        }
-
-        this.startQuest = true;
-    }
-
-    public string GetID()
-    {
-        foreach(string id in ids)
-        {
-            return id;
-        }
-
-        return null;
+        PlayerPrefs.SetString("questID", " ");
     }
 }

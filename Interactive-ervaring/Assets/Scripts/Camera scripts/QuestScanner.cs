@@ -33,7 +33,20 @@ public class QuestScanner : ARecCamera
     private void Update()
     {
         FitCamera();
-        Scan();
+
+        if(!Debugger.OnDevice())
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                resultText = "A1";
+                PlayerPrefs.SetString("modelID", resultText);
+                AcceptQuest();
+            }
+        }
+        else
+        {
+            Scan();
+        }
 
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -68,15 +81,10 @@ public class QuestScanner : ARecCamera
     {
         foreach(Quest quest in questList)
         {
-            foreach(string codeID in quest.ids)
+            foreach (QRID qr in quest.qrList)
             {
-                if(quest.GetID() == resultText)
+                if(qr.id == resultText && qr.activeQR)
                 {
-                    if(!quest.startQuest || quest.isDone)
-                    {
-                        return;
-                    }
-
                     acceptButton.SetActive(true);
                     acceptTutorial.SetActive(true);
 

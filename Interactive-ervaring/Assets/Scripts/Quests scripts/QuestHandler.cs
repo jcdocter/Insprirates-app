@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,13 +24,9 @@ public class QuestHandler : MonoBehaviour
     private static bool questTutorialActive = true;
     private static bool telescopeTutorialActive = true;
 
-    private void Awake()
-    {
-        buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
-    }
-
     private void Start()
     {
+        buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
         questTutorial.questTutorial.SetActive(questTutorialActive);
         questTutorial.telescopeTutorial.SetActive(telescopeTutorialActive);
         questTutorial.firstQuestTutorial.SetActive(false);
@@ -91,19 +88,21 @@ public class QuestHandler : MonoBehaviour
 
         for (int i = 0; i < questList.Count; i++)
         {
-            if (questList[i].id == PlayerPrefs.GetString("questID"))
-            {
-                questList[i].isDone = true;
-            }
+            questList[i].ActivateQuest();
 
             if (questList[i].isDone)
             {
-                isFirstQuest = false;
-
                 DisplayQuest(questList[i]);
-            }
 
-            questList[i].ActivateQuest();
+                foreach(Quest quest in questList[i].nextQuests)
+                {
+                    quest.qrList = questList[i].qrList;
+                    questList.Add(quest);
+                }
+
+                isFirstQuest = false;
+                questList.RemoveAt(i);
+            }
         }
     }
 }

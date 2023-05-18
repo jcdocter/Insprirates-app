@@ -13,7 +13,6 @@ public class Motion : MonoBehaviour
 
     private bool gyroEnabled;
     private Gyroscope gyro;
-    private Vector3 rotation;
 
     private void Start()
     {
@@ -32,12 +31,6 @@ public class Motion : MonoBehaviour
             xRotation -= moveY;
 
             transform.rotation = Quaternion.Euler(yRotation, xRotation, 0);
-
-
-            // put this in other code
-/*            rotation = new Vector3(gyro.rotationRateUnbiased.x, gyro.rotationRateUnbiased.y, 0.0f);
-            transform.localEulerAngles -= rotation;
-            Debugger.WriteData(transform.localEulerAngles.ToString());*/
         }
 
     }

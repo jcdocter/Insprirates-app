@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: A2
   m_EditorClassIdentifier: 
   isDone: 0
-  id: A2
-  ids:
-  - A1
-  - A2
-  - A3
-  - A4
-  startQuest: 0
   description: Bring the statue back
-  neededQuests: []
+  qrList:
+  - id: A1
+    activeQR: 1
+  - id: A2
+    activeQR: 1
+  - id: A3
+    activeQR: 1
+  - id: A4
+    activeQR: 1
+  nextQuests: []
   closeQuest: {fileID: 0}
