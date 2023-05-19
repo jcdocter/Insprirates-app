@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fishing : MonoBehaviour
 {
-    private bool gyroEnabled;
+    public GameObject[] fishObjects;
+
     private Gyroscope gyro;
+    private Vector2 acceleration;
     private Vector3 position;
 
+    private bool gyroEnabled;
     private float fallSpeed = 0.6f;
-    private Vector2 acceleration;
 
     private void Start()
     {
         gyroEnabled = EnableGyro();
+        SpawnFish();
         position = transform.position;
     }
 
@@ -41,7 +45,15 @@ public class Fishing : MonoBehaviour
 
             acceleration = new Vector2(gyro.attitude.y, Input.acceleration.y);
         }
+    }
 
+    private void SpawnFish()
+    {
+       foreach (GameObject fish in fishObjects) 
+        {
+            Vector3 spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
+            Instantiate(fish, spawnPoint, Quaternion.identity);
+        }
     }
 
     private bool EnableGyro()

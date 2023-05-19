@@ -25,7 +25,9 @@ public class Quest : ScriptableObject
     {
         foreach (QRID qr in qrList)
         {
-            if(qr.id == PlayerPrefs.GetString("questID"))
+            qr.activeQR = true;
+
+            if (qr.id == PlayerPrefs.GetString("questID"))
             {
                 this.isDone = true;
                 qr.activeQR = false;

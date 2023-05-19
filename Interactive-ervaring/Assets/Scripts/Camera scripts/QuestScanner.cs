@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ZXing;
 
-
-public class QuestScanner : ARecCamera
+public class QuestScanner : RecCamera
 {
     public GameObject acceptTutorial;
 
@@ -30,11 +29,11 @@ public class QuestScanner : ARecCamera
         acceptTutorial.SetActive(false);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        FitCamera();
+        base.Start();
 
-        if(!Debugger.OnDevice())
+        if (!Debugger.OnDevice())
         {
             if (Input.GetKey(KeyCode.Space))
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ARecCamera : MonoBehaviour
+public class RecCamera : MonoBehaviour
 {
     protected WebCamTexture backCam;
     protected AspectRatioFitter fit;
@@ -19,6 +19,11 @@ public class ARecCamera : MonoBehaviour
         backgroundTransform = background.rectTransform;
 
         StartCoroutine(StartCamera());
+    }
+
+    protected virtual void Update()
+    {
+        FitCamera();
     }
 
     protected void FitCamera()

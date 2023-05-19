@@ -738,7 +738,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1387597120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ece3880d61351428b2d313aca2b6b8, type: 3}
+  m_Script: {fileID: 11500000, guid: a8813aca53a36c145993866e5497dc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   photoDisplayArea: {fileID: 1098267106}

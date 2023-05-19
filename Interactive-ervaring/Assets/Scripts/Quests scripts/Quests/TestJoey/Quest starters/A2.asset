@@ -23,5 +23,7 @@ MonoBehaviour:
     activeQR: 1
   - id: A4
     activeQR: 1
-  nextQuests: []
+  nextQuests:
+  - {fileID: 11400000, guid: d0a22d579295b5c45bbfaf869aed168d, type: 2}
+  - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
   closeQuest: {fileID: 0}
