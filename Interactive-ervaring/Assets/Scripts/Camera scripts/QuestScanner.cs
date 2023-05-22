@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ZXing;
 
-
-public class QuestScanner : ARecCamera
+public class QuestScanner : RecCamera
 {
     public GameObject acceptTutorial;
 
@@ -30,10 +29,23 @@ public class QuestScanner : ARecCamera
         acceptTutorial.SetActive(false);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        FitCamera();
-        Scan();
+        base.Start();
+
+        if (!Debugger.OnDevice())
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                resultText = "A1";
+                PlayerPrefs.SetString("modelID", resultText);
+                AcceptQuest();
+            }
+        }
+        else
+        {
+            Scan();
+        }
 
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -68,15 +80,10 @@ public class QuestScanner : ARecCamera
     {
         foreach(Quest quest in questList)
         {
-            foreach(string codeID in quest.ids)
+            foreach (QRID qr in quest.qrList)
             {
-                if(quest.GetID() == resultText)
+                if(qr.id == resultText && qr.activeQR)
                 {
-                    if(!quest.startQuest || quest.isDone)
-                    {
-                        return;
-                    }
-
                     acceptButton.SetActive(true);
                     acceptTutorial.SetActive(true);
 

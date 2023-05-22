@@ -1,47 +1,114 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class Fishing : MonoBehaviour
 {
-    private bool gyroEnabled;
-    private Gyroscope gyro;
-    private Vector3 position;
+    public GameObject[] fishObjects;
 
-    private float fallSpeed = 0.6f;
-    private Vector2 acceleration;
+    private Gyroscope gyro;
+    private Vector3 startPosition;
+
+    private bool hasThrown;
+    private bool gyroEnabled;
+
+    private float throwSpeed = 4.0f;
+    private float height;
+    private float releasePower;
 
     private void Start()
     {
         gyroEnabled = EnableGyro();
-        position = transform.position;
+        SpawnFish();
+        startPosition = transform.position;
     }
 
     private void Update()
     {
         if (gyroEnabled)
         {
-            if(transform.position.y <= -1.6f)
-            {
-                position.y = -1.6f;
-                transform.position = position;
-                transform.position += new Vector3(acceleration.x, 0.0f, 0.0f);
+            Throw();
 
-                if (Input.acceleration.y >= 0.0f)
-                {
-                    acceleration += new Vector2(0.0f, Input.acceleration.y);
-                    transform.position += new Vector3(0.0f, acceleration.y, 0.0f);
-                }
-            }
-            else
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                transform.position -= new Vector3(0.0f, fallSpeed * Time.deltaTime, 0.0f);
+                hasThrown = false;
+                transform.position = startPosition;
             }
-
-            acceleration = new Vector2(gyro.attitude.y, Input.acceleration.y);
         }
 
+        if(!Debugger.OnDevice())
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                hasThrown = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                hasThrown = false;
+                transform.position = startPosition;
+            }
+
+            float horizontalInput = Input.GetAxis("Horizontal");
+            Vector3 screen = transform.position;
+            screen.x = Mathf.Clamp(transform.position.x, -1.2f, 1.2f);
+
+            transform.position = screen;
+            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * horizontalInput);
+
+            if (hasThrown)
+            {
+                transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
+
+                if (transform.position.z >= 9.0f)
+                {
+                    hasThrown = false;
+                }
+            }
+        }
+    }
+
+    private void Throw()
+    {
+        if (transform.position.z >= 9.0f)
+        {
+            return;
+        }
+
+        if(Input.GetMouseButton(0) && !hasThrown)
+        {
+            if (Input.acceleration.y > 0)
+            {
+                releasePower = Input.acceleration.y;
+                hasThrown = true;
+            }
+        }
+
+        if (hasThrown)
+        {
+            Debugger.WriteData(releasePower.ToString());
+            transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
+        }
+        else
+        {
+            releasePower = 0;
+
+            Vector3 screen = transform.position;
+            screen.x = Mathf.Clamp(transform.position.x, -1.2f, 1.2f);
+
+            transform.position = screen;
+            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * gyro.rotationRateUnbiased.y);
+        }
+
+    }
+
+    private void SpawnFish()
+    {
+       foreach (GameObject fish in fishObjects) 
+        {
+            Vector3 spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
+            Instantiate(fish, spawnPoint, Quaternion.identity);
+        }
     }
 
     private bool EnableGyro()

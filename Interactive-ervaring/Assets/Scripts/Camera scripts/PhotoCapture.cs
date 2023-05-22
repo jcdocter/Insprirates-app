@@ -4,21 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhotoCapture
+public class PhotoCapture : RecCamera
 {
-    private Image photoDisplayArea;
+    public Image photoDisplayArea;
+
     private Texture2D screenCapture;
+
+    protected override void Start()
+    {
+        photoDisplayArea.enabled = false;
+
+        base.Start();
+    }
+
+    public void TakePicture()
+    {
+        Rules.photoButton.SetActive(false);
+        SetScreenCapture();
+        StartCoroutine(CapturePhoto());
+    }
 
     public void SetScreenCapture()
     {
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
     }
 
-    public IEnumerator CapturePhoto(Image _photoDisplayArea)
+    public IEnumerator CapturePhoto()
     {
         yield return new WaitForEndOfFrame();
-
-        this.photoDisplayArea = _photoDisplayArea;
 
         Rect regionToRead = new Rect(0.0f, 0.0f, Screen.width, Screen.height);
 
@@ -44,10 +57,5 @@ public class PhotoCapture
         var folder = Directory.CreateDirectory(Application.persistentDataPath + "/Treasure-map-pieces/");
 
         File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetString("modelID") + ".png", bytes);
-    }
-
-    public Image GetPhoto() 
-    {
-        return photoDisplayArea;
     }
 }

@@ -95,7 +95,6 @@ public static class SaveSystem
                 FileStream stream = new FileStream(path + i, FileMode.Open);
                 QuestData data = formatter.Deserialize(stream) as QuestData;
 
-                questList[i].startQuest = data.questIsStarted;
                 questList[i].isDone = data.isDone;
 
                 stream.Close();
