@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FishController : MonoBehaviour
 {
-    public int fishID;
     public float movementSpeed;
     private GameObject movePoint;
     private Vector3 spawnPoint;
@@ -44,8 +43,6 @@ public class FishController : MonoBehaviour
 
         if (_other.gameObject.GetComponent<Fishing>())
         {
-            Debug.Log(fishID);
-            Debugger.WriteData(fishID.ToString());
         }
     }
 }
