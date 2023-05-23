@@ -8,29 +8,43 @@ public class Dialogue : MonoBehaviour
     [TextArea(3,5)]
     public string[] text;
 
-    private TextMeshProUGUI dialogueBox;
+    public TextMeshProUGUI dialogueBox;
+    public GameObject previousButton;
 
     private int index = 0;
 
     private void Start()
     {
         dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
+        previousButton.SetActive(false);
 
         dialogueBox.text = text[index];
     }
 
     public void NextDialogue()
     {
+        previousButton.SetActive(true);
         index++;
+
+        Debug.Log(index);
 
         if(index >= text.Length)
         {
-            Destroy(gameObject);
-            Destroy(dialogueBox);
-
             return;
         }
 
         dialogueBox.text = text[index];
+    }
+
+    public void PreviousDialogue()
+    {
+        index--;
+
+        dialogueBox.text = text[index];
+
+        if(index == 0)
+        {
+            previousButton.SetActive(false);
+        }
     }
 }

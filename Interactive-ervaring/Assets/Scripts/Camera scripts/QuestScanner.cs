@@ -31,7 +31,7 @@ public class QuestScanner : RecCamera
 
     protected override void Update()
     {
-        base.Start();
+        base.Update();
 
         if (!Debugger.OnDevice())
         {

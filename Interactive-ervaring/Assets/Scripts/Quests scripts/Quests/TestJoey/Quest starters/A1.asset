@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: A1
   m_EditorClassIdentifier: 
   isDone: 0
-  description: 'break the chain '
+  description: Zoek naar een vis
   qrList:
   - id: A1
     activeQR: 1
@@ -25,4 +25,5 @@ MonoBehaviour:
     activeQR: 1
   nextQuests:
   - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
+  - {fileID: 11400000, guid: d0a22d579295b5c45bbfaf869aed168d, type: 2}
   closeQuest: {fileID: 0}
