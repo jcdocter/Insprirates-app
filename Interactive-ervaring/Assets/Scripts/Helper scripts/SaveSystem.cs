@@ -61,7 +61,6 @@ public static class SaveSystem
         countStream.Close();
 
         FileStream inventoryStream = new FileStream(inventoryPath, FileMode.Create);
-        Debug.Log("Save: " + Inventory.GetInstance().amountOfFish);
         InventoryData inventoryData = new InventoryData(Inventory.GetInstance());
         formatter.Serialize(inventoryStream, inventoryData);
         inventoryStream.Close();

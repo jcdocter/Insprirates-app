@@ -26,6 +26,7 @@ public class FinishingQuest
             doneQuest = true;
         }
 
+        SaveSystem.SaveQuest();
         return doneQuest;
     }
 

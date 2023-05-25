@@ -35,8 +35,11 @@ public class QuestHandler : MonoBehaviour
 
     private void LoadQuest()
     {
-        SaveSystem.questList = questList;
-        SaveSystem.LoadQuest();
+        if(SaveSystem.questList.Count == 0)
+        {
+            SaveSystem.questList = questList;
+            SaveSystem.LoadQuest();
+        }
 
         for (int i = 0; i < questList.Count; i++)
         {
