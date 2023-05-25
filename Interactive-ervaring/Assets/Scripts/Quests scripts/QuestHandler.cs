@@ -41,12 +41,6 @@ public class QuestHandler : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             questList[i].isDone = finishingQuest.CheckProgress(questList[i]);    
-
-            if (questList[i].isDone)
-            {
-                questTutorial.questTutorial.SetActive(false);
-                questTutorial.telescopeTutorial.SetActive(false);
-            }
         }
 
         PlayerPrefs.SetInt("confirmedID", 0);
@@ -60,12 +54,23 @@ public class QuestHandler : MonoBehaviour
         {
             if(questList[i].nextQuest == null)
             {
+                if(Inventory.GetInstance().amountOfFish > 0 && questList[i].hasFish)
+                {
+                    finishingQuest.DisplayProgress(questList[i]);
+
+                    questTutorial.questTutorial.SetActive(false);
+                    questTutorial.telescopeTutorial.SetActive(false);
+                }
+
                 continue;
             }
 
             if (!questList[i].nextQuest.isDone && questList[i].isDone)
             {
                 finishingQuest.DisplayProgress(questList[i]);
+
+                questTutorial.questTutorial.SetActive(false);
+                questTutorial.telescopeTutorial.SetActive(false);
             }
         }
     }

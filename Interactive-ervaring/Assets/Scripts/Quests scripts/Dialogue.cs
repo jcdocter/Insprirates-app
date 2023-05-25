@@ -8,7 +8,6 @@ public class Scripts
 {
     public bool hasFish;
     public bool hasRecruits;
-    public bool checkOff = true;
 
     public int ID;
 
@@ -26,7 +25,6 @@ public class Dialogue : MonoBehaviour
     private Rules rules = new Rules();
     private int index = 0;
     private string[] text;
-    private bool isQuestDone;
 
     private void Start()
     {
@@ -40,11 +38,7 @@ public class Dialogue : MonoBehaviour
                 continue;
             }
 
-            if(text == null)
-            {
-                SetTexts(script);
-                isQuestDone = script.checkOff;
-            }  
+            SetTexts(script);
         }
 
         dialogueBox.text = text[index];
@@ -78,18 +72,21 @@ public class Dialogue : MonoBehaviour
 
     public void SetTexts(Scripts _script)
     {
-        if(Inventory.GetInstance().amountOfFish > 0)
+        if (_script.hasFish)
         {
-            if(_script.hasFish)
+            if (Inventory.GetInstance().amountOfFish > 0)
             {
                 text = _script.scriptText;
                 return;
             }
         }
-        else if(Inventory.GetInstance().amountOfRecruits > 0)
+        else if (_script.hasRecruits)
         {
-            text = _script.scriptText;
-            return;
+            if (Inventory.GetInstance().amountOfRecruits > 0)
+            {
+                text = _script.scriptText;
+                return;
+            }
         }
         else
         {

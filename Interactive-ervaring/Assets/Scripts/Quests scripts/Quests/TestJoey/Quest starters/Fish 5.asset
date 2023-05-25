@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Fish 5
   m_EditorClassIdentifier: 
   ID: 5
-  isDone: 1
-  hasTracking: 1
+  isDone: 0
+  hasFish: 1
+  hasRecruits: 0
   amountToTrack: 5
   descriptionNextQuest: De hoeveelheid vis dat je hebt gevangen is
+  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
   - id: V1
     activeQR: 1
@@ -28,4 +30,4 @@ MonoBehaviour:
     activeQR: 1
   - id: V5
     activeQR: 1
-  nextQuests: {fileID: 0}
+  nextQuest: {fileID: 0}

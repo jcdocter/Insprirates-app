@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Kroko 1
   m_EditorClassIdentifier: 
   ID: 1
-  isDone: 0
-  hasTracking: 0
+  isDone: 1
+  hasFish: 0
+  hasRecruits: 0
   amountToTrack: 0
-  descriptionNextQuest: 
+  descriptionNextQuest: Vang een vis
+  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
   - id: A1
     activeQR: 1
@@ -26,4 +28,4 @@ MonoBehaviour:
     activeQR: 1
   - id: A4
     activeQR: 1
-  nextQuests: {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
+  nextQuest: {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}

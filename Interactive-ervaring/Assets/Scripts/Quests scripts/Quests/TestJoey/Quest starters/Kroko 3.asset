@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   isDone: 0
+  hasFish: 0
+  hasRecruits: 0
+  amountToTrack: 0
   descriptionNextQuest: 
+  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
   - id: A1
     activeQR: 1
@@ -24,4 +28,4 @@ MonoBehaviour:
     activeQR: 1
   - id: A4
     activeQR: 1
-  nextQuests: {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
+  nextQuest: {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
