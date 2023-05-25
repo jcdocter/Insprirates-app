@@ -12,30 +12,31 @@ public class QRID
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
+    public int ID;
     public bool isDone;
 
+    public bool hasFish;
+    public bool hasRecruits;
+    public int amountToTrack;
     public string descriptionNextQuest;
 
+    public GameObject descriptionObject;
+
     public List<QRID> qrList = new List<QRID>();
-    public Quest[] nextQuests;
+    public Quest nextQuest;
 
-    public Quest closeQuest;
-
-    public void ActivateQuest()
+    public string Description()
     {
-        foreach (QRID qr in qrList)
+        // ID == needs to change
+        if(hasFish)
         {
-            if (qr.id == PlayerPrefs.GetString("questID"))
-            {
-                this.isDone = true;
-                qr.activeQR = false;
-            }
-            else
-            {
-                qr.activeQR = true;
-            }
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfFish} / {amountToTrack}";
+        }
+        else if(hasRecruits)
+        {
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfRecruits} / {amountToTrack}";
         }
 
-        PlayerPrefs.SetString("questID", " ");
+        return descriptionNextQuest;
     }
 }

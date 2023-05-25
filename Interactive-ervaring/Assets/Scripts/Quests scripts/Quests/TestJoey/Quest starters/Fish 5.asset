@@ -10,19 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
-  m_Name: A4
+  m_Name: Fish 5
   m_EditorClassIdentifier: 
+  ID: 5
   isDone: 0
-  description: Zoek naar het jong
+  hasFish: 1
+  hasRecruits: 0
+  amountToTrack: 5
+  descriptionNextQuest: De hoeveelheid vis dat je hebt gevangen is
+  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
-  - id: A1
+  - id: V1
     activeQR: 1
-  - id: A2
+  - id: V2
     activeQR: 1
-  - id: A3
+  - id: V3
     activeQR: 1
-  - id: A4
+  - id: V4
     activeQR: 1
-  nextQuests:
-  - {fileID: 11400000, guid: 02d67da0281d7d7449884f8294596560, type: 2}
-  closeQuest: {fileID: 0}
+  - id: V5
+    activeQR: 1
+  nextQuest: {fileID: 0}

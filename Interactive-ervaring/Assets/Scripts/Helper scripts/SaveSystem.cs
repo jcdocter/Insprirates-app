@@ -9,6 +9,7 @@ public static class SaveSystem
     public static List<Quest> questList = new List<Quest>();
 
     private const string subProfileFile = "/saveProfileFile.isr";
+    private const string subInventoryFile = "/saveInventoryFile.isr";
     private const string subQuestFile = "/saveQuestFile";
     private const string subQuestCountFile = "/saveQuestFile.count.isr";
 
@@ -52,11 +53,18 @@ public static class SaveSystem
 
         string path = Application.persistentDataPath + subQuestFile;
         string countPath = Application.persistentDataPath + subQuestCountFile;
+        string inventoryPath = Application.persistentDataPath + subInventoryFile;
 
         FileStream countStream = new FileStream(countPath, FileMode.Create);
 
         formatter.Serialize(countStream, questList.Count);
         countStream.Close();
+
+        FileStream inventoryStream = new FileStream(inventoryPath, FileMode.Create);
+        Debug.Log("Save: " + Inventory.GetInstance().amountOfFish);
+        InventoryData inventoryData = new InventoryData(Inventory.GetInstance());
+        formatter.Serialize(inventoryStream, inventoryData);
+        inventoryStream.Close();
 
         for (int i = 0; i < questList.Count; i++)
         {
@@ -73,6 +81,7 @@ public static class SaveSystem
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + subQuestFile;
         string countPath = Application.persistentDataPath + subQuestCountFile;
+        string inventoryPath = Application.persistentDataPath + subInventoryFile;
 
         int questCount = 0;
 
@@ -82,6 +91,12 @@ public static class SaveSystem
 
             questCount = (int)formatter.Deserialize(countStream);
             countStream.Close();
+
+            FileStream inventoryStream = new FileStream(inventoryPath, FileMode.Open);
+            InventoryData inventoryData = formatter.Deserialize(inventoryStream) as InventoryData;
+            Inventory.GetInstance().amountOfFish = inventoryData.amountOfFish;
+            Inventory.GetInstance().amountOfRecruits = inventoryData.amountOfRecruits;
+            inventoryStream.Close();
         }
         else
         {

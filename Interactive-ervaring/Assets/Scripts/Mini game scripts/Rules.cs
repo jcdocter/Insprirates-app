@@ -46,7 +46,7 @@ public class Rules
 
     public void CheckOffQuest()
     {
-        PlayerPrefs.SetString("questID", PlayerPrefs.GetString("modelID"));
+        PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }
