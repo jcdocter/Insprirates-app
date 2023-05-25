@@ -9,6 +9,6 @@ public class QuestButton : MonoBehaviour
 
     public void LoadData(Quest _quest)
     {
-        questDescription.text = _quest.description;
+        questDescription.text = _quest.descriptionNextQuest;
     }
 }

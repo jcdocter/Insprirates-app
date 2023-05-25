@@ -4,34 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UI;
 
-public class Rules : MonoBehaviour
+[Serializable]
+public class Rules
 {
-    public static GameObject photoButton;
+    public GameObject photoButton;
+    public GameObject timerObject;
 
     public bool hasTimer;
     public bool canTakePhoto;
 
     public float elapsedTime = 300.0f;
 
-    protected GameObject timerObject;
-
     private TimeSpan timePlaying;
+    private Transform canvasTransform;
 
-    private void Awake()
+    public void SetRules()
     {
-        timerObject = GameObject.Find("Timer");
-        photoButton = FindObjectOfType<Button>().gameObject;
+        canvasTransform = GameObject.FindObjectOfType<Canvas>().transform;
+
+        if(hasTimer)
+        {
+            GameObject timer = GameObject.Instantiate(timerObject, canvasTransform);   
+            timer.transform.parent = canvasTransform;
+        }
+
+        if(canTakePhoto)
+        {
+            GameObject camera = GameObject.Instantiate(photoButton, canvasTransform);
+            camera.transform.parent = canvasTransform;
+        }
     }
 
-    protected void SetRules()
-    {
-        timerObject.SetActive(hasTimer);
-        photoButton.SetActive(canTakePhoto);
-    }
-
-    protected void Timer()
+    public void Timer()
     {
         elapsedTime -= Time.deltaTime;
         timePlaying = TimeSpan.FromSeconds(elapsedTime);
@@ -39,7 +44,7 @@ public class Rules : MonoBehaviour
         timerObject.GetComponent<TextMeshProUGUI>().text = timeText;
     }
 
-    protected void CheckOffQuest()
+    public void CheckOffQuest()
     {
         PlayerPrefs.SetString("questID", PlayerPrefs.GetString("modelID"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);

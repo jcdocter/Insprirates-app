@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: A3
   m_EditorClassIdentifier: 
   isDone: 0
-  description: Take a picture with a crocodile
+  description: Zoek naar het jong
   qrList:
   - id: A1
     activeQR: 1
@@ -23,5 +23,6 @@ MonoBehaviour:
     activeQR: 1
   - id: A4
     activeQR: 1
-  nextQuests: []
-  closeQuest: {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
+  nextQuests:
+  - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
+  closeQuest: {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}

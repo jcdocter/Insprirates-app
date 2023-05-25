@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhotoCapture : RecCamera
+public class PhotoCapture : MonoBehaviour
 {
     public Image photoDisplayArea;
 
+    private Button photoButton;
     private Texture2D screenCapture;
 
-    protected override void Start()
+    private void Start()
     {
+        photoButton = GetComponentInChildren<Button>();
         photoDisplayArea.enabled = false;
-
-        base.Start();
     }
 
     public void TakePicture()
     {
-        Rules.photoButton.SetActive(false);
+        photoButton.enabled = false;
         SetScreenCapture();
         StartCoroutine(CapturePhoto());
     }
@@ -45,8 +45,8 @@ public class PhotoCapture : RecCamera
     private void ShowPhoto()
     {
         Sprite photoSprite = Sprite.Create(screenCapture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
-        photoDisplayArea.sprite = photoSprite;
 
+        photoDisplayArea.sprite = photoSprite;
         photoDisplayArea.enabled = true;
     }
 

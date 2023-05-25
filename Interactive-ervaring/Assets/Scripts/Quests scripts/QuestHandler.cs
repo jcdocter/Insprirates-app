@@ -26,7 +26,7 @@ public class QuestHandler : MonoBehaviour
     private void DisplayQuest(Quest _quest)
     {
         GameObject questButton = Instantiate(button, buttonParent.transform);
-        //questButton.GetComponentInChildren<TextMeshProUGUI>().text = _quest.description;
+        questButton.GetComponentInChildren<TextMeshProUGUI>().text = _quest.descriptionNextQuest;
 
         SaveSystem.SaveQuest();
     }
@@ -51,19 +51,23 @@ public class QuestHandler : MonoBehaviour
         {
             questList[i].ActivateQuest();
 
-            if (questList[i].isDone)
+            if (!questList[i].isDone)
             {
-                questTutorial.questTutorial.SetActive(false);
-                questTutorial.telescopeTutorial.SetActive(false);
-
-                foreach(Quest quest in questList[i].nextQuests)
-                {
-                    quest.qrList = questList[i].qrList;
-                    questList.Add(quest);
-                }
-
-                questList.RemoveAt(i);
+                continue;
             }
+
+            questTutorial.questTutorial.SetActive(false);
+            questTutorial.telescopeTutorial.SetActive(false);
+
+            DisplayQuest(questList[i]);
+
+            foreach(Quest quest in questList[i].nextQuests)
+            {
+                quest.qrList = questList[i].qrList;
+                questList.Add(quest);
+            }
+
+            questList.RemoveAt(i);
         }
     }
 }

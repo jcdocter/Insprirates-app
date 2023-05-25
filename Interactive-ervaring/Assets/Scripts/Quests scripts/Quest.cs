@@ -14,7 +14,7 @@ public class Quest : ScriptableObject
 {
     public bool isDone;
 
-    public string description;
+    public string descriptionNextQuest;
 
     public List<QRID> qrList = new List<QRID>();
     public Quest[] nextQuests;
