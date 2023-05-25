@@ -1,34 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class QuestHandler : MonoBehaviour
 {    
-    public GameObject button;
-
     public List<Quest> questList;
-
     public QuestTutorial questTutorial;
 
     private GameObject buttonParent;
+    private FinishingQuest finishingQuest;
 
     private void Start()
     {
         buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
         questTutorial.firstQuestTutorial.SetActive(false);
         
+        finishingQuest = new FinishingQuest(buttonParent);
         LoadQuest();
-    }
-
-    private void DisplayQuest(Quest _quest)
-    {
-        GameObject questButton = Instantiate(button, buttonParent.transform);
-        questButton.GetComponentInChildren<TextMeshProUGUI>().text = _quest.descriptionNextQuest;
-
-        SaveSystem.SaveQuest();
     }
 
     public void ActivateCamera()
@@ -49,25 +40,33 @@ public class QuestHandler : MonoBehaviour
 
         for (int i = 0; i < questList.Count; i++)
         {
-            questList[i].ActivateQuest();
+            questList[i].isDone = finishingQuest.CheckProgress(questList[i]);    
 
-            if (!questList[i].isDone)
+            if (questList[i].isDone)
+            {
+                questTutorial.questTutorial.SetActive(false);
+                questTutorial.telescopeTutorial.SetActive(false);
+            }
+        }
+
+        PlayerPrefs.SetInt("confirmedID", 0);
+
+        foreach (Transform child in buttonParent.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < questList.Count; i++)
+        {
+            if(questList[i].nextQuest == null)
             {
                 continue;
             }
 
-            questTutorial.questTutorial.SetActive(false);
-            questTutorial.telescopeTutorial.SetActive(false);
-
-            DisplayQuest(questList[i]);
-
-            foreach(Quest quest in questList[i].nextQuests)
+            if (!questList[i].nextQuest.isDone && questList[i].isDone)
             {
-                quest.qrList = questList[i].qrList;
-                questList.Add(quest);
+                finishingQuest.DisplayProgress(questList[i]);
             }
-
-            questList.RemoveAt(i);
         }
     }
 }

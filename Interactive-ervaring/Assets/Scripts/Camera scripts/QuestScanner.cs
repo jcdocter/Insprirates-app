@@ -12,7 +12,8 @@ public class QuestScanner : RecCamera
     private List<Quest> questList = new List<Quest>();
     private GameObject acceptButton;
 
-    private static string resultText;
+    private string resultText;
+    public int questID;
 
     private void Awake()
     {
@@ -35,16 +36,17 @@ public class QuestScanner : RecCamera
 
         if (!Debugger.OnDevice())
         {
-            if (Input.GetKey(KeyCode.Space))
+            if(Input.GetKey(KeyCode.Space))
             {
-                resultText = "A1";
-                PlayerPrefs.SetString("modelID", resultText);
                 AcceptQuest();
             }
         }
         else
         {
-            Scan();
+            if(Input.GetMouseButtonDown(0))
+            {
+                Scan();
+            }
         }
 
         if (Input.GetKey(KeyCode.Escape))
@@ -67,7 +69,11 @@ public class QuestScanner : RecCamera
 
             resultText = result.Text;
 
-            ActivateButton();
+            foreach (Quest quest in questList)
+            {
+              ActivateButton(quest);
+            }
+
         }
         catch
         {
@@ -76,27 +82,25 @@ public class QuestScanner : RecCamera
         }
     }
 
-    public void ActivateButton()
+    public void ActivateButton(Quest _quest)
     {
-        foreach(Quest quest in questList)
+        foreach (QRID qr in _quest.qrList)
         {
-            foreach (QRID qr in quest.qrList)
+            if(qr.id == resultText && qr.activeQR)
             {
-                if(qr.id == resultText && qr.activeQR)
-                {
-                    acceptButton.SetActive(true);
-                    acceptTutorial.SetActive(true);
+                acceptButton.SetActive(true);
+                acceptTutorial.SetActive(true);
 
-                    acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
-                }
+                questID = _quest.ID;
+
+                acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
             }
         }
     }
 
     public void AcceptQuest()
     {
-        PlayerPrefs.SetString("modelID", resultText);
-
+        PlayerPrefs.SetInt("questID", questID);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
-  m_Name: C3
+  m_Name: Kroko 1
   m_EditorClassIdentifier: 
+  ID: 1
   isDone: 0
-  id: A1
-  ids:
-  - C1
-  - C2
-  - C3
-  - C4
-  - C5
-  startQuest: 0
-  description: 'break the chain '
-  neededQuests: []
-  closeQuest: {fileID: 0}
+  hasTracking: 0
+  amountToTrack: 0
+  descriptionNextQuest: 
+  qrList:
+  - id: A1
+    activeQR: 1
+  - id: A2
+    activeQR: 1
+  - id: A3
+    activeQR: 1
+  - id: A4
+    activeQR: 1
+  nextQuests: {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}

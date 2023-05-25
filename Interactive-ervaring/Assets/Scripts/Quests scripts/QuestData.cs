@@ -9,6 +9,7 @@ public class QuestData
 
     public QuestData(Quest _data)
     {
-        isDone = _data.isDone;
+        this.isDone = _data.isDone;
     }
 }
+

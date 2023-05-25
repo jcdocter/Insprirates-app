@@ -5,7 +5,6 @@ using UnityEngine;
 public class Fishing : MonoBehaviour
 {
     public GameObject[] fishObjects;
-
     private Gyroscope gyro;
     private Vector3 startPosition;
 
@@ -20,6 +19,12 @@ public class Fishing : MonoBehaviour
     {
         gyroEnabled = EnableGyro();
         SpawnFish();
+
+        transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 0.37f, Camera.main.transform.position.z + 0.6f);
+
+        transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+
+        transform.localScale = new Vector3 (300, 300, 300);
         startPosition = transform.position;
     }
 
@@ -51,19 +56,21 @@ public class Fishing : MonoBehaviour
 
             float horizontalInput = Input.GetAxis("Horizontal");
             Vector3 screen = transform.position;
-            screen.x = Mathf.Clamp(transform.position.x, -1.2f, 1.2f);
+            screen.x = Mathf.Clamp(transform.position.x, -0.15f, 0.15f);
 
             transform.position = screen;
             transform.Translate(Vector3.right * Time.deltaTime * 1.0f * horizontalInput);
 
-            if (hasThrown)
+            if (!hasThrown)
             {
-                transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
+                return;
+            }
 
-                if (transform.position.z >= 9.0f)
-                {
-                    hasThrown = false;
-                }
+            transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
+
+            if (transform.position.z >= 9.0f)
+            {
+                hasThrown = false;
             }
         }
     }
@@ -94,12 +101,11 @@ public class Fishing : MonoBehaviour
             releasePower = 0;
 
             Vector3 screen = transform.position;
-            screen.x = Mathf.Clamp(transform.position.x, -1.2f, 1.2f);
+            screen.x = Mathf.Clamp(transform.position.x, -0.15f, 0.15f);
 
             transform.position = screen;
             transform.Translate(Vector3.right * Time.deltaTime * 1.0f * gyro.rotationRateUnbiased.y);
         }
-
     }
 
     private void SpawnFish()

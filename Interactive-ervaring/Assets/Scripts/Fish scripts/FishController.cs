@@ -6,11 +6,11 @@ public class FishController : MonoBehaviour
 {
     public float movementSpeed;
     private GameObject movePoint;
+    private Rules rules = new Rules();
     private Vector3 spawnPoint;
 
     private void Start()
     {
-       // movePoint = new GameObject();
         spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
 
         GameObject moveToPoint = Instantiate(new GameObject(), spawnPoint, Quaternion.identity);
@@ -39,10 +39,10 @@ public class FishController : MonoBehaviour
 
     private void OnTriggerEnter(Collider _other)
     {
-        Debug.Log(_other.gameObject.GetComponent<Fishing>());
-
         if (_other.gameObject.GetComponent<Fishing>())
         {
+            Inventory.GetInstance().amountOfFish++;
+            rules.CheckOffQuest();
         }
     }
 }
