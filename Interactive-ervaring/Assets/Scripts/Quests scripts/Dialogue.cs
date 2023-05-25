@@ -51,7 +51,7 @@ public class Dialogue : MonoBehaviour
 
         if(index >= text.Length)
         {
-            LastLine();
+            rules.CheckOffQuest();
             return;
         }
 
@@ -92,10 +92,5 @@ public class Dialogue : MonoBehaviour
         {
             text = _script.scriptText;
         }
-    }
-
-    private void LastLine()
-    {
-        rules.CheckOffQuest();
     }
 }

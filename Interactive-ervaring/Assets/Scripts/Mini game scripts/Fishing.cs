@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Fishing : MonoBehaviour
 {
+    public bool isTest;
+    public float resetTimer;
+
     public GameObject[] fishObjects;
+    public Vector2 limitRange;
+    public Vector3 startPosition;
+
     private Gyroscope gyro;
-    private Vector3 startPosition;
 
     private bool hasThrown;
     private bool gyroEnabled;
@@ -20,91 +25,105 @@ public class Fishing : MonoBehaviour
         gyroEnabled = EnableGyro();
         SpawnFish();
 
-        transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y - 0.37f, Camera.main.transform.position.z + 0.6f);
+        if(!isTest)
+        {
+            transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        }
 
-        transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-
-        transform.localScale = new Vector3 (300, 300, 300);
-        startPosition = transform.position;
+        transform.localScale = new Vector3(300, 300, 300);
+        transform.position = startPosition;
     }
 
     private void Update()
     {
-        if (gyroEnabled)
-        {
-            Throw();
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                hasThrown = false;
-                transform.position = startPosition;
-            }
-        }
-
-        if(!Debugger.OnDevice())
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                hasThrown = true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                hasThrown = false;
-                transform.position = startPosition;
-            }
-
-            float horizontalInput = Input.GetAxis("Horizontal");
-            Vector3 screen = transform.position;
-            screen.x = Mathf.Clamp(transform.position.x, -0.15f, 0.15f);
-
-            transform.position = screen;
-            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * horizontalInput);
-
-            if (!hasThrown)
-            {
-                return;
-            }
-
-            transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
-
-            if (transform.position.z >= 9.0f)
-            {
-                hasThrown = false;
-            }
-        }
+        Throw();
     }
 
     private void Throw()
     {
-        if (transform.position.z >= 9.0f)
+        if (!Debugger.OnDevice())
         {
+            CalculateThrow();
             return;
         }
 
-        if(Input.GetMouseButton(0) && !hasThrown)
+        if (gyroEnabled)
         {
-            if (Input.acceleration.y > 0)
+            if (transform.position.z >= 9.0f)
             {
-                releasePower = Input.acceleration.y;
-                hasThrown = true;
+                resetTimer -= Time.deltaTime;
+
+                if(resetTimer <= 0.0f)
+                {
+                    transform.position = startPosition;
+                    hasThrown = false;
+                }
+
+                return;
+            }
+
+            if (Input.GetMouseButton(0) && !hasThrown)
+            {
+                if (Input.acceleration.y > 0)
+                {
+                    releasePower = Input.acceleration.y;
+                    hasThrown = true;
+                }
+            }
+
+            if (hasThrown)
+            {
+                Debugger.WriteData(releasePower.ToString());
+                transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
+            }
+            else
+            {
+                if(Input.GetMouseButton(0))
+                {
+                    return;
+                }
+
+                releasePower = 0;
+
+                Vector3 screen = transform.position;
+                screen.x = Mathf.Clamp(transform.position.x, limitRange.x, limitRange.y);
+
+                transform.position = screen;
+                transform.Translate(Vector3.right * Time.deltaTime * 1.0f * gyro.rotationRateUnbiased.y);
             }
         }
+    }
 
-        if (hasThrown)
+    private void CalculateThrow()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debugger.WriteData(releasePower.ToString());
-            transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
+            hasThrown = true;
         }
-        else
-        {
-            releasePower = 0;
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            hasThrown = false;
+            transform.position = startPosition;
+        }
+
+        if (!hasThrown)
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
             Vector3 screen = transform.position;
-            screen.x = Mathf.Clamp(transform.position.x, -0.15f, 0.15f);
+            screen.x = Mathf.Clamp(transform.position.x, limitRange.x, limitRange.y);
 
             transform.position = screen;
-            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * gyro.rotationRateUnbiased.y);
+            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * horizontalInput);
+
+            return;
+        }
+
+        transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
+
+        if (transform.position.z >= 9.0f)
+        {
+            hasThrown = false;
         }
     }
 
