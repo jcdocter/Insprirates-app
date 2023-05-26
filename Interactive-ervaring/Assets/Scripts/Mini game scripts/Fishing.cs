@@ -11,6 +11,9 @@ public class Fishing : MonoBehaviour
     public Vector2 limitRange;
     public Vector3 startPosition;
 
+    [HideInInspector]
+    public Rules rules = new Rules();
+
     private Gyroscope gyro;
 
     private bool hasThrown;
@@ -19,9 +22,11 @@ public class Fishing : MonoBehaviour
     private float throwSpeed = 4.0f;
     private float height;
     private float releasePower;
+    private float startTimer;
 
     private void Start()
     {
+        startTimer = resetTimer;
         gyroEnabled = EnableGyro();
         SpawnFish();
 
@@ -55,6 +60,7 @@ public class Fishing : MonoBehaviour
 
                 if(resetTimer <= 0.0f)
                 {
+                    resetTimer = startTimer;
                     transform.position = startPosition;
                     hasThrown = false;
                 }

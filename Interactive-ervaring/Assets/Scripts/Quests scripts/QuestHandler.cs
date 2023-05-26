@@ -40,12 +40,15 @@ public class QuestHandler : MonoBehaviour
             SaveSystem.LoadQuest();
         }
 
+        Progress();
+    }
+
+    private void Progress()
+    {
         for (int i = 0; i < questList.Count; i++)
         {
-            questList[i].isDone = finishingQuest.CheckProgress(questList[i]);    
+            questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
         }
-
-        PlayerPrefs.SetInt("confirmedID", 0);
 
         foreach (Transform child in buttonParent.transform)
         {
@@ -54,16 +57,16 @@ public class QuestHandler : MonoBehaviour
 
         for (int i = 0; i < questList.Count; i++)
         {
-            if(questList[i].nextQuest == null)
+            if (questList[i].nextQuest == null)
             {
-                if(Inventory.GetInstance().amountOfFish > 0 && questList[i].hasFish)
+
+                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID"))
                 {
                     finishingQuest.DisplayProgress(questList[i]);
-
-                    questTutorial.questTutorial.SetActive(false);
-                    questTutorial.telescopeTutorial.SetActive(false);
                 }
 
+                questTutorial.questTutorial.SetActive(false);
+                questTutorial.telescopeTutorial.SetActive(false);
                 continue;
             }
 
@@ -75,5 +78,7 @@ public class QuestHandler : MonoBehaviour
                 questTutorial.telescopeTutorial.SetActive(false);
             }
         }
+
+        PlayerPrefs.SetInt("confirmedID", 0);
     }
 }

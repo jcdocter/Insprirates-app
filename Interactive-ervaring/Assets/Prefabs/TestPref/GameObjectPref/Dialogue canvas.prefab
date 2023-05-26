@@ -839,9 +839,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24910e2fd254314f9c9ed7fc53eeaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text:
-  - Hey !
-  - Have you ever heard of raidy shady
-  - My wife died in a car crash
+  scriptList:
+  - hasFish: 0
+    hasRecruits: 0
+    ID: 0
+    scriptText: []
   dialogueBox: {fileID: 5011982979251264312}
   previousButton: {fileID: 1042855505}

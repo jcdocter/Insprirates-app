@@ -11,6 +11,8 @@ public class RecCamera : MonoBehaviour
 
     private RawImage background;
     private RectTransform backgroundTransform;
+    private Swipe swipe = new Swipe();
+    private bool switchCam;
 
     protected virtual void Start()
     {
@@ -23,6 +25,12 @@ public class RecCamera : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (swipe.CheckSwipe())
+        {
+            switchCam = !switchCam;
+            StartCoroutine(StartCamera());
+        }
+
         FitCamera();
     }
 
@@ -50,18 +58,14 @@ public class RecCamera : MonoBehaviour
             yield return new WaitForSeconds(0.0f);
         }
 
-        for (int i = 0; i < devices.Length; i++)
+        if (!backgroundTransform.gameObject.activeSelf)
         {
-            if (!devices[i].isFrontFacing)
-            {
-                if(!backgroundTransform.gameObject.activeSelf)
-                {
-                    backgroundTransform = background.rectTransform;
-                }
-
-                backCam = new WebCamTexture(devices[i].name, (int)backgroundTransform.rect.width, (int)backgroundTransform.rect.height);
-            }
+            backgroundTransform = background.rectTransform;
         }
+
+        string deviceName = switchCam ? devices[1].name : devices[0].name;
+
+        backCam = new WebCamTexture(deviceName, (int)backgroundTransform.rect.width, (int)backgroundTransform.rect.height);
 
         backCam.Play();
         yield return new WaitForSeconds(5.0f);
