@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Swipe : MonoBehaviour
+public class Swipe
 {
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
 
-    private void Update()
+    public bool CheckSwipe()
     {
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -20,8 +20,10 @@ public class Swipe : MonoBehaviour
 
             if(endTouchPosition.y > startTouchPosition.y)
             {
-                Debugger.WriteData("You opened a treasure");
+                return true;
             }
         }
+
+        return false;
     }
 }

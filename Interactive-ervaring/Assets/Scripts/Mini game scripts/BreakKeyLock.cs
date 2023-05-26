@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakKeyLock : Rules
+public class BreakKeyLock : MonoBehaviour
 {
-    public GameObject creatureObject;
+    public Rules rules;
     private Animator animator;
 
     private int ticks;
@@ -12,7 +12,7 @@ public class BreakKeyLock : Rules
 
     private void Start()
     {
-        SetRules();
+        rules.SetRules();
 
         ticks = Random.Range(2, 10);
         animator = GetComponent<Animator>();
@@ -52,6 +52,6 @@ public class BreakKeyLock : Rules
 
     public void Unlocked()
     {
-        CheckOffQuest();
+        rules.CheckOffQuest();
     }
 }

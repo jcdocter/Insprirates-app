@@ -5,16 +5,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using ZXing;
 
-
-public class QuestScanner : ARecCamera
+public class QuestScanner : RecCamera
 {
-    public GameObject scanner;
-    public GameObject acceptButton;
     public GameObject acceptTutorial;
 
     private List<Quest> questList = new List<Quest>();
+    private GameObject acceptButton;
 
-    private static string resultText;
+    private string resultText;
+    public int questID;
+
+    private void Awake()
+    {
+        acceptButton = FindObjectOfType<Button>().gameObject;
+    }
 
     protected override void Start()
     {
@@ -26,51 +30,77 @@ public class QuestScanner : ARecCamera
         acceptTutorial.SetActive(false);
     }
 
-    protected override void Scan()
+    protected override void Update()
+    {
+        base.Update();
+
+        if (!Debugger.OnDevice())
+        {
+            if(Input.GetKey(KeyCode.Space))
+            {
+                AcceptQuest();
+            }
+        }
+        else
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                Scan();
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+    }
+
+    private void Scan()
     {
         try
         {
             IBarcodeReader barcodeReader = new BarcodeReader();
             Result result = barcodeReader.Decode(backCam.GetPixels32(), backCam.width, backCam.height);
 
-            if(result != null)
+            if (result == null)
             {
-                resultText = result.Text;
-
-                for (int i = 0; i < questList.Count; i++)
-                {
-                    if (questList[i].id == resultText && questList[i].startQuest)
-                    {
-                        acceptButton.SetActive(true);
-                        acceptTutorial.SetActive(true);
-
-                        acceptButton.GetComponent<Image>().color = DisplayButtonColor(i);
-                    }
-                }
+                return;
             }
+
+            resultText = result.Text;
+
+            foreach (Quest quest in questList)
+            {
+              ActivateButton(quest);
+            }
+
         }
         catch
         {
             Debug.LogError("Can not scan QR");
+            return;
         }
     }
 
-    private Color DisplayButtonColor(int _index)
+    public void ActivateButton(Quest _quest)
     {
-        if (questList[_index].isStory)
+        foreach (QRID qr in _quest.qrList)
         {
-            return new Color(255f/255f, 212f/255f, 180f/255f);
-        }
-        else
-        {
-            return new Color(181f/255f, 249f/255f, 249f/255f);
+            if(qr.id == resultText && qr.activeQR)
+            {
+                acceptButton.SetActive(true);
+                acceptTutorial.SetActive(true);
+
+                questID = _quest.ID;
+
+                acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
+            }
         }
     }
 
     public void AcceptQuest()
     {
-        PlayerPrefs.SetString("questID", resultText);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        PlayerPrefs.SetInt("questID", questID);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
