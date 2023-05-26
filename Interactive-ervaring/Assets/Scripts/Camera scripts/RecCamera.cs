@@ -3,21 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ARecCamera : MonoBehaviour
+public class RecCamera : MonoBehaviour
 {
     protected WebCamTexture backCam;
     protected AspectRatioFitter fit;
     protected bool camAvailable;
 
-    public RawImage background;
-    private RectTransform scannerTransform;
+    private RawImage background;
+    private RectTransform backgroundTransform;
+    private Swipe swipe = new Swipe();
+    private bool switchCam;
 
     protected virtual void Start()
     {
         fit = GetComponentInChildren<AspectRatioFitter>();
-        scannerTransform = GetComponentInChildren<RawImage>().rectTransform;
+        background = GetComponentInChildren<RawImage>();
+        backgroundTransform = background.rectTransform;
 
         StartCoroutine(StartCamera());
+    }
+
+    protected virtual void Update()
+    {
+        if (swipe.CheckSwipe())
+        {
+            switchCam = !switchCam;
+            StartCoroutine(StartCamera());
+        }
+
+        FitCamera();
     }
 
     protected void FitCamera()
@@ -44,24 +58,18 @@ public abstract class ARecCamera : MonoBehaviour
             yield return new WaitForSeconds(0.0f);
         }
 
-        for (int i = 0; i < devices.Length; i++)
+        if (!backgroundTransform.gameObject.activeSelf)
         {
-            if (!devices[i].isFrontFacing)
-            {
-                if(!scannerTransform.gameObject.activeSelf)
-                {
-                    scannerTransform = background.rectTransform;
-                }
-
-                backCam = new WebCamTexture(devices[i].name, (int)scannerTransform.rect.width, (int)scannerTransform.rect.height);
-            }
+            backgroundTransform = background.rectTransform;
         }
+
+        string deviceName = switchCam ? devices[1].name : devices[0].name;
+
+        backCam = new WebCamTexture(deviceName, (int)backgroundTransform.rect.width, (int)backgroundTransform.rect.height);
 
         backCam.Play();
         yield return new WaitForSeconds(5.0f);
         background.texture = backCam;
         camAvailable = true;
     }
-
-    protected abstract void Scan();
 }

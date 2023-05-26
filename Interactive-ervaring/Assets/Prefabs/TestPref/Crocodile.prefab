@@ -67,10 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a5804788780bd4484d2edd52e43fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isScannable: 0
-  hasTimer: 0
-  elapsedTime: 300
-  creatureObject: {fileID: 5294364932301317698}
+  rules:
+    photoButton: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+    timerObject: {fileID: 1839801775082348698, guid: 4e5a6c1aac9d90a45befc4ebb8917b45, type: 3}
+    hasTimer: 0
+    canTakePhoto: 0
+    elapsedTime: 300
 --- !u!65 &1696746734
 BoxCollider:
   m_ObjectHideFlags: 0

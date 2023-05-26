@@ -2,37 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class QRID
+{
+    public string id;
+    public bool activeQR;
+}
+
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
-    [HideInInspector]
+    public int ID;
     public bool isDone;
 
-    public string id;
-    public bool startQuest;
+    public bool hasFish;
+    public bool hasRecruits;
+    public int amountToTrack;
+    public string descriptionNextQuest;
 
-    public string description;
+    public GameObject descriptionObject;
 
-    public Quest[] neededQuests;
+    public List<QRID> qrList = new List<QRID>();
+    public Quest nextQuest;
 
-    public Quest closeQuest;
-
-    public void ActivateQuest()
+    public string Description()
     {
-        if(neededQuests == null)
+        // ID == needs to change
+        if(hasFish)
         {
-            return;
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfFish} / {amountToTrack}";
+        }
+        else if(hasRecruits)
+        {
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfRecruits} / {amountToTrack}";
         }
 
-        foreach(Quest quest in neededQuests)
-        {
-            if (!quest.isDone || closeQuest.startQuest)
-            {
-                this.startQuest = false;
-                return;
-            }
-        }
-
-        this.startQuest = true;
+        return descriptionNextQuest;
     }
 }

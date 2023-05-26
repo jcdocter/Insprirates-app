@@ -2,50 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System;
-using UnityEngine.UI;
 
-public class Rules : MonoBehaviour
+[System.Serializable]
+public class Rules
 {
-    public static GameObject photoButton;
+    public GameObject photoButton;
 
-    public bool isScannable;
-    public bool hasTimer;
     public bool canTakePhoto;
 
     public float elapsedTime = 300.0f;
 
-    protected GameObject timerObject;
-    protected GameObject scanner;
+    private Transform canvasTransform;
 
-    private TimeSpan timePlaying;
-
-    private void Awake()
+    public void SetRules()
     {
-        timerObject = GameObject.Find("Timer");
-        scanner = FindObjectOfType<ActionScanner>().GetComponentInChildren<RawImage>().gameObject;
-        photoButton = FindObjectOfType<Button>().gameObject;
+        canvasTransform = GameObject.FindObjectOfType<Canvas>().transform;
+
+        if(canTakePhoto)
+        {
+            GameObject camera = GameObject.Instantiate(photoButton, canvasTransform);
+            camera.transform.parent = canvasTransform;
+        }
     }
 
-    protected void SetRules()
+    public void CheckOffQuest()
     {
-        scanner.SetActive(isScannable);
-        timerObject.SetActive(hasTimer);
-        photoButton.SetActive(canTakePhoto);
-    }
-
-    protected void Timer()
-    {
-        elapsedTime -= Time.deltaTime;
-        timePlaying = TimeSpan.FromSeconds(elapsedTime);
-        string timeText = timePlaying.ToString("m':'ss'.'ff");
-        timerObject.GetComponent<TextMeshProUGUI>().text = timeText;
-    }
-
-    protected void CheckOffQuest()
-    {
-        PlayerPrefs.SetString("questID", PlayerPrefs.GetString("modelID"));
+        PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }
