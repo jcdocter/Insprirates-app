@@ -2,61 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+[System.Serializable]
+public class QRID
+{
+    public string id;
+    public bool activeQR;
+}
 
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
-    public string id;
-    public bool startQuest;
-
-    public bool canDisplayQuest;
+    public int ID;
     public bool isDone;
-    public string description;
 
-    public bool isStory;
+    public bool hasFish;
+    public bool hasRecruits;
+    public int amountToTrack;
+    public string descriptionNextQuest;
 
-//    [HideInInspector]
-    public Quest[] neededQuests;
+    public GameObject descriptionObject;
 
-    public void ActivateQuest()
+    public List<QRID> qrList = new List<QRID>();
+    public Quest nextQuest;
+
+    public string Description()
     {
-        if(neededQuests == null)
+        // ID == needs to change
+        if(hasFish)
         {
-            return;
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfFish} / {amountToTrack}";
+        }
+        else if(hasRecruits)
+        {
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfRecruits} / {amountToTrack}";
         }
 
-        Debug.Log(id);
-
-        foreach(Quest quest in neededQuests)
-        {
-            if (!quest.isDone)
-            {
-                this.startQuest = false;
-                return;
-            }
-        }
-
-        this.startQuest = true;
+        return descriptionNextQuest;
     }
 }
-
-#if UNITY_EDITOR
-[CustomEditor(typeof(Quest))]
-public class QuestScriptEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        Quest script = (Quest)target;
-
-        if (script.isStory)
-        {
-            //script.nextQuest = EditorGUILayout.ObjectField("Next Quest", script.nextQuest, typeof(Quest), true) as Quest;
-        }
-    }
-}
-#endif

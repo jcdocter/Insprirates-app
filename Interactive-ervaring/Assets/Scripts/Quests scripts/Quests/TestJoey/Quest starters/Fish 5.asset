@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
+  m_Name: Fish 5
+  m_EditorClassIdentifier: 
+  ID: 5
+  isDone: 0
+  hasFish: 1
+  hasRecruits: 0
+  amountToTrack: 5
+  descriptionNextQuest: De hoeveelheid vis dat je hebt gevangen is
+  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
+  qrList:
+  - id: V1
+    activeQR: 1
+  - id: V2
+    activeQR: 1
+  - id: V3
+    activeQR: 1
+  - id: V4
+    activeQR: 1
+  - id: V5
+    activeQR: 1
+  nextQuest: {fileID: 0}
