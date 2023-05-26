@@ -11,7 +11,6 @@ public class Fishing : MonoBehaviour
     public Vector2 limitRange;
     public Vector3 startPosition;
 
-    [HideInInspector]
     public Rules rules = new Rules();
 
     private Gyroscope gyro;
@@ -26,6 +25,8 @@ public class Fishing : MonoBehaviour
 
     private void Start()
     {
+        rules.SetRules();
+
         startTimer = resetTimer;
         gyroEnabled = EnableGyro();
         SpawnFish();
@@ -41,6 +42,11 @@ public class Fishing : MonoBehaviour
 
     private void Update()
     {
+        if(!rules.StartGame())
+        {
+            return;
+        }
+
         Throw();
     }
 
