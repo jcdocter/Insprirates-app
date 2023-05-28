@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
 {
+    public Rules rules = new Rules();
     private Gyroscope gyro;
 
     private int lockPickValue;
@@ -20,15 +21,22 @@ public class MobileVibration : MonoBehaviour
 
     private void Start()
     {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        rules.SetRules();
         gyroEnabled = EnableGyro();
         lockPickValue = Random.Range(-100, 100);
     }
 
     void Update()
     {
+        if (!rules.StartGame())
+        {
+            return;
+        }
+
         if (done)
         {
-            Debugger.WriteData("You did it !!!");
+            rules.CheckOffQuest();
             return;
         }
 
@@ -63,6 +71,7 @@ public class MobileVibration : MonoBehaviour
     private void VibrationTimer()
     {
         int DifferenceInValue = Mathf.Abs(lockPickValue - rotateValue);
+        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
 
         if(canGetNewValue)
         {

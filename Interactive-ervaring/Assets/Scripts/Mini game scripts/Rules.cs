@@ -1,29 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Rules
 {
+    [HideInInspector]
+    public Canvas pauseScreen;
+    
     public GameObject photoButton;
-    public GameObject pauseObject;
+    public Canvas pauseObject;
 
     public bool canTakePhoto;
 
     public float elapsedTime = 300.0f;
 
     private Transform canvasTransform;
-    private GameObject pauseScreen;
     private bool canStartGame = false;
 
     public void SetRules()
     {
-        canvasTransform = GameObject.FindObjectOfType<Canvas>().transform;
+        canvasTransform = GameObject.FindObjectOfType<RecCamera>().transform;
 
-        pauseScreen = GameObject.Instantiate(pauseObject, pauseObject.transform);
+        pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
 
-        if(canTakePhoto)
+        if (canTakePhoto)
         {
             GameObject camera = GameObject.Instantiate(photoButton, canvasTransform);
             camera.transform.parent = canvasTransform;

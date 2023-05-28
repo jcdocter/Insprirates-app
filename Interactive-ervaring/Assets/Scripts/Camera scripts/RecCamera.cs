@@ -8,6 +8,7 @@ public class RecCamera : MonoBehaviour
     protected WebCamTexture backCam;
     protected AspectRatioFitter fit;
     protected bool camAvailable;
+    protected bool canSwitchCam = true;
 
     private RawImage background;
     private RectTransform backgroundTransform;
@@ -25,7 +26,7 @@ public class RecCamera : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (swipe.CheckSwipe())
+        if (swipe.CheckSwipe() && canSwitchCam)
         {
             switchCam = !switchCam;
             StartCoroutine(StartCamera());
