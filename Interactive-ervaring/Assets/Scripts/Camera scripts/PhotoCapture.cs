@@ -3,30 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.iOS;
 
 public class PhotoCapture : MonoBehaviour
 {
-    public Image photoDisplayArea;
+    public GameObject photoCaptureObject;
+    public Rules rules = new Rules();
 
+    private Image photoDisplayArea;
     private Button photoButton;
     private Texture2D screenCapture;
 
     private void Start()
     {
-        photoButton = GetComponentInChildren<Button>();
+        GameObject camera = GameObject.Instantiate(photoCaptureObject, FindObjectOfType<Canvas>().transform);
+
+        foreach (Transform child in camera.transform)
+        {
+            if(child.GetComponent<Button>() == null)
+            {
+                photoDisplayArea = child.GetComponent<Image>();
+            }
+        }
+
+        photoButton = FindObjectOfType<Button>();
+
+        photoButton.onClick.AddListener(() => TakePicture());
         photoDisplayArea.enabled = false;
     }
 
     public void TakePicture()
     {
-        photoButton.enabled = false;
-        SetScreenCapture();
-        StartCoroutine(CapturePhoto());
-    }
-
-    public void SetScreenCapture()
-    {
+        photoButton.gameObject.SetActive(false);
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        StartCoroutine(CapturePhoto());
     }
 
     public IEnumerator CapturePhoto()
@@ -40,6 +50,8 @@ public class PhotoCapture : MonoBehaviour
 
         ShowPhoto();
         SavePhoto();
+
+        rules.CheckOffQuest();
     }
 
     private void ShowPhoto()
@@ -56,6 +68,11 @@ public class PhotoCapture : MonoBehaviour
 
         var folder = Directory.CreateDirectory(Application.persistentDataPath + "/Treasure-map-pieces/");
 
-        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetString("modelID") + ".png", bytes);
+        if(!Debugger.OnDevice())
+        {
+            PlayerPrefs.SetInt("questID", 1);
+        }
+
+        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetInt("questID") + ".png", bytes);
     }
 }

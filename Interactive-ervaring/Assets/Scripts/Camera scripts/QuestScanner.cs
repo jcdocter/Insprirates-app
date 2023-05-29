@@ -104,7 +104,6 @@ public class QuestScanner : RecCamera
                 for (int j = startWidth; j < startWidth + camWidth; j++)
                 {
                      //Color32 color = colors[j + i * (startWidth + camWidth)];
-                     //Color32 color = colors[j + i];
                      Color32 color = colors[j + i];
 
 /*                    GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);

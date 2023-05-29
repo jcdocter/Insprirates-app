@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,27 +9,15 @@ public class Rules
     [HideInInspector]
     public Canvas pauseScreen;
     
-    public GameObject photoButton;
     public Canvas pauseObject;
-
-    public bool canTakePhoto;
-
-    public float elapsedTime = 300.0f;
-
-    private Transform canvasTransform;
+    private RecCamera recCam;
     private bool canStartGame = false;
 
     public void SetRules()
     {
-        canvasTransform = GameObject.FindObjectOfType<RecCamera>().transform;
-
+        recCam = GameObject.FindObjectOfType<RecCamera>();
+        recCam.canSwitchCam = false;
         pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-
-        if (canTakePhoto)
-        {
-            GameObject camera = GameObject.Instantiate(photoButton, canvasTransform);
-            camera.transform.parent = canvasTransform;
-        }
     }
 
     public bool StartGame()

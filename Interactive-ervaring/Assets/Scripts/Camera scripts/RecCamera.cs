@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class RecCamera : MonoBehaviour
 {
+    [HideInInspector]
+    public bool canSwitchCam = true;
+    
     protected WebCamTexture backCam;
-    protected AspectRatioFitter fit;
+//    protected AspectRatioFitter fit;
     protected bool camAvailable;
-    protected bool canSwitchCam = true;
 
     private RawImage background;
     private RectTransform backgroundTransform;
@@ -17,7 +19,7 @@ public class RecCamera : MonoBehaviour
 
     protected virtual void Start()
     {
-        fit = GetComponentInChildren<AspectRatioFitter>();
+//        fit = GetComponentInChildren<AspectRatioFitter>();
         background = GetComponentInChildren<RawImage>();
         backgroundTransform = background.rectTransform;
 
@@ -43,7 +45,7 @@ public class RecCamera : MonoBehaviour
         }
 
         float ratio = (float)backCam.width / (float)backCam.height;
-        fit.aspectRatio = ratio;
+//        fit.aspectRatio = ratio;
 
         int orient = -backCam.videoRotationAngle;
         background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
