@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,15 +34,21 @@ public class QuestHandler : MonoBehaviour
 
     private void LoadQuest()
     {
-        SaveSystem.questList = questList;
-        SaveSystem.LoadQuest();
-
-        for (int i = 0; i < questList.Count; i++)
+        if(SaveSystem.questList.Count == 0)
         {
-            questList[i].isDone = finishingQuest.CheckProgress(questList[i]);    
+            SaveSystem.questList = questList;
+            SaveSystem.LoadQuest();
         }
 
-        PlayerPrefs.SetInt("confirmedID", 0);
+        Progress();
+    }
+
+    private void Progress()
+    {
+        for (int i = 0; i < questList.Count; i++)
+        {
+            questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
+        }
 
         foreach (Transform child in buttonParent.transform)
         {
@@ -52,26 +57,30 @@ public class QuestHandler : MonoBehaviour
 
         for (int i = 0; i < questList.Count; i++)
         {
-            if(questList[i].nextQuest == null)
+            if (questList[i].nextQuest == null)
             {
-                if(Inventory.GetInstance().amountOfFish > 0 && questList[i].hasFish)
+                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].showDiscription)
                 {
                     finishingQuest.DisplayProgress(questList[i]);
 
-                    questTutorial.questTutorial.SetActive(false);
-                    questTutorial.telescopeTutorial.SetActive(false);
+                    questList[i].showDiscription = true;
                 }
 
+                questTutorial.questTutorial.SetActive(false);
+                questTutorial.telescopeTutorial.SetActive(false);
                 continue;
             }
 
-            if (!questList[i].nextQuest.isDone && questList[i].isDone)
+            if (!questList[i].nextQuest.isDone && (questList[i].isDone || questList[i].showDiscription))
             {
                 finishingQuest.DisplayProgress(questList[i]);
+                questList[i].showDiscription = true;
 
                 questTutorial.questTutorial.SetActive(false);
                 questTutorial.telescopeTutorial.SetActive(false);
             }
         }
+
+        PlayerPrefs.SetInt("confirmedID", 0);
     }
 }

@@ -61,7 +61,6 @@ public static class SaveSystem
         countStream.Close();
 
         FileStream inventoryStream = new FileStream(inventoryPath, FileMode.Create);
-        Debug.Log("Save: " + Inventory.GetInstance().amountOfFish);
         InventoryData inventoryData = new InventoryData(Inventory.GetInstance());
         formatter.Serialize(inventoryStream, inventoryData);
         inventoryStream.Close();
@@ -111,6 +110,7 @@ public static class SaveSystem
                 QuestData data = formatter.Deserialize(stream) as QuestData;
 
                 questList[i].isDone = data.isDone;
+                questList[i].showDiscription = data.showDescription;
 
                 stream.Close();
             }
