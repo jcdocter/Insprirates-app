@@ -29,14 +29,18 @@ public class QuestScanner : RecCamera
 
         acceptButton.SetActive(false);
         acceptTutorial.SetActive(false);
-        canSwitchCam = false;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (FoundQR())
+/*        if (FoundQR())
+        {
+            Scan();
+        }*/
+
+        if (Input.GetMouseButtonDown(0))
         {
             Scan();
         }
@@ -52,7 +56,7 @@ public class QuestScanner : RecCamera
         }
     }
 
-    private void Scan()
+    public void Scan()
     {
         try
         {
@@ -68,7 +72,12 @@ public class QuestScanner : RecCamera
 
             foreach (Quest quest in questList)
             {
-              ActivateButton(quest);
+                if(quest.isDone)
+                {
+                    continue;
+                }
+
+                ActivateButton(quest);
             }
 
         }
@@ -87,8 +96,8 @@ public class QuestScanner : RecCamera
         {
             checkTimer = 5.0f;
 
-            int camWidth = backCam.width / 8;   // 640 / 8 = 80
-            int camHeight = backCam.height / 8; // 480 / 8 = 60
+            int camWidth = backCam.width / 24;   // 640 / 8 = 80
+            int camHeight = backCam.height / 24; // 480 / 8 = 60
 
             int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 280
             int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 210
@@ -114,7 +123,7 @@ public class QuestScanner : RecCamera
                     int G = color.g;
                     int B = color.b;
 
-                   Debug.Log($"Width: {j}, Height: {i}");
+                   Debug.Log($"{R}, {G}, {B}");
 
                     if (color == Color.white)
                     {
@@ -143,7 +152,7 @@ public class QuestScanner : RecCamera
     {
         foreach (QRID qr in _quest.qrList)
         {
-            if(qr.id == resultText && qr.activeQR)
+            if (qr.id == resultText && qr.activeQR)
             {
                 acceptButton.SetActive(true);
                 acceptTutorial.SetActive(true);

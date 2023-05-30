@@ -39,6 +39,7 @@ public class MobileVibration : MonoBehaviour
             rules.CheckOffQuest();
             return;
         }
+        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
 
         if (gyroEnabled)
         {

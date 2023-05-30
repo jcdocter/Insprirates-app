@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   isDone: 0
+  showDescription: 0
   hasFish: 0
   hasRecruits: 0
   amountToTrack: 0
-  descriptionNextQuest: Vang een vis
+  descriptionNextQuest: Vang een vis voor Kreff
   descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
   - id: A1

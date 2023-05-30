@@ -24,7 +24,7 @@ public class Rules
     {
         if(Input.GetMouseButtonDown(0))
         {
-            GameObject.Destroy(pauseScreen);
+            pauseScreen.enabled = false;
             canStartGame = true;
         }
 

@@ -9,12 +9,14 @@ public class QuestHandler : MonoBehaviour
     public List<Quest> questList;
     public QuestTutorial questTutorial;
 
+    private Animator animator;
     private GameObject buttonParent;
     private FinishingQuest finishingQuest;
 
     private void Start()
     {
         buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
+        animator = FindObjectOfType<Animator>();
         questTutorial.firstQuestTutorial.SetActive(false);
         
         finishingQuest = new FinishingQuest(buttonParent);
@@ -23,8 +25,8 @@ public class QuestHandler : MonoBehaviour
 
     public void ActivateCamera()
     {
+        animator.SetBool("activateScope", true);
         questTutorial.telescopeTutorial.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Recap()
@@ -59,22 +61,21 @@ public class QuestHandler : MonoBehaviour
         {
             if (questList[i].nextQuest == null)
             {
-                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].showDiscription)
+                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].showDescription)
                 {
                     finishingQuest.DisplayProgress(questList[i]);
+                    questTutorial.questTutorial.SetActive(false);
+                    questTutorial.telescopeTutorial.SetActive(false);
 
-                    questList[i].showDiscription = true;
+                    questList[i].showDescription = true;
                 }
-
-                questTutorial.questTutorial.SetActive(false);
-                questTutorial.telescopeTutorial.SetActive(false);
                 continue;
             }
 
-            if (!questList[i].nextQuest.isDone && (questList[i].isDone || questList[i].showDiscription))
+            if (!questList[i].nextQuest.isDone && (questList[i].isDone || questList[i].showDescription))
             {
                 finishingQuest.DisplayProgress(questList[i]);
-                questList[i].showDiscription = true;
+                questList[i].showDescription = true;
 
                 questTutorial.questTutorial.SetActive(false);
                 questTutorial.telescopeTutorial.SetActive(false);
