@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/UI mockup.unity
     guid: 65ade4b586f98a143869e8a89b3102ba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/tool minigames.unity
     guid: d63c50ceac93fd241bd5fedc73f363f7
   m_configObjects: {}

@@ -1368,6 +1368,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7891225803342133227, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}
+      propertyPath: acceptButton
+      value: 
+      objectReference: {fileID: 1973046255}
+    - target: {fileID: 7891225803342133227, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}
       propertyPath: canSwitchCam
       value: 0
       objectReference: {fileID: 0}

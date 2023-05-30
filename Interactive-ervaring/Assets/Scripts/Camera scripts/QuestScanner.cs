@@ -8,18 +8,13 @@ using ZXing;
 public class QuestScanner : RecCamera
 {
     public GameObject acceptTutorial;
+    public GameObject acceptButton;
 
     private List<Quest> questList = new List<Quest>();
-    private GameObject acceptButton;
 
     private float checkTimer = 5.0f;
     private string resultText;
     public int questID;
-
-    private void Awake()
-    {
-        acceptButton = FindObjectOfType<Button>().gameObject;
-    }
 
     protected override void Start()
     {
@@ -157,6 +152,7 @@ public class QuestScanner : RecCamera
                 acceptButton.SetActive(true);
                 acceptTutorial.SetActive(true);
 
+                PlayerPrefs.SetString("qrID", qr.id);
                 questID = _quest.ID;
 
                 acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);

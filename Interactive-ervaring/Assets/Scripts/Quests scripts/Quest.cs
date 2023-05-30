@@ -40,4 +40,19 @@ public class Quest : ScriptableObject
 
         return descriptionNextQuest;
     }
+
+    public void DeactivatedQR()
+    {
+        foreach(QRID qr in qrList)
+        {
+            qr.activeQR = true;
+
+            if(qr.id == PlayerPrefs.GetString("qrID") && ID == PlayerPrefs.GetInt("QuestID"))
+            {
+                qr.activeQR = false;
+            }
+        }
+
+        PlayerPrefs.SetString("qrID", " ");
+    }
 }
