@@ -943,7 +943,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1624348516}
         m_TargetAssemblyTypeName: Confirm, Assembly-CSharp
-        m_MethodName: nextScene
+        m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

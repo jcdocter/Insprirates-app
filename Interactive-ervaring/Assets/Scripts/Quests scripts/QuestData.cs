@@ -11,7 +11,7 @@ public class QuestData
     public QuestData(Quest _data)
     {
         this.isDone = _data.isDone;
-        this.showDescription = _data.showDiscription;
+        this.showDescription = _data.showDescription;
     }
 }
 
