@@ -20,6 +20,7 @@ public class Dialogue : MonoBehaviour
     public List<Scripts> scriptList;
 
     public TextMeshProUGUI dialogueBox;
+
     public GameObject previousButton;
 
     private Rules rules = new Rules();
@@ -28,6 +29,7 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
+
         dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
         previousButton.SetActive(false);
 

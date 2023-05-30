@@ -134,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].ID
@@ -149,8 +149,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].ID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[1].hasFish
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].hasFish
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].hasFish
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].checkOff
@@ -166,23 +178,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.size
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.size
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].scriptText.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[0]
-      value: Hey!
+      value: 'Hallo, wie ben jij? Het is echt groot en druk hier. Ik zoek naar een
+        vis '
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[1]
-      value: Have you heard of raidy shady ?
+      value: "maar ik kan met al deze dingen niet gaan vissen. Grrrr wat een drukte.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[2]
@@ -190,11 +207,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.data[0]
-      value: Hey hey !
+      value: "Hallo, daar ben je weer, heb je geen vis? Ja hallo. Het is dat ik op
+        mijn familie moet letten anders zou ik het zelf doen! \n\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.data[1]
-      value: Let's get serious for a moment
+      value: "Ik had ook al wat vissen gezien, dus zo ver is het niet, argh.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.data[2]
@@ -214,11 +232,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[0]
-      value: I'm sorry ...
+      value: 'Wat? Je hebt een vis? Die was voor mijn kleinkind, Krietje,  maar die
+        is verdwenen aaa. '
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[1]
-      value: You've conntracted ...
+      value: Ik moet die vinden. Waar is die toch heen?!
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[2]
@@ -231,6 +250,17 @@ PrefabInstance:
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[4]
       value: Play raid differently
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].scriptText.Array.data[0]
+      value: 'Och gelukkig hier ben je Krietje. Ik was je kwijt! Hier eet deze vis
+        maar, dat is goed voor je. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].scriptText.Array.data[1]
+      value: Sorry dat ik zo bot tegen jou deed, bedankt voor het helpen met zoeken
+        en de vis vangen. Wij gaan nog even genieten van de beurs, we zien je vast
+        nog wel.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
