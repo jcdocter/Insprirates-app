@@ -9,12 +9,14 @@ public class QuestHandler : MonoBehaviour
     public List<Quest> questList;
     public QuestTutorial questTutorial;
 
+    private Animator animator;
     private GameObject buttonParent;
     private FinishingQuest finishingQuest;
 
     private void Start()
     {
         buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
+        animator = FindObjectOfType<Animator>();
         questTutorial.firstQuestTutorial.SetActive(false);
         
         finishingQuest = new FinishingQuest(buttonParent);
@@ -23,8 +25,8 @@ public class QuestHandler : MonoBehaviour
 
     public void ActivateCamera()
     {
+        animator.SetBool("activateScope", true);
         questTutorial.telescopeTutorial.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Recap()
