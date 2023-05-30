@@ -3,19 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.iOS;
 
 public class PhotoCapture : MonoBehaviour
 {
     public GameObject photoCaptureObject;
     public Rules rules = new Rules();
 
+    private RecCamera recCam;
     private Image photoDisplayArea;
     private Button photoButton;
     private Texture2D screenCapture;
 
     private void Start()
     {
+        recCam = FindObjectOfType<RecCamera>();
         GameObject camera = GameObject.Instantiate(photoCaptureObject, FindObjectOfType<Canvas>().transform);
 
         foreach (Transform child in camera.transform)
@@ -30,6 +31,7 @@ public class PhotoCapture : MonoBehaviour
 
         photoButton.onClick.AddListener(() => TakePicture());
         photoDisplayArea.enabled = false;
+        recCam.canSwitchCam = true;
     }
 
     public void TakePicture()

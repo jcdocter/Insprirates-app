@@ -9,13 +9,13 @@ public class IconData : MonoBehaviour
 
     private Confirm confirm;
 
-    public void Start()
+    private void Start()
     {
         confirm = FindObjectOfType<Confirm>();
         outline.SetActive(false);
     }
 
-    public void Update()
+    private void Update()
     {
         if(confirm.iconId != id)
         {
