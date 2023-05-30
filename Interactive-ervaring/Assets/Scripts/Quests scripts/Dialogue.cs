@@ -6,8 +6,8 @@ using TMPro;
 [System.Serializable]
 public class Scripts
 {
-    public bool hasFish;
-    public bool hasRecruits;
+    public bool needsFish;
+    public bool needsRecruits;
 
     public int ID;
 
@@ -72,7 +72,7 @@ public class Dialogue : MonoBehaviour
 
     public void SetTexts(Scripts _script)
     {
-        if (_script.hasFish)
+        if (_script.needsFish)
         {
             if (Inventory.GetInstance().amountOfFish > 0)
             {
@@ -80,7 +80,7 @@ public class Dialogue : MonoBehaviour
                 return;
             }
         }
-        else if (_script.hasRecruits)
+        else if (_script.needsRecruits)
         {
             if (Inventory.GetInstance().amountOfRecruits > 0)
             {

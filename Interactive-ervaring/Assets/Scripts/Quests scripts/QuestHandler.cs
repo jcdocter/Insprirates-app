@@ -59,10 +59,11 @@ public class QuestHandler : MonoBehaviour
         {
             if (questList[i].nextQuest == null)
             {
-
-                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID"))
+                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].showDiscription)
                 {
                     finishingQuest.DisplayProgress(questList[i]);
+
+                    questList[i].showDiscription = true;
                 }
 
                 questTutorial.questTutorial.SetActive(false);
@@ -70,9 +71,10 @@ public class QuestHandler : MonoBehaviour
                 continue;
             }
 
-            if (!questList[i].nextQuest.isDone && questList[i].isDone)
+            if (!questList[i].nextQuest.isDone && (questList[i].isDone || questList[i].showDiscription))
             {
                 finishingQuest.DisplayProgress(questList[i]);
+                questList[i].showDiscription = true;
 
                 questTutorial.questTutorial.SetActive(false);
                 questTutorial.telescopeTutorial.SetActive(false);

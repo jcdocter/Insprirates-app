@@ -12,6 +12,7 @@ public class QuestScanner : RecCamera
     private List<Quest> questList = new List<Quest>();
     private GameObject acceptButton;
 
+    private float checkTimer = 5.0f;
     private string resultText;
     public int questID;
 
@@ -28,25 +29,21 @@ public class QuestScanner : RecCamera
 
         acceptButton.SetActive(false);
         acceptTutorial.SetActive(false);
+        canSwitchCam = false;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (!Debugger.OnDevice())
+        if (FoundQR())
         {
-            if(Input.GetKey(KeyCode.Space))
-            {
-                AcceptQuest();
-            }
+            Scan();
         }
-        else
+
+        if (Input.GetKey(KeyCode.Space))
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                Scan();
-            }
+            AcceptQuest();
         }
 
         if (Input.GetKey(KeyCode.Escape))
@@ -80,6 +77,66 @@ public class QuestScanner : RecCamera
             Debug.LogError("Can not scan QR");
             return;
         }
+    }
+
+    private bool FoundQR()
+    {
+        checkTimer -= Time.deltaTime;
+
+        if(checkTimer <= 0)
+        {
+            checkTimer = 5.0f;
+
+            int camWidth = backCam.width / 8;   // 640 / 8 = 80
+            int camHeight = backCam.height / 8; // 480 / 8 = 60
+
+            int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 280
+            int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 210
+
+            Color32[] colors = backCam.GetPixels32();
+
+            bool hasBlack = false;
+            bool hasWhite = false;
+
+            //needs to be lighter
+            for (int i = startHeight; i < startHeight + camHeight; i++)
+            {
+                for (int j = startWidth; j < startWidth + camWidth; j++)
+                {
+                     //Color32 color = colors[j + i * (startWidth + camWidth)];
+                     Color32 color = colors[j + i];
+
+/*                    GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    cube.transform.position = new Vector3(j, i, 0.0f);
+                    cube.transform.localScale = new Vector3(, i, 0.0f);*/
+
+                    int R = color.r;
+                    int G = color.g;
+                    int B = color.b;
+
+                   Debug.Log($"Width: {j}, Height: {i}");
+
+                    if (color == Color.white)
+                    {
+                        Debug.Log("White");
+                        hasWhite = true;
+                    }
+
+                    if (color == Color.black)
+                    {
+                        Debug.Log("Black");
+                        hasWhite = true;
+                    }
+                }
+            }
+
+            if (hasWhite && hasBlack)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ActivateButton(Quest _quest)

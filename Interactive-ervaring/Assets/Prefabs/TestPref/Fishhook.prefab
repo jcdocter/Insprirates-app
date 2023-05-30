@@ -76,11 +76,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d37dbb16a95f943817d57491f8001b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTest: 1
+  resetTimer: 0
   fishObjects:
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  limitRange: {x: -0.15, y: 0.15}
+  startPosition: {x: 0.008104315, y: -0.3893728, z: 0.48914623}
+  rules:
+    photoButton: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+    pauseObject: {fileID: 8242274168134196375, guid: b980d94a2e1d2ed4d8b67031e6091e80, type: 3}
+    canTakePhoto: 0
+    elapsedTime: 300
 --- !u!1001 &4953326846189634068
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,13 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
 using UnityEngine.SceneManagement;
 
 [Serializable]
 public class MapPieces
 {
-    public string photoID;
+    public int photoID;
     public GameObject piece;
 }
 
@@ -19,26 +18,37 @@ public class Map : MonoBehaviour
     public LayerMask clickableLayer;
     public List<MapPieces> piecesList = new List<MapPieces>();
 
-    private RawImage photo;
+    public RawImage photo;
     private MapPieces mapPiece;
     private bool canRotate;
     private bool hitPiece;
-    private int tapCount;
+//    private int tapCount;
 
     private void Start()
     {
-        photo = GetComponent<RawImage>();
+        photo = FindObjectOfType<RawImage>();
     }
 
     private void Update()
     {
-        RotateMap();
+       // RotateMap();
         HitObject();
-        ZoomInOut();
+        //        ZoomInOut();
 
-        if (Input.GetKey(KeyCode.Escape))
+        Debug.Log(hitPiece);
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            if (hitPiece)
+            {
+                ActivateMap(true);
+                photo.texture = null;
+                hitPiece = false;
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
         }
     }
 
@@ -65,8 +75,8 @@ public class Map : MonoBehaviour
 
                 if(hitPiece)
                 {
-                    tapCount++;
-                    StartCoroutine(OpenPhoto());
+//                    tapCount++;
+//                    StartCoroutine(OpenPhoto());
                     hitPiece = false;
                 }
 
@@ -76,9 +86,9 @@ public class Map : MonoBehaviour
 
     private void HitObject()
     {
-        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if((Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            Ray ray = Camera.main.ScreenPointToRay(Debugger.OnDevice() ? Input.touches[0].position : Input.mousePosition);
 
             RaycastHit hit;
 
@@ -100,6 +110,8 @@ public class Map : MonoBehaviour
 ;                       mapPiece = piece;
                     }
                 }
+
+                OpenPhoto();
             }
         }
     }
@@ -128,27 +140,28 @@ public class Map : MonoBehaviour
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - _increment, 1.0f, 25.0f);
     }
 
-    private IEnumerator OpenPhoto()
+    private void OpenPhoto()
     {
-        Debugger.WriteData(tapCount.ToString());
+        //        yield return new WaitForSeconds(0.3f);
 
-        yield return new WaitForSeconds(0.3f);
+        ActivateMap(false);
 
-        if (tapCount == 2)
+        Byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + mapPiece.photoID + ".png");
+
+        Texture2D displayPhoto = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        displayPhoto.LoadImage(bytes);
+
+        if (displayPhoto != null)
         {
-          this.gameObject.SetActive(false);
-
-            Byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + mapPiece.photoID + ".png");
-
-            Texture2D displayPhoto = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            displayPhoto.LoadImage(bytes);
-
-            if (displayPhoto != null)
-            {
-                photo.texture = displayPhoto;
-            }
+            photo.texture = displayPhoto;
         }
+    }
 
-        tapCount = 0;
+    private void ActivateMap(bool _activate)
+    {
+        foreach (MapPieces piece in piecesList)
+        {
+            piece.piece.SetActive(_activate);
+        }
     }
 }

@@ -6,23 +6,29 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class Rules
 {
-    public GameObject photoButton;
-
-    public bool canTakePhoto;
-
-    public float elapsedTime = 300.0f;
-
-    private Transform canvasTransform;
+    [HideInInspector]
+    public Canvas pauseScreen;
+    
+    public Canvas pauseObject;
+    private RecCamera recCam;
+    private bool canStartGame = false;
 
     public void SetRules()
     {
-        canvasTransform = GameObject.FindObjectOfType<Canvas>().transform;
+        recCam = GameObject.FindObjectOfType<RecCamera>();
+        recCam.canSwitchCam = false;
+        pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+    }
 
-        if(canTakePhoto)
+    public bool StartGame()
+    {
+        if(Input.GetMouseButtonDown(0))
         {
-            GameObject camera = GameObject.Instantiate(photoButton, canvasTransform);
-            camera.transform.parent = canvasTransform;
+            GameObject.Destroy(pauseScreen);
+            canStartGame = true;
         }
+
+        return canStartGame;
     }
 
     public void CheckOffQuest()
