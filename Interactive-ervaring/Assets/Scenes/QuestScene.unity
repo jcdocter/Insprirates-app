@@ -377,7 +377,7 @@ MonoBehaviour:
   - quests:
     - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
     - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
-    model: {fileID: 6806943028642601311, guid: 0cc3e64d87f35f04882ebd0bdd5fe7a2, type: 3}
+    model: {fileID: 5571674373612133443, guid: 99f569841b9268f4e8e567f0531ab17b, type: 3}
   - quests:
     - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
     model: {fileID: 9024635820033975169, guid: 9bd18772013b54644b9d62a6f186157b, type: 3}
@@ -663,6 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623013184}
   - component: {fileID: 1623013183}
+  - component: {fileID: 1623013185}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -747,6 +748,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1623013185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623013182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1845747026
 GameObject:
   m_ObjectHideFlags: 0
