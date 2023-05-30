@@ -819,7 +819,7 @@ Transform:
   m_GameObject: {fileID: 9024635820033975169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.3935833, y: -2.276482, z: 7.2449327}
-  m_LocalScale: {x: 295.60336, y: 295.60336, z: 295.60336}
+  m_LocalScale: {x: 2.2588928, y: 2.2588928, z: 2.2588928}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5195106003781381039}
@@ -875,13 +875,17 @@ MonoBehaviour:
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
   - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
+  - {fileID: 7269502142254730349, guid: ccf6c9e8b6adc59488bc7f94a2a72deb, type: 3}
   limitRange: {x: -0.15, y: 0.15}
   startPosition: {x: 0.008104315, y: -0.3893728, z: 0.48914623}
   rules:
-    photoButton: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
-    pauseObject: {fileID: 8242274168134196375, guid: b980d94a2e1d2ed4d8b67031e6091e80, type: 3}
-    canTakePhoto: 0
-    elapsedTime: 300
+    pauseScreen: {fileID: 0}
+    pauseObject: {fileID: 5766614169163684626, guid: ebadfbefe568b55409b4823ecb766b2a, type: 3}
 --- !u!1001 &4953326846189634068
 PrefabInstance:
   m_ObjectHideFlags: 0
