@@ -72,8 +72,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   piecesList:
-  - photoID: A3
+  - photoID: 0
     piece: {fileID: 261327054309795433}
+  photo: {fileID: 0}
 --- !u!1 &261327054045019988
 GameObject:
   m_ObjectHideFlags: 0

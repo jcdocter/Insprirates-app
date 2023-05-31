@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3708985, g: 0.3783704, b: 0.35722548, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1155,7 +1155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &652819110
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2615,11 +2615,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questList:
-  - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
   - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
   - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
   - {fileID: 11400000, guid: d0a22d579295b5c45bbfaf869aed168d, type: 2}
   - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
+  - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
+  - {fileID: 11400000, guid: f812b923ef9579a43b079c2b6e02c6f4, type: 2}
   questTutorial:
     questTutorial: {fileID: 1975497085}
     telescopeTutorial: {fileID: 1825595331}

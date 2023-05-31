@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9024635820033975169, guid: 9bd18772013b54644b9d62a6f186157b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bd18772013b54644b9d62a6f186157b, type: 3}
@@ -885,6 +885,10 @@ PrefabInstance:
     - target: {fileID: 8218111609807865142, guid: 7769c01c510af714ca35eba52823707c, type: 3}
       propertyPath: m_Name
       value: Lockpick minigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218111609807865142, guid: 7769c01c510af714ca35eba52823707c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7769c01c510af714ca35eba52823707c, type: 3}

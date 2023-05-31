@@ -10,6 +10,7 @@ public class Rules
     public Canvas pauseScreen;
     
     public Canvas pauseObject;
+    public Canvas instructionCanavas;
     private RecCamera recCam;
     private bool canStartGame = false;
 
@@ -17,6 +18,7 @@ public class Rules
     {
         recCam = GameObject.FindObjectOfType<RecCamera>();
         recCam.canSwitchCam = false;
+        instructionCanavas = GameObject.Instantiate(instructionCanavas, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
     }
 
