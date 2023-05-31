@@ -2615,11 +2615,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questList:
-  - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
   - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
   - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
   - {fileID: 11400000, guid: d0a22d579295b5c45bbfaf869aed168d, type: 2}
   - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
+  - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
+  - {fileID: 11400000, guid: f812b923ef9579a43b079c2b6e02c6f4, type: 2}
   questTutorial:
     questTutorial: {fileID: 1975497085}
     telescopeTutorial: {fileID: 1825595331}

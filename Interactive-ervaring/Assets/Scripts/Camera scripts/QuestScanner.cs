@@ -72,7 +72,6 @@ public class QuestScanner : RecCamera
 
                 if(ActivateButton(quest))
                 {
-                    Debug.Log(quest.ID);
                     return;
                 }
             }
@@ -149,6 +148,7 @@ public class QuestScanner : RecCamera
     {
         foreach (QRID qr in _quest.qrList)
         {
+            Debugger.WriteData($"{qr.id} == {resultText} && {qr.activeQR}"); 
             if (qr.id == resultText && qr.activeQR)
             {
                 acceptButton.SetActive(true);
