@@ -871,16 +871,16 @@ MonoBehaviour:
   isTest: 0
   resetTimer: 3
   fishObjects:
-  - {fileID: 8129916925327264146, guid: b5d73663fee1673478fbdd002200ebd8, type: 3}
-  - {fileID: 8129916925327264146, guid: 57260c086062a2e4eb390517509b8ad6, type: 3}
-  - {fileID: 8129916925327264146, guid: c57a1c17f87c6244788ab2dc9e6fb380, type: 3}
-  - {fileID: 8129916925327264146, guid: 2c56e2395ef77dc40b71a01bab4b3ce2, type: 3}
-  - {fileID: 8129916925327264146, guid: d2e2e3f679dc5d44f9da48215f3f227f, type: 3}
-  - {fileID: 8129916925327264146, guid: b0f12434a4a2a0a41af2f15c0d7015c2, type: 3}
-  - {fileID: 8129916925327264146, guid: 6b560f1cce3b58a4ebad64f065e4a8f5, type: 3}
-  - {fileID: 8129916925327264146, guid: 3bd54e29a78c6b645bbf81b24b49b11a, type: 3}
-  - {fileID: 8129916925327264146, guid: 31fa589cb7b7bfc40b0e31aac1a210ef, type: 3}
-  - {fileID: 8129916925327264146, guid: 3a316cfc57ddc4e4e8aaa5b891569500, type: 3}
+  - {fileID: 1077232906755642129, guid: aba5803815fdccf449ce4004e40bb110, type: 3}
+  - {fileID: 319158197739710667, guid: 7df2ef969aea37b47840ca4e04ab2247, type: 3}
+  - {fileID: 3204744028089330316, guid: eb0a0d265ae283f40b7e3c9ba5627cd8, type: 3}
+  - {fileID: 440525408152450311, guid: 22d91b757374c5142a38afe7427dba16, type: 3}
+  - {fileID: 6858506877400317257, guid: 3a306abaa9e0a4444b0a7cd3b0ecc7fa, type: 3}
+  - {fileID: 2034060128860924237, guid: 31353244d86643146b5883a37a7d5419, type: 3}
+  - {fileID: 1139200730034389842, guid: 9a9fd7c8d79cb5d46976b7ffbad35841, type: 3}
+  - {fileID: 697896335427349708, guid: 1d0117ed9268c34438e88b0650bca29e, type: 3}
+  - {fileID: 4773978790687918494, guid: ffe5c0ab76d1c7240a010959d117b0cb, type: 3}
+  - {fileID: 5392043671324464975, guid: 523de60cf5bfb6b47b257bf97500b6cc, type: 3}
   limitRange: {x: -0.15, y: 0.15}
   startPosition: {x: 0.008104315, y: -0.3893728, z: 0.48914623}
   rules:

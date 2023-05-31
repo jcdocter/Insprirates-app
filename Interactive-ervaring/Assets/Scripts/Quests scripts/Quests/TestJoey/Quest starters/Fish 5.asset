@@ -14,20 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 5
   isDone: 0
+  showDescription: 0
   hasFish: 1
   hasRecruits: 0
   amountToTrack: 5
   descriptionNextQuest: De hoeveelheid vis dat je hebt gevangen is
   descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
-  - id: V1
+  - id: fish_1
     activeQR: 1
-  - id: V2
+  - id: fish_2
     activeQR: 1
-  - id: V3
+  - id: fish_3
     activeQR: 1
-  - id: V4
-    activeQR: 1
-  - id: V5
+  - id: fish_4
     activeQR: 1
   nextQuest: {fileID: 0}

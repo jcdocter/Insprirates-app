@@ -2089,9 +2089,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5571674373612133443}
-  m_LocalRotation: {x: 0, y: 0.8217812, z: 0, w: 0.5698032}
-  m_LocalPosition: {x: 39.48, y: -50.4, z: 60.12}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.16550873, y: -2.2056572, z: 8.419223}
+  m_LocalScale: {x: 0.10000004, y: 0.099999994, z: 0.10000004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4711131901779593454}
@@ -2099,7 +2099,7 @@ Transform:
   - {fileID: 5735208297738262434}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 110.527, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &1223127704614853763
 Animator:
   serializedVersion: 4
@@ -3428,8 +3428,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 5735208296257904633}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: previousButton
+      value: 
+      objectReference: {fileID: 727804646020133520}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].ID
@@ -3444,6 +3452,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].ID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].hasFish
       value: 1
       objectReference: {fileID: 0}
@@ -3456,28 +3468,37 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[2].needsFish
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].fishAmount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.size
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.size
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].scriptText.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[0]
-      value: Hey!
+      value: 'Hallo, wie ben jij? Het is echt groot en druk hier. Ik zoek naar een
+        vis '
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[1]
-      value: Have you heard of raidy shady ?
+      value: "maar ik kan met al deze dingen niet gaan vissen. Grrrr wat een drukte.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[2]
@@ -3485,11 +3506,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.data[0]
-      value: Hey hey !
+      value: "Hallo, daar ben je weer, heb je geen vis? Ja hallo. Het is dat ik op
+        mijn familie moet letten anders zou ik het zelf doen! \n\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.data[1]
-      value: Let's get serious for a moment
+      value: "Ik had ook al wat vissen gezien, dus zo ver is het niet, argh.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[1].scriptText.Array.data[2]
@@ -3509,11 +3531,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[0]
-      value: I'm sorry ...
+      value: 'Wat? Je hebt een vis? Die was voor mijn kleinkind, Krietje,  maar die
+        is verdwenen aaa. '
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[1]
-      value: You've conntracted ...
+      value: Ik moet die vinden. Waar is die toch heen?!
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[2]
@@ -3527,8 +3550,35 @@ PrefabInstance:
       propertyPath: scriptList.Array.data[2].scriptText.Array.data[4]
       value: Play raid differently
       objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].scriptText.Array.data[0]
+      value: 'Och gelukkig hier ben je Krietje. Ik was je kwijt! Hier eet deze vis
+        maar, dat is goed voor je. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].scriptText.Array.data[1]
+      value: Sorry dat ik zo bot tegen jou deed, bedankt voor het helpen met zoeken
+        en de vis vangen. Wij gaan nog even genieten van de beurs, we zien je vast
+        nog wel.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+--- !u!1 &727804646020133520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1042855505, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 727804645514151105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5735208296257904633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5011982979251264312, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 727804645514151105}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5735208297738262434 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}

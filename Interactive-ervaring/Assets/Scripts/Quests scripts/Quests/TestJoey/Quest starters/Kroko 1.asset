@@ -21,12 +21,12 @@ MonoBehaviour:
   descriptionNextQuest: Vang een vis voor Kreff
   descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   qrList:
-  - id: A1
+  - id: croc_1
     activeQR: 1
-  - id: A2
+  - id: croc_2
     activeQR: 1
-  - id: A3
+  - id: croc_3
     activeQR: 1
-  - id: A4
+  - id: croc_4
     activeQR: 1
   nextQuest: {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}

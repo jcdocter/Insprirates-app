@@ -34,7 +34,8 @@ public class ObjectSpawner : MonoBehaviour
         {
             if(modelList[i].CheckID())
             {
-                GameObject model = Instantiate(modelList[i].model, transform.position, transform.rotation);
+                //GameObject model = Instantiate(modelList[i].model, transform.position, transform.rotation);
+                GameObject model = Instantiate(modelList[i].model, modelList[i].model.transform.position, modelList[i].model.transform.rotation);
                 model.transform.parent = this.transform;
             }
         }

@@ -36,6 +36,7 @@ public class MobileVibration : MonoBehaviour
 
         if (done)
         {
+            Inventory.GetInstance().amountOfRecruits++;
             rules.CheckOffQuest();
             return;
         }

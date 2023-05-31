@@ -173,6 +173,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[2].needsFish
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[2].fishAmount
       value: 1
       objectReference: {fileID: 0}

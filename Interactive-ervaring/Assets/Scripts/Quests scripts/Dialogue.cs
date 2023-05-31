@@ -29,7 +29,6 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
-
         dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
         previousButton.SetActive(false);
 

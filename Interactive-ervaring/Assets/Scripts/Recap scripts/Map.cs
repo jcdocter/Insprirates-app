@@ -35,8 +35,6 @@ public class Map : MonoBehaviour
         HitObject();
         //        ZoomInOut();
 
-        Debug.Log(hitPiece);
-
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (hitPiece)

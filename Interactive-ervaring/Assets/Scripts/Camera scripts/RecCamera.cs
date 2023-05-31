@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class RecCamera : MonoBehaviour
 {
-    [HideInInspector]
     public bool canSwitchCam = false;
     
     protected WebCamTexture backCam;
@@ -15,7 +14,7 @@ public class RecCamera : MonoBehaviour
     private RawImage background;
     private RectTransform backgroundTransform;
     private Swipe swipe = new Swipe();
-    private bool switchCam;
+    private bool switchCam = false;
 
     protected virtual void Start()
     {

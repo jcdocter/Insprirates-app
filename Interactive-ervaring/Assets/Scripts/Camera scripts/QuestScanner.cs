@@ -35,14 +35,12 @@ public class QuestScanner : RecCamera
             Scan();
         }*/
 
-        if (Input.GetMouseButtonDown(0))
+        if(!Debugger.OnDevice())
         {
-            Scan();
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            AcceptQuest();
+            if (Input.GetKey(KeyCode.Space))
+            {
+                AcceptQuest();
+            }
         }
 
         if (Input.GetKey(KeyCode.Escape))
@@ -72,7 +70,11 @@ public class QuestScanner : RecCamera
                     continue;
                 }
 
-                ActivateButton(quest);
+                if(ActivateButton(quest))
+                {
+                    Debug.Log(quest.ID);
+                    return;
+                }
             }
 
         }
@@ -143,7 +145,7 @@ public class QuestScanner : RecCamera
         return false;
     }
 
-    public void ActivateButton(Quest _quest)
+    public bool ActivateButton(Quest _quest)
     {
         foreach (QRID qr in _quest.qrList)
         {
@@ -156,8 +158,12 @@ public class QuestScanner : RecCamera
                 questID = _quest.ID;
 
                 acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
+
+                return true;
             }
         }
+
+        return false;
     }
 
     public void AcceptQuest()
