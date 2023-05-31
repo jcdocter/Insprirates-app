@@ -29,7 +29,7 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
-        dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
+        //dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
         previousButton.SetActive(false);
 
         foreach (Scripts script in scriptList)
