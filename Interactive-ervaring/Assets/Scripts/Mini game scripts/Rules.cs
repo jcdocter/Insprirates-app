@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Rules
 {
+    [HideInInspector]
+    public GameObject rewardObject;
+
     [HideInInspector]
     public Canvas pauseScreen;
     
@@ -20,6 +25,7 @@ public class Rules
         recCam.canSwitchCam = false;
         instructionCanavas = GameObject.Instantiate(instructionCanavas, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        pauseScreen.GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     public bool StartGame()
@@ -33,9 +39,17 @@ public class Rules
         return canStartGame;
     }
 
+    public void ShowReward(Transform _display)
+    {
+        GameObject.Instantiate(rewardObject, _display.position, Quaternion.identity);
+    }
+
     public void CheckOffQuest()
     {
-        PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        }
     }
 }

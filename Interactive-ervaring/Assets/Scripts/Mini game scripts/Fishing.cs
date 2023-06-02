@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Fishing : MonoBehaviour
 {
+    [HideInInspector]
+    public bool hideObject = false;
+
     public bool isTest;
     public float resetTimer;
 
@@ -14,6 +17,7 @@ public class Fishing : MonoBehaviour
     public Rules rules = new Rules();
 
     private Gyroscope gyro;
+    private List<GameObject> fishList = new List<GameObject>();
 
     private bool hasThrown;
     private bool gyroEnabled;
@@ -47,6 +51,12 @@ public class Fishing : MonoBehaviour
             return;
         }
 
+        if(hideObject)
+        {
+            RemoveFish();
+            this.gameObject.SetActive(false);
+        }
+
         Throw();
     }
 
@@ -74,34 +84,16 @@ public class Fishing : MonoBehaviour
                 return;
             }
 
-            if (Input.GetMouseButton(0) && !hasThrown)
-            {
-                if (Input.acceleration.y > 0)
-                {
-                    releasePower = Input.acceleration.y;
-                    hasThrown = true;
-                }
-            }
-
             if (hasThrown)
             {
-                Debugger.WriteData(releasePower.ToString());
                 transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
+                return;
             }
-            else
+
+            if (Input.acceleration.y > 0)
             {
-                if(Input.GetMouseButton(0))
-                {
-                    return;
-                }
-
-                releasePower = 0;
-
-                Vector3 screen = transform.position;
-                screen.x = Mathf.Clamp(transform.position.x, limitRange.x, limitRange.y);
-
-                transform.position = screen;
-                transform.Translate(Vector3.right * Time.deltaTime * 1.0f * gyro.rotationRateUnbiased.y);
+                releasePower = Input.acceleration.y;
+                hasThrown = true;
             }
         }
     }
@@ -145,7 +137,17 @@ public class Fishing : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
             Quaternion rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-            Instantiate(fish, spawnPoint, rotation);
+            GameObject fishObject = Instantiate(fish, spawnPoint, rotation);
+
+            fishList.Add(fishObject);
+        }
+    }
+
+    private void RemoveFish()
+    {
+        foreach(GameObject fish in fishList)
+        {
+            fish.SetActive(false);
         }
     }
 

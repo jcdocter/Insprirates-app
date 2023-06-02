@@ -8,6 +8,7 @@ public class FishController : MonoBehaviour
     private GameObject movePoint;
     private Fishing fishing;
     private Vector3 spawnPoint;
+    private bool showFish;
 
     private void Start()
     {
@@ -15,12 +16,25 @@ public class FishController : MonoBehaviour
         spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
 
         GameObject moveToPoint = Instantiate(new GameObject(), spawnPoint, Quaternion.identity);
-
         movePoint = moveToPoint;
     }
 
     private void FixedUpdate()
     {
+        if(fishing.rules.rewardObject)
+        {
+            fishing.rules.CheckOffQuest();
+            return;
+        }
+
+        if(showFish)
+        {
+            fishing.rules.rewardObject = this.gameObject;
+            fishing.rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+
+            fishing.hideObject = true;
+        }
+
         MoveToPoint();
     }
 
@@ -43,7 +57,7 @@ public class FishController : MonoBehaviour
         if (_other.gameObject.GetComponent<Fishing>())
         {
             Inventory.GetInstance().amountOfFish++;
-            fishing.rules.CheckOffQuest();
+            showFish = true;
         }
     }
 }

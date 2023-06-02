@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 6
   isDone: 0
-  showDescription: 0
+  showDescription: 1
   hasFish: 0
   hasRecruits: 1
   amountToTrack: 3
