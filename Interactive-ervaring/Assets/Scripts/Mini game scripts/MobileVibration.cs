@@ -34,8 +34,17 @@ public class MobileVibration : MonoBehaviour
             return;
         }
 
+        if(!Debugger.OnDevice())
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                done = true;
+            }
+        }
+
         if (done)
         {
+            Screen.orientation = ScreenOrientation.Portrait;
             Inventory.GetInstance().amountOfRecruits++;
             rules.CheckOffQuest();
             return;

@@ -27,4 +27,6 @@ MonoBehaviour:
     activeQR: 1
   - id: treasure_3
     activeQR: 1
+  - id: treasure_4
+    activeQR: 1
   nextQuest: {fileID: 0}

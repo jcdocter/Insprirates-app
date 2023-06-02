@@ -26,7 +26,6 @@ public class FinishingQuest
             doneQuest = true;
         }
 
-        SaveSystem.SaveQuest();
         return doneQuest;
     }
 
@@ -36,9 +35,9 @@ public class FinishingQuest
 
         GameObject button = GameObject.Instantiate(_quest.descriptionObject, displayParent.transform);
 
-        if(_quest.isDone && _quest.nextQuest == null)
+        if (_quest.isDone && _quest.nextQuest == null)
         {
-            _quest.descriptionObject.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+            button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
             button.transform.SetAsFirstSibling();
         }
     }

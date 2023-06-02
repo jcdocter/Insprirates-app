@@ -43,16 +43,29 @@ public class Quest : ScriptableObject
 
     public void DeactivatedQR()
     {
-        foreach(QRID qr in qrList)
+        if (ID == PlayerPrefs.GetInt("confirmedID"))
         {
-            qr.activeQR = true;
+            CheckQRList(qrList);
 
-            if(qr.id == PlayerPrefs.GetString("qrID") && ID == PlayerPrefs.GetInt("QuestID"))
+            if(nextQuest != null) 
+            {
+                CheckQRList(nextQuest.qrList);
+            }
+        }
+    }
+
+    private void CheckQRList(List<QRID> _qrList)
+    {
+        foreach (QRID qr in _qrList)
+        {
+            if (qr.id == PlayerPrefs.GetString("qrID"))
             {
                 qr.activeQR = false;
             }
+            else
+            {
+                qr.activeQR = true;
+            }
         }
-
-        PlayerPrefs.SetString("qrID", " ");
     }
 }

@@ -83,6 +83,8 @@ public class QuestHandler : MonoBehaviour
             }
         }
 
+        SaveSystem.SaveQuest();
         PlayerPrefs.SetInt("confirmedID", 0);
+        PlayerPrefs.SetString("qrID", " ");
     }
 }

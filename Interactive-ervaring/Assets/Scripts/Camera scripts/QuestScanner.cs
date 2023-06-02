@@ -13,7 +13,7 @@ public class QuestScanner : RecCamera
     private List<Quest> questList = new List<Quest>();
 
     private float checkTimer = 5.0f;
-    private string resultText;
+    public string resultText;
     public int questID;
 
     protected override void Start()
@@ -148,13 +148,11 @@ public class QuestScanner : RecCamera
     {
         foreach (QRID qr in _quest.qrList)
         {
-            Debugger.WriteData($"{qr.id} == {resultText} && {qr.activeQR}"); 
             if (qr.id == resultText && qr.activeQR)
             {
                 acceptButton.SetActive(true);
                 acceptTutorial.SetActive(true);
 
-                PlayerPrefs.SetString("qrID", qr.id);
                 questID = _quest.ID;
 
                 acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
@@ -168,6 +166,7 @@ public class QuestScanner : RecCamera
 
     public void AcceptQuest()
     {
+        PlayerPrefs.SetString("qrID", resultText);
         PlayerPrefs.SetInt("questID", questID);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
