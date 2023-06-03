@@ -16,8 +16,9 @@ public class Fishing : MonoBehaviour
 
     public Rules rules = new Rules();
 
-    private Gyroscope gyro;
+//    private Gyroscope gyro;
     private List<GameObject> fishList = new List<GameObject>();
+    private Swipe swipe = new Swipe();
 
     private bool hasThrown;
     private bool gyroEnabled;
@@ -32,7 +33,7 @@ public class Fishing : MonoBehaviour
         rules.SetRules();
 
         startTimer = resetTimer;
-        gyroEnabled = EnableGyro();
+//        gyroEnabled = EnableGyro();
         SpawnFish();
 
         if(!isTest)
@@ -64,70 +65,61 @@ public class Fishing : MonoBehaviour
     {
         if (!Debugger.OnDevice())
         {
-            CalculateThrow();
-            return;
-        }
-
-        if (gyroEnabled)
-        {
-            if (transform.position.z >= 9.0f)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                resetTimer -= Time.deltaTime;
+                hasThrown = true;
+            }
 
-                if(resetTimer <= 0.0f)
-                {
-                    resetTimer = startTimer;
-                    transform.position = startPosition;
-                    hasThrown = false;
-                }
-
-                return;
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                hasThrown = false;
+                transform.position = startPosition;
             }
 
             if (hasThrown)
             {
-                transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
-                return;
-            }
+                transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
 
-            if (Input.acceleration.y > 0)
-            {
-                releasePower = Input.acceleration.y;
-                hasThrown = true;
+                if (transform.position.z >= 9.0f)
+                {
+                    hasThrown = false;
+                }
             }
+            return;
         }
+
+//        if (gyroEnabled)
+//        {
+            CalculateThrow();
+//        }
     }
 
     private void CalculateThrow()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (transform.position.z >= 9.0f)
         {
-            hasThrown = true;
-        }
+            resetTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            hasThrown = false;
-            transform.position = startPosition;
-        }
-
-        if (!hasThrown)
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            Vector3 screen = transform.position;
-            screen.x = Mathf.Clamp(transform.position.x, limitRange.x, limitRange.y);
-
-            transform.position = screen;
-            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * horizontalInput);
+            if (resetTimer <= 0.0f)
+            {
+                resetTimer = startTimer;
+                transform.position = startPosition;
+                hasThrown = false;
+            }
 
             return;
         }
 
-        transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
-
-        if (transform.position.z >= 9.0f)
+        if (hasThrown)
         {
-            hasThrown = false;
+            transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
+            return;
+        }
+
+        if (Input.acceleration.y > 0 || swipe.CheckSwipe())
+        {
+            releasePower = Input.acceleration.y;
+            hasThrown = true;
         }
     }
 
@@ -151,7 +143,7 @@ public class Fishing : MonoBehaviour
         }
     }
 
-    private bool EnableGyro()
+/*    private bool EnableGyro()
     {
         if (SystemInfo.supportsGyroscope)
         {
@@ -162,6 +154,6 @@ public class Fishing : MonoBehaviour
         }
 
         return false;
-    }
+    }*/
 }
 

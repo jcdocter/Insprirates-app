@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Rules
 {
-    [HideInInspector]
     public GameObject rewardObject;
 
     [HideInInspector]
@@ -41,7 +38,7 @@ public class Rules
 
     public void ShowReward(Transform _display)
     {
-        GameObject.Instantiate(rewardObject, _display.position, Quaternion.identity);
+        GameObject.Instantiate(rewardObject, _display.position, rewardObject.transform.localRotation);
     }
 
     public void CheckOffQuest()

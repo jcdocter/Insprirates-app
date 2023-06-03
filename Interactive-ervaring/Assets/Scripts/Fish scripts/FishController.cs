@@ -8,12 +8,14 @@ public class FishController : MonoBehaviour
     private GameObject movePoint;
     private Fishing fishing;
     private Vector3 spawnPoint;
+    private Animator animator;
     private bool showFish;
 
     private void Start()
     {
         fishing = FindObjectOfType<Fishing>();
         spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
+        animator = GetComponent<Animator>();
 
         GameObject moveToPoint = Instantiate(new GameObject(), spawnPoint, Quaternion.identity);
         movePoint = moveToPoint;
@@ -23,12 +25,15 @@ public class FishController : MonoBehaviour
     {
         if(fishing.rules.rewardObject)
         {
+            animator.enabled = false;
             fishing.rules.CheckOffQuest();
             return;
         }
 
         if(showFish)
         {
+            this.gameObject.transform.localScale *= 5.0f;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
             fishing.rules.rewardObject = this.gameObject;
             fishing.rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
 

@@ -7,12 +7,11 @@ using ZXing;
 
 public class QuestScanner : RecCamera
 {
-    public GameObject acceptTutorial;
-    public GameObject acceptButton;
-
     private List<Quest> questList = new List<Quest>();
-
+    
     private float checkTimer = 5.0f;
+    
+    //For debbuging some of the variables are public.
     public string resultText;
     public int questID;
 
@@ -21,21 +20,13 @@ public class QuestScanner : RecCamera
         base.Start();
 
         questList = SaveSystem.questList;
-
-        acceptButton.SetActive(false);
-        acceptTutorial.SetActive(false);
     }
 
     protected override void Update()
     {
         base.Update();
 
-/*        if (FoundQR())
-        {
-            Scan();
-        }*/
-
-        if(!Debugger.OnDevice())
+        if (!Debugger.OnDevice())
         {
             if (Input.GetKey(KeyCode.Space))
             {
@@ -72,6 +63,7 @@ public class QuestScanner : RecCamera
 
                 if(ActivateButton(quest))
                 {
+                    AcceptQuest();
                     return;
                 }
             }
@@ -84,6 +76,7 @@ public class QuestScanner : RecCamera
         }
     }
 
+    // not needed for end product
     private bool FoundQR()
     {
         checkTimer -= Time.deltaTime;
@@ -92,34 +85,28 @@ public class QuestScanner : RecCamera
         {
             checkTimer = 5.0f;
 
-            int camWidth = backCam.width / 24;   // 640 / 8 = 80
-            int camHeight = backCam.height / 24; // 480 / 8 = 60
+            int camWidth = backCam.width / 16;   // 640 / 16 = 40
+            int camHeight = backCam.height / 16; // 480 / 16 = 30
 
-            int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 280
-            int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 210
+            int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 300
+            int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 225
 
             Color32[] colors = backCam.GetPixels32();
 
             bool hasBlack = false;
             bool hasWhite = false;
+            int index = 0;
 
             //needs to be lighter
-            for (int i = startHeight; i < startHeight + camHeight; i++)
+            for (int i = startWidth; i < startWidth + camWidth; i++)
             {
-                for (int j = startWidth; j < startWidth + camWidth; j++)
+                for (int j = startHeight; j < startHeight + camHeight; j++)
                 {
-                     //Color32 color = colors[j + i * (startWidth + camWidth)];
-                     Color32 color = colors[j + i];
-
-/*                    GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.transform.position = new Vector3(j, i, 0.0f);
-                    cube.transform.localScale = new Vector3(, i, 0.0f);*/
+                    Color32 color = colors[i + backCam.width * j];
 
                     int R = color.r;
                     int G = color.g;
                     int B = color.b;
-
-                   Debug.Log($"{R}, {G}, {B}");
 
                     if (color == Color.white)
                     {
@@ -132,8 +119,12 @@ public class QuestScanner : RecCamera
                         Debug.Log("Black");
                         hasWhite = true;
                     }
+
+                    index++;
                 }
             }
+
+            Debug.Log($"{index}");
 
             if (hasWhite && hasBlack)
             {
@@ -150,13 +141,7 @@ public class QuestScanner : RecCamera
         {
             if (qr.id == resultText && qr.activeQR)
             {
-                acceptButton.SetActive(true);
-                acceptTutorial.SetActive(true);
-
                 questID = _quest.ID;
-
-                acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
-
                 return true;
             }
         }
@@ -164,7 +149,7 @@ public class QuestScanner : RecCamera
         return false;
     }
 
-    public void AcceptQuest()
+    private void AcceptQuest()
     {
         PlayerPrefs.SetString("qrID", resultText);
         PlayerPrefs.SetInt("questID", questID);
