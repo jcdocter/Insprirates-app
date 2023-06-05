@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8588209066883400237}
-  - component: {fileID: 7276152799800556504}
   m_Layer: 5
   m_Name: Family
   m_TagString: Untagged
@@ -34,22 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7276152799800556504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465571217458419615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8813aca53a36c145993866e5497dc2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photoCaptureObject: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
-  rules:
-    pauseScreen: {fileID: 0}
-    pauseObject: {fileID: 5766614169163684626, guid: ebadfbefe568b55409b4823ecb766b2a, type: 3}
 --- !u!1001 &1777101241140425302
 PrefabInstance:
   m_ObjectHideFlags: 0

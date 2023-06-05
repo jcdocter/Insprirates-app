@@ -50,7 +50,6 @@ public class QuestHandler : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
-            questList[i].DeactivatedQR();
         }
 
         foreach (Transform child in buttonParent.transform)
@@ -70,6 +69,7 @@ public class QuestHandler : MonoBehaviour
 
                     questList[i].showDescription = true;
                 }
+
                 continue;
             }
 

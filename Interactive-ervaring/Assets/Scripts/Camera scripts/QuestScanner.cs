@@ -97,7 +97,7 @@ public class QuestScanner : RecCamera
             bool hasWhite = false;
             int index = 0;
 
-            //needs to be lighter
+            //1200px are being checked
             for (int i = startWidth; i < startWidth + camWidth; i++)
             {
                 for (int j = startHeight; j < startHeight + camHeight; j++)
@@ -137,15 +137,11 @@ public class QuestScanner : RecCamera
 
     public bool ActivateButton(Quest _quest)
     {
-        foreach (QRID qr in _quest.qrList)
+        if (_quest.QRID == resultText)
         {
-            if (qr.id == resultText && qr.activeQR)
-            {
-                questID = _quest.ID;
-                return true;
-            }
+            questID = _quest.ID;
+            return true;
         }
-
         return false;
     }
 

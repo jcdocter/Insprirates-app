@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class PhotoCapture : MonoBehaviour
 {
-    public GameObject photoCaptureObject;
-    public Rules rules = new Rules();
+    public bool tookPhoto = false;
 
     private RecCamera recCam;
     private Image photoDisplayArea;
@@ -17,21 +16,18 @@ public class PhotoCapture : MonoBehaviour
     private void Start()
     {
         recCam = FindObjectOfType<RecCamera>();
-        GameObject camera = GameObject.Instantiate(photoCaptureObject, FindObjectOfType<Canvas>().transform);
+    }
 
-        foreach (Transform child in camera.transform)
+    private void Update()
+    {
+        if(!this.gameObject.activeSelf)
         {
-            if(child.GetComponent<Button>() == null)
-            {
-                photoDisplayArea = child.GetComponent<Image>();
-            }
+            recCam.canSwitchCam = false;
         }
-
-        photoButton = FindObjectOfType<Button>();
-
-        photoButton.onClick.AddListener(() => TakePicture());
-        photoDisplayArea.enabled = false;
-        recCam.canSwitchCam = true;
+        else
+        {
+            recCam.canSwitchCam = true;
+        }
     }
 
     public void TakePicture()
@@ -39,6 +35,8 @@ public class PhotoCapture : MonoBehaviour
         photoButton.gameObject.SetActive(false);
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         StartCoroutine(CapturePhoto());
+
+        tookPhoto = true;
     }
 
     public IEnumerator CapturePhoto()
@@ -52,8 +50,6 @@ public class PhotoCapture : MonoBehaviour
 
         ShowPhoto();
         SavePhoto();
-
-        rules.CheckOffQuest();
     }
 
     private void ShowPhoto()

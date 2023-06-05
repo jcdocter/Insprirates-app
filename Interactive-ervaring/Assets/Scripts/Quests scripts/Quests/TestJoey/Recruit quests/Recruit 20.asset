@@ -10,24 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16cd2cd424ef06e4ea4c570eef04fff3, type: 3}
-  m_Name: Kroko 3
+  m_Name: Recruit 20
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: 20
   isDone: 0
   showDescription: 0
   hasFish: 0
+  hasCrown: 0
   hasRecruits: 0
   amountToTrack: 0
-  descriptionNextQuest: 'Kreff is je dankbaar! Kijk of je hem nog tegenkomt op de
-    beurs.  '
-  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
-  qrList:
-  - id: croc_1
-    activeQR: 1
-  - id: croc_2
-    activeQR: 1
-  - id: croc_3
-    activeQR: 1
-  - id: croc_4
-    activeQR: 1
-  nextQuest: {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
+  descriptionNextQuest: 
+  QRID: raft_6
+  descriptionObject: {fileID: 0}
+  nextQuest: {fileID: 0}

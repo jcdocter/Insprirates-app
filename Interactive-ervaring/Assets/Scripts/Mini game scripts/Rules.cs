@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Rules
 {
+    [HideInInspector]
+    public PhotoCapture photoCapture;
+
     public GameObject rewardObject;
 
     [HideInInspector]
@@ -23,6 +27,14 @@ public class Rules
         instructionCanavas = GameObject.Instantiate(instructionCanavas, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen.GetComponent<Canvas>().worldCamera = Camera.main;
+        photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
+
+        SetPicture(false);
+    }
+
+    public void SetPicture(bool _activatePictureMode)
+    {
+        photoCapture.gameObject.SetActive(_activatePictureMode);
     }
 
     public bool StartGame()

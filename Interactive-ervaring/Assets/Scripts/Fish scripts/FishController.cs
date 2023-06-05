@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class FishController : MonoBehaviour
 {
     public float movementSpeed;
+
     private GameObject movePoint;
     private Fishing fishing;
     private Vector3 spawnPoint;
@@ -23,8 +25,23 @@ public class FishController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(fishing.rules.rewardObject)
+        if (Inventory.GetInstance().amountOfFish <= 0 && fishing.rules.rewardObject)
         {
+            animator.enabled = false;
+            fishing.rules.SetPicture(true);
+
+            if(fishing.rules.photoCapture.tookPhoto)
+            {
+                Inventory.GetInstance().amountOfFish++;
+                fishing.rules.CheckOffQuest();
+            }
+
+            return;
+        }
+
+        if (fishing.rules.rewardObject)
+        {
+            Inventory.GetInstance().amountOfFish++;
             animator.enabled = false;
             fishing.rules.CheckOffQuest();
             return;
@@ -61,7 +78,6 @@ public class FishController : MonoBehaviour
     {
         if (_other.gameObject.GetComponent<Fishing>())
         {
-            Inventory.GetInstance().amountOfFish++;
             showFish = true;
         }
     }

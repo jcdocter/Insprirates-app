@@ -94,6 +94,7 @@ public static class SaveSystem
             FileStream inventoryStream = new FileStream(inventoryPath, FileMode.Open);
             InventoryData inventoryData = formatter.Deserialize(inventoryStream) as InventoryData;
             Inventory.GetInstance().amountOfFish = inventoryData.amountOfFish;
+            Inventory.GetInstance().amountOfCrownPieces = inventoryData.amountOfCrownPieces;
             Inventory.GetInstance().amountOfRecruits = inventoryData.amountOfRecruits;
             inventoryStream.Close();
         }

@@ -18,22 +18,24 @@ public class Map : MonoBehaviour
     public LayerMask clickableLayer;
     public List<MapPieces> piecesList = new List<MapPieces>();
 
-    public RawImage photo;
+    private RawImage photo;
     private MapPieces mapPiece;
-    private bool canRotate;
     private bool hitPiece;
-//    private int tapCount;
 
     private void Start()
     {
         photo = FindObjectOfType<RawImage>();
+
+        foreach (MapPieces piece in piecesList)
+        {
+            piece.piece.SetActive(PhotoExist(piece.photoID));
+        }
     }
 
     private void Update()
     {
-       // RotateMap();
         HitObject();
-        //        ZoomInOut();
+        ZoomInOut();
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -50,38 +52,6 @@ public class Map : MonoBehaviour
         }
     }
 
-    private void RotateMap()
-    {
-        if(!canRotate)
-        {
-            return;
-        }
-
-        if (Input.touchCount == 1)
-        {
-            Touch screenTouch = Input.GetTouch(0);
-
-            if (screenTouch.phase == TouchPhase.Moved)
-            {
-                transform.Rotate(screenTouch.deltaPosition.y, 0.0f, 0.0f);
-               // transform.Rotate(0.0f, 0.0f, -screenTouch.deltaPosition.x);
-            }
-
-            if(screenTouch.phase == TouchPhase.Ended)
-            {
-                canRotate = false;
-
-                if(hitPiece)
-                {
-//                    tapCount++;
-//                    StartCoroutine(OpenPhoto());
-                    hitPiece = false;
-                }
-
-            }
-        }
-    }
-
     private void HitObject()
     {
         if((Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
@@ -89,14 +59,6 @@ public class Map : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Debugger.OnDevice() ? Input.touches[0].position : Input.mousePosition);
 
             RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit))
-            {
-                if(hit.transform.name == this.gameObject.name)
-                {
-                    canRotate = !canRotate;
-                }
-            }
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
             {
@@ -140,8 +102,6 @@ public class Map : MonoBehaviour
 
     private void OpenPhoto()
     {
-        //        yield return new WaitForSeconds(0.3f);
-
         ActivateMap(false);
 
         Byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + mapPiece.photoID + ".png");
@@ -153,6 +113,18 @@ public class Map : MonoBehaviour
         {
             photo.texture = displayPhoto;
         }
+    }
+
+    private bool PhotoExist(int _id)
+    {
+        string path = Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + _id + ".png";
+
+        if (File.Exists(path))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void ActivateMap(bool _activate)

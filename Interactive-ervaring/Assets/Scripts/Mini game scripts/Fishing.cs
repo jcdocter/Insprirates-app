@@ -16,12 +16,10 @@ public class Fishing : MonoBehaviour
 
     public Rules rules = new Rules();
 
-//    private Gyroscope gyro;
     private List<GameObject> fishList = new List<GameObject>();
     private Swipe swipe = new Swipe();
 
     private bool hasThrown;
-    private bool gyroEnabled;
 
     private float throwSpeed = 4.0f;
     private float height;
@@ -33,7 +31,6 @@ public class Fishing : MonoBehaviour
         rules.SetRules();
 
         startTimer = resetTimer;
-//        gyroEnabled = EnableGyro();
         SpawnFish();
 
         if(!isTest)
@@ -85,13 +82,11 @@ public class Fishing : MonoBehaviour
                     hasThrown = false;
                 }
             }
+
             return;
         }
 
-//        if (gyroEnabled)
-//        {
-            CalculateThrow();
-//        }
+        CalculateThrow();
     }
 
     private void CalculateThrow()
@@ -142,18 +137,5 @@ public class Fishing : MonoBehaviour
             fish.SetActive(false);
         }
     }
-
-/*    private bool EnableGyro()
-    {
-        if (SystemInfo.supportsGyroscope)
-        {
-            gyro = Input.gyro;
-            gyro.enabled = true;
-
-            return true;
-        }
-
-        return false;
-    }*/
 }
 

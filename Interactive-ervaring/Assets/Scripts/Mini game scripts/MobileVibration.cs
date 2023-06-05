@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
@@ -42,14 +43,17 @@ public class MobileVibration : MonoBehaviour
             }
         }
 
+        if (rules.photoCapture.tookPhoto)
+        {
+            rules.CheckOffQuest();
+        }
+
         if (done)
         {
-            Screen.orientation = ScreenOrientation.Portrait;
-            Inventory.GetInstance().amountOfRecruits++;
-            rules.CheckOffQuest();
+            // play animation
+            OpenChest();
             return;
         }
-        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
 
         if (gyroEnabled)
         {
@@ -79,6 +83,24 @@ public class MobileVibration : MonoBehaviour
         return false;
     }
 
+    public void OpenChest()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+        Inventory.GetInstance().amountOfCrownPieces++;
+
+        if(Inventory.GetInstance().amountOfCrownPieces == 4)
+        {
+            rules.SetPicture(true);
+            rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+            transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+        else
+        {
+            rules.CheckOffQuest();
+        }
+    }
+
+    // could be recursive
     private void VibrationTimer()
     {
         int DifferenceInValue = Mathf.Abs(lockPickValue - rotateValue);

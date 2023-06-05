@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ConfirmObject : MonoBehaviour
+public class BreakKeyLock : MonoBehaviour
 {
     public bool canTap;
-    public Rules rules = new Rules();
+
+    private GameObject photoCapture;
+    private Rules rules = new Rules();
     private Swipe swipe = new Swipe();
 
     private void Start()
     {
-        rules.SetRules();
+        photoCapture = FindObjectOfType<PhotoCapture>().gameObject;
+        photoCapture.SetActive(false);
     }
 
     private void Update()

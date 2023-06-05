@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rules:
+    photoCapture: {fileID: 0}
+    rewardObject: {fileID: 8481893340071884077, guid: 910411fb929ef9741a13b32a5d133628, type: 3}
     pauseScreen: {fileID: 0}
     pauseObject: {fileID: 5766614169163684626, guid: ebadfbefe568b55409b4823ecb766b2a, type: 3}
     instructionCanavas: {fileID: 7433842160233719496, guid: d2231f0428991f24aa7a0b2e41561818, type: 3}

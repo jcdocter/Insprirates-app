@@ -17,23 +17,26 @@ public class Quest : ScriptableObject
     public bool showDescription;
 
     public bool hasFish;
+    public bool hasCrown;
     public bool hasRecruits;
     public int amountToTrack;
     public string descriptionNextQuest;
 
+    public string QRID;
     public GameObject descriptionObject;
-
-    public List<QRID> qrList = new List<QRID>();
     public Quest nextQuest;
 
     public string Description()
     {
-        // ID == needs to change
         if(hasFish)
         {
             return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfFish} / {amountToTrack}";
         }
-        else if(hasRecruits)
+        else if(hasCrown)
+        {
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfCrownPieces} / {amountToTrack}";
+        }
+        else if (hasRecruits)
         {
             return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfRecruits} / {amountToTrack}";
         }
@@ -41,7 +44,7 @@ public class Quest : ScriptableObject
         return descriptionNextQuest;
     }
 
-    public void DeactivatedQR()
+/*    public void DeactivatedQR()
     {
         if (ID == PlayerPrefs.GetInt("confirmedID"))
         {
@@ -67,5 +70,5 @@ public class Quest : ScriptableObject
                 qr.activeQR = true;
             }
         }
-    }
+    }*/
 }

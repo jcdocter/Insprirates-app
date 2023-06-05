@@ -6,6 +6,7 @@ public class Inventory
 {
     public static Inventory instance;
     public int amountOfFish;
+    public int amountOfCrownPieces;
     public int amountOfRecruits;
 
     public static Inventory GetInstance()
@@ -22,11 +23,13 @@ public class Inventory
 public class InventoryData
 {
     public int amountOfFish;
+    public int amountOfCrownPieces;
     public int amountOfRecruits;
 
     public InventoryData(Inventory _data)
     {
         this.amountOfFish = _data.amountOfFish;
+        this.amountOfCrownPieces = _data.amountOfCrownPieces;
         this.amountOfRecruits = _data.amountOfRecruits;
     }
 }

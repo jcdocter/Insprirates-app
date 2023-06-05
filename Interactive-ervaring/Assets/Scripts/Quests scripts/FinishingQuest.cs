@@ -16,10 +16,8 @@ public class FinishingQuest
     public bool CheckProgress(Quest _quest)
     {
         bool doneQuest = false;
-        if (_quest.hasFish || _quest.hasRecruits)
-        {
-            amount = _quest.hasFish ? Inventory.GetInstance().amountOfFish : Inventory.GetInstance().amountOfRecruits;
-        }
+
+        amount = InventoryValue(_quest);
 
         if ((_quest.amountToTrack <= amount && _quest.ID == PlayerPrefs.GetInt("confirmedID")) || _quest.isDone)
         {
@@ -40,5 +38,25 @@ public class FinishingQuest
             button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
             button.transform.SetAsFirstSibling();
         }
+    }
+
+    public int InventoryValue(Quest _quest)
+    {
+        if(_quest.hasFish)
+        {
+            return Inventory.GetInstance().amountOfFish;
+        }
+
+        if (_quest.hasCrown)
+        {
+            return Inventory.GetInstance().amountOfCrownPieces;
+        }
+
+        if (_quest.hasRecruits)
+        {
+            return Inventory.GetInstance().amountOfRecruits;
+        }
+
+        return 0;
     }
 }
