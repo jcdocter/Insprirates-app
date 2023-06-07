@@ -111,7 +111,7 @@ public static class SaveSystem
                 QuestData data = formatter.Deserialize(stream) as QuestData;
 
                 questList[i].isDone = data.isDone;
-                questList[i].showDescription = data.showDescription;
+//                questList[i].showDescription = data.showDescription;
 
                 stream.Close();
             }

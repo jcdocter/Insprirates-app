@@ -175,7 +175,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -419,6 +419,48 @@ MonoBehaviour:
   - quests:
     - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
     model: {fileID: 9024635820033975169, guid: 9bd18772013b54644b9d62a6f186157b, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: fe9dfc7cec8e37846a2ab59d16f7668d, type: 2}
+    model: {fileID: 0}
+  - quests:
+    - {fileID: 11400000, guid: 16689be37da271642aa39c9908e20c5d, type: 2}
+    model: {fileID: 3188498236601900281, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: 11b7e46b0ef3fa241b96cfcc36c5f9ef, type: 2}
+    model: {fileID: 3188498236601900281, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: 7edb15656eb84f944b51756af9b7b04b, type: 2}
+    model: {fileID: 3188498236601900281, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: f812b923ef9579a43b079c2b6e02c6f4, type: 2}
+    model: {fileID: 3188498236601900281, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: 357315a66a1f941458d71133d35002dd, type: 2}
+    model: {fileID: 2886447473645115398, guid: 67ed6e613fe7fc94391fb2b666cd63fd, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: 9ae8f9bf1c787234d90097808d51d65e, type: 2}
+    model: {fileID: 2886447473645115398, guid: a71ba4a1a59e2b6468065f8c060f47e7, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: 3fd168e2cd8141b4cb699a04c4fc28af, type: 2}
+    model: {fileID: 2886447473645115398, guid: 98701d824f65faa41bb4ca15281171dd, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: adbfa9eac2ce05d4d9a1be5c8929fbe4, type: 2}
+    model: {fileID: 2886447473645115398, guid: 8579b8325a01b284f9a46bb3aec9d4a7, type: 3}
+  - quests:
+    - {fileID: 11400000, guid: e050a734662098f41bc7c02c61257634, type: 2}
+    model: {fileID: 0}
+  - quests:
+    - {fileID: 11400000, guid: 309b7b36645d8b345b63e0df669c0968, type: 2}
+    model: {fileID: 0}
+  - quests:
+    - {fileID: 11400000, guid: 9f9e8534e3d2f8e4a8265bfcafa104da, type: 2}
+    model: {fileID: 0}
+  - quests:
+    - {fileID: 11400000, guid: 7a19429f4017c1d44847f0faa98a8f3f, type: 2}
+    model: {fileID: 0}
+  - quests:
+    - {fileID: 11400000, guid: b4504e382a39b104393dfb9bb6628967, type: 2}
+    model: {fileID: 0}
 --- !u!1001 &1120003303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -556,6 +598,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5277217960351862825, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277217960351862826, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5277217960351862826, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}

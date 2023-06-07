@@ -55,10 +55,7 @@ public class Rules
 
     public void CheckOffQuest()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
-        }
+        PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }

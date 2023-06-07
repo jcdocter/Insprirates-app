@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class QuestHandler : MonoBehaviour
 {    
+    public GameObject treasureMap;
     public List<Quest> questList;
     public QuestTutorial questTutorial;
 
@@ -17,9 +18,9 @@ public class QuestHandler : MonoBehaviour
     {
         buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
         animator = FindObjectOfType<Animator>();
-        questTutorial.firstQuestTutorial.SetActive(false);
         
         finishingQuest = new FinishingQuest(buttonParent);
+        treasureMap.SetActive(DirectoryReader.DirectoryExist());
         LoadQuest();
     }
 
@@ -61,22 +62,19 @@ public class QuestHandler : MonoBehaviour
         {
             if (questList[i].nextQuest == null)
             {
-                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].showDescription)
+                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].isDone)
                 {
                     finishingQuest.DisplayProgress(questList[i]);
                     questTutorial.questTutorial.SetActive(false);
                     questTutorial.telescopeTutorial.SetActive(false);
-
-                    questList[i].showDescription = true;
                 }
 
                 continue;
             }
 
-            if (!questList[i].nextQuest.isDone && (questList[i].isDone || questList[i].showDescription))
+            if (!questList[i].nextQuest.isDone && questList[i].isDone)
             {
                 finishingQuest.DisplayProgress(questList[i]);
-                questList[i].showDescription = true;
 
                 questTutorial.questTutorial.SetActive(false);
                 questTutorial.telescopeTutorial.SetActive(false);

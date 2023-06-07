@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
 public class FishController : MonoBehaviour
@@ -41,9 +40,12 @@ public class FishController : MonoBehaviour
 
         if (fishing.rules.rewardObject)
         {
-            Inventory.GetInstance().amountOfFish++;
-            animator.enabled = false;
-            fishing.rules.CheckOffQuest();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Inventory.GetInstance().amountOfFish++;
+                animator.enabled = false;
+                fishing.rules.CheckOffQuest();
+            }
             return;
         }
 

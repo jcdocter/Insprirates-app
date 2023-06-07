@@ -14,7 +14,7 @@ public class Quest : ScriptableObject
 {
     public int ID;
     public bool isDone;
-    public bool showDescription;
+//    public bool showDescription;
 
     public bool hasFish;
     public bool hasCrown;

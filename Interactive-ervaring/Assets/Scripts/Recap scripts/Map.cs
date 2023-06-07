@@ -10,25 +10,24 @@ using UnityEngine.SceneManagement;
 public class MapPieces
 {
     public int photoID;
-    public GameObject piece;
+    public RawImage image;
 }
 
 public class Map : MonoBehaviour
 {
     public LayerMask clickableLayer;
+    public RawImage photo;
     public List<MapPieces> piecesList = new List<MapPieces>();
 
-    private RawImage photo;
-    private MapPieces mapPiece;
     private bool hitPiece;
 
     private void Start()
     {
-        photo = FindObjectOfType<RawImage>();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         foreach (MapPieces piece in piecesList)
         {
-            piece.piece.SetActive(PhotoExist(piece.photoID));
+            piece.image.texture = PhotoExist(piece.photoID, (int)piece.image.rectTransform.rect.width, (int)piece.image.rectTransform.rect.height);
         }
     }
 
@@ -41,12 +40,17 @@ public class Map : MonoBehaviour
         {
             if (hitPiece)
             {
-                ActivateMap(true);
                 photo.texture = null;
                 hitPiece = false;
+
+                for (int i = 0; i < transform.childCount; ++i)
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
             }
             else
             {
+                Screen.orientation = ScreenOrientation.Portrait;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
         }
@@ -60,18 +64,25 @@ public class Map : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+            if (!Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
             {
-                foreach (MapPieces piece in piecesList)
+                return;
+            }
+
+            foreach (MapPieces piece in piecesList)
+            {
+                if (hit.transform.name != piece.image.name || PhotoExist(piece.photoID, Screen.width, Screen.height) == null)
                 {
-                    if (hit.transform.name == piece.piece.gameObject.name)
-                    {
-                        hitPiece = true;
-;                       mapPiece = piece;
-                    }
+                    continue;
                 }
 
-                OpenPhoto();
+                hitPiece = true;
+                for (int i = 0; i < transform.childCount; ++i)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
+
+                photo.texture = PhotoExist(piece.photoID, Screen.width, Screen.height);
             }
         }
     }
@@ -100,38 +111,20 @@ public class Map : MonoBehaviour
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - _increment, 1.0f, 25.0f);
     }
 
-    private void OpenPhoto()
-    {
-        ActivateMap(false);
-
-        Byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + mapPiece.photoID + ".png");
-
-        Texture2D displayPhoto = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-        displayPhoto.LoadImage(bytes);
-
-        if (displayPhoto != null)
-        {
-            photo.texture = displayPhoto;
-        }
-    }
-
-    private bool PhotoExist(int _id)
+    private Texture2D PhotoExist(int _id, int _width, int _height)
     {
         string path = Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + _id + ".png";
 
         if (File.Exists(path))
         {
-            return true;
+            Byte[] bytes = File.ReadAllBytes(path);
+
+            Texture2D displayPhoto = new Texture2D(_width, _height, TextureFormat.RGB24, false);
+            displayPhoto.LoadImage(bytes);
+
+            return displayPhoto;
         }
 
-        return false;
-    }
-
-    private void ActivateMap(bool _activate)
-    {
-        foreach (MapPieces piece in piecesList)
-        {
-            piece.piece.SetActive(_activate);
-        }
+        return null;
     }
 }

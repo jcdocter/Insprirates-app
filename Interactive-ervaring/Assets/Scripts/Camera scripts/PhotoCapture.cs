@@ -9,13 +9,13 @@ public class PhotoCapture : MonoBehaviour
     public bool tookPhoto = false;
 
     private RecCamera recCam;
-    private Image photoDisplayArea;
     private Button photoButton;
     private Texture2D screenCapture;
 
     private void Start()
     {
         recCam = FindObjectOfType<RecCamera>();
+        photoButton = GetComponentInChildren<Button>();
     }
 
     private void Update()
@@ -48,28 +48,13 @@ public class PhotoCapture : MonoBehaviour
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
 
-        ShowPhoto();
         SavePhoto();
-    }
-
-    private void ShowPhoto()
-    {
-        Sprite photoSprite = Sprite.Create(screenCapture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
-
-        photoDisplayArea.sprite = photoSprite;
-        photoDisplayArea.enabled = true;
     }
 
     private void SavePhoto()
     {
         var bytes = screenCapture.EncodeToPNG();
-
         var folder = Directory.CreateDirectory(Application.persistentDataPath + "/Treasure-map-pieces/");
-
-        if(!Debugger.OnDevice())
-        {
-            PlayerPrefs.SetInt("questID", 1);
-        }
 
         File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetInt("questID") + ".png", bytes);
     }

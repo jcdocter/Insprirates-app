@@ -7,17 +7,18 @@ public class MobileVibration : MonoBehaviour
 {
     public Rules rules = new Rules();
     private Gyroscope gyro;
+    private Animator animator;
 
     private int lockPickValue;
     private int rotateValue;
+    private int differenceInValue;
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
 
-    private float vibrationDuration = 5.0f;
+    private float vibrationDuration = 1.0f;
     private float coolDownDuration = 3.0f;
 
-    //debug variable. Can be deleted later
     private bool done = false;
 
     private void Start()
@@ -25,6 +26,7 @@ public class MobileVibration : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         rules.SetRules();
         gyroEnabled = EnableGyro();
+        animator = FindObjectOfType<Animator>();
         lockPickValue = Random.Range(-100, 100);
     }
 
@@ -51,7 +53,7 @@ public class MobileVibration : MonoBehaviour
         if (done)
         {
             // play animation
-            OpenChest();
+            animator.SetBool("openChest", true);
             return;
         }
 
@@ -67,6 +69,7 @@ public class MobileVibration : MonoBehaviour
             }
         }
 
+        differenceInValue = Mathf.Abs(lockPickValue - rotateValue);
         VibrationTimer();
     }
 
@@ -103,35 +106,39 @@ public class MobileVibration : MonoBehaviour
     // could be recursive
     private void VibrationTimer()
     {
-        int DifferenceInValue = Mathf.Abs(lockPickValue - rotateValue);
-        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
+//        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
 
-        if(canGetNewValue)
+        if (canGetNewValue)
         {
-            if(DifferenceInValue < 40)
+            int y = differenceInValue / 10;
+            float duration = (5 - y) * 0.5f;
+
+            vibrationDuration = duration;
+
+/*            if (differenceInValue < 40)
             {
                 vibrationDuration = 1.0f;
             }
 
-            if (DifferenceInValue < 30)
+            if (differenceInValue < 30)
             {
                 vibrationDuration = 1.5f;
             }
 
-            if (DifferenceInValue < 20)
+            if (differenceInValue < 20)
             {
                 vibrationDuration = 2.0f;
             }
 
-            if (DifferenceInValue < 10)
+            if (differenceInValue < 10)
             {
                 vibrationDuration = 2.5f;
-            }
+            }*/
 
             canGetNewValue = false;
         }
 
-        if(DifferenceInValue > 40)
+        if(differenceInValue > 40)
         {
             coolDownDuration = 3.0f;
             canGetNewValue = true;

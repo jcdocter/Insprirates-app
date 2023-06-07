@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 using ZXing;
 
 public class QuestScanner : RecCamera
 {
     private List<Quest> questList = new List<Quest>();
     
-    private float checkTimer = 5.0f;
-    
-    //For debbuging some of the variables are public.
+    //Variables should be private.
     public string resultText;
     public int questID;
 
@@ -33,11 +30,11 @@ public class QuestScanner : RecCamera
                 AcceptQuest();
             }
         }
+    }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
+    public void ReturnToPage()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void Scan()
@@ -61,11 +58,14 @@ public class QuestScanner : RecCamera
                     continue;
                 }
 
-                if(ActivateButton(quest))
+                if(quest.QRID == resultText)
                 {
+                    questID = quest.ID;
                     AcceptQuest();
                     return;
                 }
+
+                Debugger.WriteData("Sorry no quest available");
             }
 
         }
@@ -79,52 +79,43 @@ public class QuestScanner : RecCamera
     // not needed for end product
     private bool FoundQR()
     {
-        checkTimer -= Time.deltaTime;
+        int camWidth = backCam.width / 16;   // 640 / 16 = 40
+        int camHeight = backCam.height / 16; // 480 / 16 = 30
 
-        if(checkTimer <= 0)
+        int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 300
+        int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 225
+
+        Color32[] colors = backCam.GetPixels32();
+
+        bool hasBlack = false;
+        bool hasWhite = false;
+        int index = 0;
+
+        //1200px are being checked
+        for (int i = startWidth; i < startWidth + camWidth; i++)
         {
-            checkTimer = 5.0f;
-
-            int camWidth = backCam.width / 16;   // 640 / 16 = 40
-            int camHeight = backCam.height / 16; // 480 / 16 = 30
-
-            int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 300
-            int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 225
-
-            Color32[] colors = backCam.GetPixels32();
-
-            bool hasBlack = false;
-            bool hasWhite = false;
-            int index = 0;
-
-            //1200px are being checked
-            for (int i = startWidth; i < startWidth + camWidth; i++)
+            for (int j = startHeight; j < startHeight + camHeight; j++)
             {
-                for (int j = startHeight; j < startHeight + camHeight; j++)
+                Color32 color = colors[i + backCam.width * j];
+
+                int R = color.r;
+                int G = color.g;
+                int B = color.b;
+
+                if (color == Color.white)
                 {
-                    Color32 color = colors[i + backCam.width * j];
-
-                    int R = color.r;
-                    int G = color.g;
-                    int B = color.b;
-
-                    if (color == Color.white)
-                    {
-                        Debug.Log("White");
-                        hasWhite = true;
-                    }
-
-                    if (color == Color.black)
-                    {
-                        Debug.Log("Black");
-                        hasWhite = true;
-                    }
-
-                    index++;
+                    Debug.Log("White");
+                    hasWhite = true;
                 }
-            }
 
-            Debug.Log($"{index}");
+                if (color == Color.black)
+                {
+                    Debug.Log("Black");
+                    hasWhite = true;
+                }
+
+                index++;
+            }
 
             if (hasWhite && hasBlack)
             {
@@ -132,16 +123,6 @@ public class QuestScanner : RecCamera
             }
         }
 
-        return false;
-    }
-
-    public bool ActivateButton(Quest _quest)
-    {
-        if (_quest.QRID == resultText)
-        {
-            questID = _quest.ID;
-            return true;
-        }
         return false;
     }
 

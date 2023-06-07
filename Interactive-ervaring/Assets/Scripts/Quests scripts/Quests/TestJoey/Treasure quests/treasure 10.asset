@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 10
   isDone: 0
-  showDescription: 0
   hasFish: 0
-  hasCrown: 0
+  hasCrown: 1
   hasRecruits: 0
-  amountToTrack: 3
+  amountToTrack: 4
   descriptionNextQuest: De hoeveelheid schatkisten die je heb gevonden
   QRID: treasure_4
   descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11768709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -881,7 +881,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: -17, y: 164.63}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &539320681
 MonoBehaviour:
@@ -2189,6 +2189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: First quest tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 1032501099711044249, guid: 2781e256e07e463428a84185985eb920, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4258694824381210557, guid: 2781e256e07e463428a84185985eb920, type: 3}
       propertyPath: m_text
       value: Als je ze hebt voltooid mag je ze afvinken om bij te houden wat je gedaan
@@ -2614,6 +2618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988c45baac098be4fbba6fc4bcb1f528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  treasureMap: {fileID: 1394283017}
   questList:
   - {fileID: 11400000, guid: e136fcaca547c0c48b5d471e0e74c917, type: 2}
   - {fileID: 11400000, guid: 68928f5385f834e45b256abfcc5e8cff, type: 2}
@@ -2637,7 +2642,6 @@ MonoBehaviour:
   questTutorial:
     questTutorial: {fileID: 1975497085}
     telescopeTutorial: {fileID: 1825595331}
-    firstQuestTutorial: {fileID: 1926978240}
 --- !u!224 &1591466735 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8278505338101024333, guid: 2781e256e07e463428a84185985eb920, type: 3}
@@ -2893,14 +2897,9 @@ MonoBehaviour:
   m_StartCorner: 2
   m_StartAxis: 0
   m_CellSize: {x: 1920, y: 587}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 0, y: -243}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!1 &1926978240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1032501099711044249, guid: 2781e256e07e463428a84185985eb920, type: 3}
-  m_PrefabInstance: {fileID: 1464886997}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1975497085 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1032501099711044249, guid: 2781e256e07e463428a84185985eb920, type: 3}
