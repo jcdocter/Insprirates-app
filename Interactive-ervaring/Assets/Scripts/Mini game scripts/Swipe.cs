@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Swipe
 {
-    private Vector2 startTouchPosition;
-    private Vector2 endTouchPosition;
+    public Vector2 startTouchPosition;
+    public Vector2 endTouchPosition;
 
     public bool CheckSwipe()
     {

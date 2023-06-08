@@ -113,7 +113,8 @@ public class Fishing : MonoBehaviour
 
         if (Input.acceleration.y > 0 || swipe.CheckSwipe())
         {
-            releasePower = Input.acceleration.y;
+            releasePower = Input.acceleration.y > 0 ? Mathf.Clamp(Input.acceleration.y, -5.0f, 5.0f) : Mathf.Clamp(swipe.endTouchPosition.y - swipe.startTouchPosition.y, -5.0f, 5.0f);
+
             hasThrown = true;
         }
     }
@@ -123,8 +124,8 @@ public class Fishing : MonoBehaviour
        foreach (GameObject fish in fishObjects) 
         {
             Vector3 spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
-            Quaternion rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-            GameObject fishObject = Instantiate(fish, spawnPoint, rotation);
+//            Quaternion rotation = Quaternion.Euler(0.0f, 90.0f, -90.0f);
+            GameObject fishObject = Instantiate(fish, spawnPoint, fish.transform.localRotation);
 
             fishList.Add(fishObject);
         }
