@@ -125,7 +125,7 @@ public class Fishing : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
 //            Quaternion rotation = Quaternion.Euler(0.0f, 90.0f, -90.0f);
-            GameObject fishObject = Instantiate(fish, spawnPoint, fish.transform.localRotation);
+            GameObject fishObject = Instantiate(fish, spawnPoint, Quaternion.identity);
 
             fishList.Add(fishObject);
         }

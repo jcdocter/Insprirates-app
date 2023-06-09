@@ -448,10 +448,10 @@ MonoBehaviour:
     model: {fileID: 2886447473645115398, guid: 8579b8325a01b284f9a46bb3aec9d4a7, type: 3}
   - quests:
     - {fileID: 11400000, guid: e050a734662098f41bc7c02c61257634, type: 2}
-    model: {fileID: 0}
+    model: {fileID: 2263268386782254919, guid: a05528390aca5a142a1c315f5d83ad81, type: 3}
   - quests:
     - {fileID: 11400000, guid: 309b7b36645d8b345b63e0df669c0968, type: 2}
-    model: {fileID: 0}
+    model: {fileID: 2263268386782254919, guid: a05528390aca5a142a1c315f5d83ad81, type: 3}
   - quests:
     - {fileID: 11400000, guid: 9f9e8534e3d2f8e4a8265bfcafa104da, type: 2}
     model: {fileID: 0}

@@ -20,6 +20,7 @@ public class FishController : MonoBehaviour
 
         GameObject moveToPoint = Instantiate(new GameObject(), spawnPoint, Quaternion.identity);
         movePoint = moveToPoint;
+
     }
 
     private void FixedUpdate()
@@ -69,12 +70,10 @@ public class FishController : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(fishPosition, Vector3.Lerp(fishPosition, targetPosition, 0.1f), movementSpeed);
 
-        Vector3 lookPos = new Vector3(transform.position.x, targetPosition.y, targetPosition.z);
-        transform.LookAt(lookPos);
-        /*        Vector3 lookPos = targetPosition - transform.position;
-                Quaternion rotation = Quaternion.LookRotation(lookPos);
-                Vector3 lookAtRotation = rotation.eulerAngles;
-                transform.localRotation = Quaternion.Euler(lookAtRotation.x, -90.0f, 90.0f);*/
+        Vector3 lookPos = targetPosition - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        Vector3 lookAtRotation = rotation.eulerAngles;
+        transform.localRotation = Quaternion.Euler(lookAtRotation.x, -90.0f, 90.0f);
 
         /*        Vector3 diff = targetPosition - transform.position;
                 diff.Normalize();

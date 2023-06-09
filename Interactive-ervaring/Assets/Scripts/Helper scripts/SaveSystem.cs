@@ -7,10 +7,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem 
 {
     public static List<Quest> questList = new List<Quest>();
+    public static int[] checkedID = new int[5];
 
     private const string subProfileFile = "/saveProfileFile.isr";
     private const string subInventoryFile = "/saveInventoryFile.isr";
-    private const string subQuestFile = "/saveQuestFile";
+    private const string subQuestFile = "/saveQuestFile.irs";
     private const string subQuestCountFile = "/saveQuestFile.count.isr";
 
     public static void SavePlayer(Confirm _data)
@@ -103,15 +104,28 @@ public static class SaveSystem
             Debug.LogError("Save file is not found in " + path);
         }
 
+        int IDIndex = 0;
+
         for (int i = 0; i < questCount; i++)
         {
+            Debug.Log("A");
             if (File.Exists(path + i))
             {
+                Debug.Log("B");
                 FileStream stream = new FileStream(path + i, FileMode.Open);
                 QuestData data = formatter.Deserialize(stream) as QuestData;
 
+                Debug.Log("C");
                 questList[i].isDone = data.isDone;
-//                questList[i].showDescription = data.showDescription;
+
+                Debug.Log("D");
+                if (questList[i].isDone && questList[i].hasRecruits)
+                {
+                    checkedID[IDIndex] = data.questID;
+                    IDIndex++;
+                }
+
+                Debug.Log("E");
 
                 stream.Close();
             }

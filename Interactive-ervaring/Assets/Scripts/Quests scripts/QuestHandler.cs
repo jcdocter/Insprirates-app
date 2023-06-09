@@ -20,8 +20,8 @@ public class QuestHandler : MonoBehaviour
         animator = FindObjectOfType<Animator>();
         
         finishingQuest = new FinishingQuest(buttonParent);
-        treasureMap.SetActive(DirectoryReader.DirectoryExist());
         LoadQuest();
+        treasureMap.SetActive(DirectoryReader.DirectoryExist());
     }
 
     public void ActivateCamera()
@@ -64,7 +64,7 @@ public class QuestHandler : MonoBehaviour
             {
                 if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].isDone)
                 {
-                    finishingQuest.DisplayProgress(questList[i]);
+ //                   finishingQuest.DisplayProgress(questList[i]);
                     questTutorial.questTutorial.SetActive(false);
                     questTutorial.telescopeTutorial.SetActive(false);
                 }
@@ -74,7 +74,7 @@ public class QuestHandler : MonoBehaviour
 
             if (!questList[i].nextQuest.isDone && questList[i].isDone)
             {
-                finishingQuest.DisplayProgress(questList[i]);
+//                finishingQuest.DisplayProgress(questList[i]);
 
                 questTutorial.questTutorial.SetActive(false);
                 questTutorial.telescopeTutorial.SetActive(false);

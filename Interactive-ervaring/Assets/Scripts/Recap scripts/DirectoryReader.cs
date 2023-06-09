@@ -9,7 +9,12 @@ public static class DirectoryReader
     {
         try
         {
-            return Directory.Exists(Application.persistentDataPath + "/Treasure-map-pieces");
+            if(Inventory.GetInstance().amountOfRecruits > 0 || Directory.Exists(Application.persistentDataPath + "/Treasure-map-pieces"))
+            {
+                return true;
+            }
+
+            return false;
         }
         catch
         {
