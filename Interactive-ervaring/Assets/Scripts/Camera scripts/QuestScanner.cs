@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using ZXing;
 
-public class QuestScanner : RecCamera
+public class QuestScanner : RecCamera, IGoBack
 {
     private List<Quest> questList = new List<Quest>();
     

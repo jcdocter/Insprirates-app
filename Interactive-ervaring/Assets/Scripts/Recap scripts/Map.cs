@@ -13,13 +13,14 @@ public class MapPieces
     public RawImage image;
 }
 
-public class Map : MonoBehaviour
+public class Map : MonoBehaviour, IGoBack
 {
     public LayerMask clickableLayer;
     public RawImage photo;
     public List<MapPieces> piecesList = new List<MapPieces>();
 
     private bool hitPiece;
+    private bool reset;
 
     private void Start()
     {
@@ -36,7 +37,7 @@ public class Map : MonoBehaviour
         HitObject();
         ZoomInOut();
 
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (reset)
         {
             if (hitPiece)
             {
@@ -53,6 +54,8 @@ public class Map : MonoBehaviour
                 Screen.orientation = ScreenOrientation.Portrait;
                 SceneManager.LoadScene("ListPage");
             }
+
+            reset = false;
         }
     }
 
@@ -126,5 +129,10 @@ public class Map : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void ReturnToPage()
+    {
+        reset = true;
     }
 }
