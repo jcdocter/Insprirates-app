@@ -2,37 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class QRID
+{
+    public string id;
+    public bool activeQR;
+}
+
 [CreateAssetMenu(menuName = "Quest/new quest")]
 public class Quest : ScriptableObject
 {
-    [HideInInspector]
+    public int ID;
     public bool isDone;
+//    public bool showDescription;
 
-    public string id;
-    public bool startQuest;
+    public bool hasFish;
+    public bool hasCrown;
+    public bool hasRecruits;
+    public int amountToTrack;
+    public string descriptionNextQuest;
 
-    public string description;
+    public string QRID;
+    public GameObject descriptionObject;
+    public Quest nextQuest;
 
-    public Quest[] neededQuests;
-
-    public Quest closeQuest;
-
-    public void ActivateQuest()
+    public string Description()
     {
-        if(neededQuests == null)
+        if(hasFish)
         {
-            return;
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfFish} / {amountToTrack}";
+        }
+        else if(hasCrown)
+        {
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfCrownPieces} / {amountToTrack}";
+        }
+        else if (hasRecruits)
+        {
+            return $"{descriptionNextQuest} {Inventory.GetInstance().amountOfRecruits} / {amountToTrack}";
         }
 
-        foreach(Quest quest in neededQuests)
+        return descriptionNextQuest;
+    }
+
+/*    public void DeactivatedQR()
+    {
+        if (ID == PlayerPrefs.GetInt("confirmedID"))
         {
-            if (!quest.isDone || closeQuest.startQuest)
+            CheckQRList(qrList);
+
+            if(nextQuest != null) 
             {
-                this.startQuest = false;
-                return;
+                CheckQRList(nextQuest.qrList);
             }
         }
-
-        this.startQuest = true;
     }
+
+    private void CheckQRList(List<QRID> _qrList)
+    {
+        foreach (QRID qr in _qrList)
+        {
+            if (qr.id == PlayerPrefs.GetString("qrID"))
+            {
+                qr.activeQR = false;
+            }
+            else
+            {
+                qr.activeQR = true;
+            }
+        }
+    }*/
 }

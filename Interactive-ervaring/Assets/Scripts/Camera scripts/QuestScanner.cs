@@ -2,83 +2,134 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 using ZXing;
 
-
-public class QuestScanner : ARecCamera
+public class QuestScanner : RecCamera
 {
-    public GameObject acceptTutorial;
-
     private List<Quest> questList = new List<Quest>();
-    private GameObject acceptButton;
-
-    private static string resultText;
-
-    private void Awake()
-    {
-        acceptButton = FindObjectOfType<Button>().gameObject;
-    }
+    
+    //Variables should be private.
+    public string resultText;
+    public int questID;
 
     protected override void Start()
     {
         base.Start();
 
         questList = SaveSystem.questList;
-
-        acceptButton.SetActive(false);
-        acceptTutorial.SetActive(false);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        FitCamera();
-        Scan();
+        base.Update();
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (!Debugger.OnDevice())
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            if (Input.GetKey(KeyCode.Space))
+            {
+                AcceptQuest();
+            }
         }
     }
 
-    protected override void Scan()
+    public void ReturnToPage()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void Scan()
     {
         try
         {
             IBarcodeReader barcodeReader = new BarcodeReader();
             Result result = barcodeReader.Decode(backCam.GetPixels32(), backCam.width, backCam.height);
 
-            if(result != null)
+            if (result == null)
             {
-                resultText = result.Text;
-
-                for (int i = 0; i < questList.Count; i++)
-                {
-                    if (questList[i].id == resultText )
-                    {
-                        if(!questList[i].startQuest || questList[i].isDone)
-                        {
-                            return;
-                        }
-
-                        acceptButton.SetActive(true);
-                        acceptTutorial.SetActive(true);
-
-                        acceptButton.GetComponent<Image>().color = new Color(181f / 255f, 249f / 255f, 249f / 255f);
-                    }
-                }
+                return;
             }
+
+            resultText = result.Text;
+
+            foreach (Quest quest in questList)
+            {
+                if(quest.isDone)
+                {
+                    continue;
+                }
+
+                if(quest.QRID == resultText)
+                {
+                    questID = quest.ID;
+                    AcceptQuest();
+                    return;
+                }
+
+                Debugger.WriteData("Sorry no quest available");
+            }
+
         }
         catch
         {
             Debug.LogError("Can not scan QR");
+            return;
         }
     }
 
-    public void AcceptQuest()
+    // not needed for end product
+    private bool FoundQR()
     {
-        PlayerPrefs.SetString("modelID", resultText);
+        int camWidth = backCam.width / 16;   // 640 / 16 = 40
+        int camHeight = backCam.height / 16; // 480 / 16 = 30
 
+        int startWidth = (backCam.width - camWidth) / 2;   // (640 - camWidth) / 2 = 300
+        int startHeight = (backCam.height - camHeight) / 2; // (480 - camHeight) / 2 = 225
+
+        Color32[] colors = backCam.GetPixels32();
+
+        bool hasBlack = false;
+        bool hasWhite = false;
+        int index = 0;
+
+        //1200px are being checked
+        for (int i = startWidth; i < startWidth + camWidth; i++)
+        {
+            for (int j = startHeight; j < startHeight + camHeight; j++)
+            {
+                Color32 color = colors[i + backCam.width * j];
+
+                int R = color.r;
+                int G = color.g;
+                int B = color.b;
+
+                if (color == Color.white)
+                {
+                    Debug.Log("White");
+                    hasWhite = true;
+                }
+
+                if (color == Color.black)
+                {
+                    Debug.Log("Black");
+                    hasWhite = true;
+                }
+
+                index++;
+            }
+
+            if (hasWhite && hasBlack)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void AcceptQuest()
+    {
+        PlayerPrefs.SetString("qrID", resultText);
+        PlayerPrefs.SetInt("questID", questID);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

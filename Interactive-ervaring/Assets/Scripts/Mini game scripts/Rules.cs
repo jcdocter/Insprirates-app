@@ -1,51 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System;
-using UnityEngine.UI;
 
-public class Rules : MonoBehaviour
+[System.Serializable]
+public class Rules
 {
-    public static GameObject photoButton;
+    [HideInInspector]
+    public PhotoCapture photoCapture;
 
-    public bool isScannable;
-    public bool hasTimer;
-    public bool canTakePhoto;
+    public GameObject rewardObject;
 
-    public float elapsedTime = 300.0f;
+    [HideInInspector]
+    public Canvas pauseScreen;
+    
+    public Canvas pauseObject;
+    public Canvas instructionCanavas;
+    private RecCamera recCam;
+    private bool canStartGame = false;
 
-    protected GameObject timerObject;
-    protected GameObject scanner;
-
-    private TimeSpan timePlaying;
-
-    private void Awake()
+    public void SetRules()
     {
-        timerObject = GameObject.Find("Timer");
-        scanner = FindObjectOfType<ActionScanner>().GetComponentInChildren<RawImage>().gameObject;
-        photoButton = FindObjectOfType<Button>().gameObject;
+        recCam = GameObject.FindObjectOfType<RecCamera>();
+        recCam.canSwitchCam = false;
+        instructionCanavas = GameObject.Instantiate(instructionCanavas, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        pauseScreen.GetComponent<Canvas>().worldCamera = Camera.main;
+        photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
+
+        SetPicture(false);
     }
 
-    protected void SetRules()
+    public void SetPicture(bool _activatePictureMode)
     {
-        scanner.SetActive(isScannable);
-        timerObject.SetActive(hasTimer);
-        photoButton.SetActive(canTakePhoto);
+        photoCapture.gameObject.SetActive(_activatePictureMode);
     }
 
-    protected void Timer()
+    public bool StartGame()
     {
-        elapsedTime -= Time.deltaTime;
-        timePlaying = TimeSpan.FromSeconds(elapsedTime);
-        string timeText = timePlaying.ToString("m':'ss'.'ff");
-        timerObject.GetComponent<TextMeshProUGUI>().text = timeText;
+        if(Input.GetMouseButtonDown(0))
+        {
+            pauseScreen.enabled = false;
+            canStartGame = true;
+        }
+
+        return canStartGame;
     }
 
-    protected void CheckOffQuest()
+    public void ShowReward(Transform _display)
     {
-        PlayerPrefs.SetString("questID", PlayerPrefs.GetString("modelID"));
+        GameObject.Instantiate(rewardObject, _display.position, rewardObject.transform.localRotation);
+    }
+
+    public void CheckOffQuest()
+    {
+        PlayerPrefs.SetInt("confirmedID", PlayerPrefs.GetInt("questID"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }

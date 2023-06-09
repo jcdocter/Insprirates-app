@@ -18,7 +18,7 @@ public class Confirm : MonoBehaviour
 
     public TMP_InputField userName;
 
-    public void Awake()
+    private void Awake()
     {
         PlayerData data = SaveSystem.LoadPlayer();
         hasAccount = data.hasAccount;
@@ -29,7 +29,7 @@ public class Confirm : MonoBehaviour
         }
     }
 
-    public void nextScene()
+    public void NextScene()
     {
         if (userName.text != "" && choseIcon)
         {

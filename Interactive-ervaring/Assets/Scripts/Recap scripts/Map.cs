@@ -4,102 +4,85 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR;
 using UnityEngine.SceneManagement;
 
 [Serializable]
 public class MapPieces
 {
-    public string photoID;
-    public GameObject piece;
+    public int photoID;
+    public RawImage image;
 }
 
 public class Map : MonoBehaviour
 {
     public LayerMask clickableLayer;
+    public RawImage photo;
     public List<MapPieces> piecesList = new List<MapPieces>();
 
-    private RawImage photo;
-    private MapPieces mapPiece;
-    private bool canRotate;
     private bool hitPiece;
-    private int tapCount;
 
     private void Start()
     {
-        photo = GetComponent<RawImage>();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+        foreach (MapPieces piece in piecesList)
+        {
+            piece.image.texture = PhotoExist(piece.photoID, (int)piece.image.rectTransform.rect.width, (int)piece.image.rectTransform.rect.height);
+        }
     }
 
     private void Update()
     {
-        RotateMap();
         HitObject();
         ZoomInOut();
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
-    }
-
-    private void RotateMap()
-    {
-        if(!canRotate)
-        {
-            return;
-        }
-
-        if (Input.touchCount == 1)
-        {
-            Touch screenTouch = Input.GetTouch(0);
-
-            if (screenTouch.phase == TouchPhase.Moved)
+            if (hitPiece)
             {
-                transform.Rotate(screenTouch.deltaPosition.y, 0.0f, 0.0f);
-               // transform.Rotate(0.0f, 0.0f, -screenTouch.deltaPosition.x);
-            }
+                photo.texture = null;
+                hitPiece = false;
 
-            if(screenTouch.phase == TouchPhase.Ended)
-            {
-                canRotate = false;
-
-                if(hitPiece)
+                for (int i = 0; i < transform.childCount; ++i)
                 {
-                    tapCount++;
-                    StartCoroutine(OpenPhoto());
-                    hitPiece = false;
+                    transform.GetChild(i).gameObject.SetActive(true);
                 }
-
+            }
+            else
+            {
+                Screen.orientation = ScreenOrientation.Portrait;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
         }
     }
 
     private void HitObject()
     {
-        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        if((Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            Ray ray = Camera.main.ScreenPointToRay(Debugger.OnDevice() ? Input.touches[0].position : Input.mousePosition);
 
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit))
+            if (!Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
             {
-                if(hit.transform.name == this.gameObject.name)
-                {
-                    canRotate = !canRotate;
-                }
+                return;
             }
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+            foreach (MapPieces piece in piecesList)
             {
-                foreach (MapPieces piece in piecesList)
+                if (hit.transform.name != piece.image.name || PhotoExist(piece.photoID, Screen.width, Screen.height) == null)
                 {
-                    if (hit.transform.name == piece.piece.gameObject.name)
-                    {
-                        hitPiece = true;
-;                       mapPiece = piece;
-                    }
+                    continue;
                 }
+
+                hitPiece = true;
+                for (int i = 0; i < transform.childCount; ++i)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
+
+                photo.texture = PhotoExist(piece.photoID, Screen.width, Screen.height);
             }
         }
     }
@@ -128,27 +111,20 @@ public class Map : MonoBehaviour
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - _increment, 1.0f, 25.0f);
     }
 
-    private IEnumerator OpenPhoto()
+    private Texture2D PhotoExist(int _id, int _width, int _height)
     {
-        Debugger.WriteData(tapCount.ToString());
+        string path = Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + _id + ".png";
 
-        yield return new WaitForSeconds(0.3f);
-
-        if (tapCount == 2)
+        if (File.Exists(path))
         {
-          this.gameObject.SetActive(false);
+            Byte[] bytes = File.ReadAllBytes(path);
 
-            Byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/Treasure-map-pieces/" + "TreasurePiece_" + mapPiece.photoID + ".png");
-
-            Texture2D displayPhoto = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            Texture2D displayPhoto = new Texture2D(_width, _height, TextureFormat.RGB24, false);
             displayPhoto.LoadImage(bytes);
 
-            if (displayPhoto != null)
-            {
-                photo.texture = displayPhoto;
-            }
+            return displayPhoto;
         }
 
-        tapCount = 0;
+        return null;
     }
 }

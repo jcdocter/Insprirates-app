@@ -8,12 +8,5 @@ public struct QuestTutorial
     public GameObject questTutorial;
 
     public GameObject telescopeTutorial;
-    public GameObject firstQuestTutorial;
-}
-
-[System.Serializable]
-public struct ScanTutorial
-{
-    public GameObject scanTutorial;
-    public GameObject acceptTutorial;
+//    public GameObject firstQuestTutorial;
 }

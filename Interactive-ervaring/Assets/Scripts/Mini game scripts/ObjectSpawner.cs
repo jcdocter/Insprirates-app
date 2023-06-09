@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class Models
 {
-    public string[] ids;
+    public Quest[] quests;
     public GameObject model;
 
     public bool CheckID()
     {
-        for (int i = 0; i < ids.Length; i++)
+        foreach (Quest quest in quests)
         {
-            if (PlayerPrefs.GetString("modelID") == ids[i])
+            if (PlayerPrefs.GetInt("questID") == quest.ID)
             {
                 return true;
             }
@@ -34,8 +34,9 @@ public class ObjectSpawner : MonoBehaviour
         {
             if(modelList[i].CheckID())
             {
-                GameObject model = Instantiate(modelList[i].model, transform.position, Quaternion.identity);
-                model.transform.parent = transform;
+                //GameObject model = Instantiate(modelList[i].model, transform.position, transform.rotation);
+                GameObject model = Instantiate(modelList[i].model, modelList[i].model.transform.position, modelList[i].model.transform.rotation);
+                model.transform.parent = this.transform;
             }
         }
     }
