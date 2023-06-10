@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class QuestHandler : MonoBehaviour
 {    
@@ -11,15 +10,11 @@ public class QuestHandler : MonoBehaviour
     public QuestTutorial questTutorial;
 
     private Animator animator;
-    private GameObject buttonParent;
     private FinishingQuest finishingQuest;
 
     private void Start()
     {
-        buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
         animator = FindObjectOfType<Animator>();
-        
-        finishingQuest = new FinishingQuest(buttonParent);
         LoadQuest();
         treasureMap.SetActive(DirectoryReader.DirectoryExist());
     }
@@ -51,15 +46,7 @@ public class QuestHandler : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
-        }
 
-        foreach (Transform child in buttonParent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-
-        for (int i = 0; i < questList.Count; i++)
-        {
             if (questList[i].nextQuest == null)
             {
                 if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].isDone)

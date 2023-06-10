@@ -5,13 +5,6 @@ using TMPro;
 
 public class FinishingQuest
 {
-    private GameObject displayParent;
-
-    public FinishingQuest(GameObject _buttonParent)
-    {
-       this.displayParent = _buttonParent;
-    }
-
     public bool CheckProgress(Quest _quest)
     {
         bool doneQuest = false;
@@ -27,8 +20,6 @@ public class FinishingQuest
     public void DisplayProgress(Quest _quest)
     {
         _quest.descriptionObject.GetComponentInChildren<TextMeshProUGUI>().text = _quest.Description();
-
-        GameObject button = GameObject.Instantiate(_quest.descriptionObject, displayParent.transform);
 
 /*        if (_quest.isDone && _quest.nextQuest == null)
         {
