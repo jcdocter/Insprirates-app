@@ -23,7 +23,6 @@ public class Quest : ScriptableObject
     public string descriptionNextQuest;
 
     public string QRID;
-    public GameObject descriptionObject;
     public Quest nextQuest;
 
     public string Description()

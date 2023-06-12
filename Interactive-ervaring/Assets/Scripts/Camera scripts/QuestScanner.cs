@@ -53,20 +53,14 @@ public class QuestScanner : RecCamera, IGoBack
 
             foreach (Quest quest in questList)
             {
-                if(quest.isDone)
-                {
-                    continue;
-                }
-
-                if(quest.QRID == resultText)
+                if(quest.QRID == resultText && !quest.isDone)
                 {
                     questID = quest.ID;
                     AcceptQuest();
                     return;
                 }
-
-                Debugger.WriteData("Sorry no quest available");
             }
+            Debugger.WriteData("Sorry no quest available");
 
         }
         catch

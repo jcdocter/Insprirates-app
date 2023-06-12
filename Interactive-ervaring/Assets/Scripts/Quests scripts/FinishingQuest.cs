@@ -5,6 +5,13 @@ using TMPro;
 
 public class FinishingQuest
 {
+    private List<QuestField> questFieldList;
+
+    public FinishingQuest(List<QuestField> _questFieldList) 
+    { 
+        this.questFieldList = _questFieldList;
+    }
+
     public bool CheckProgress(Quest _quest)
     {
         bool doneQuest = false;
@@ -19,13 +26,25 @@ public class FinishingQuest
 
     public void DisplayProgress(Quest _quest)
     {
-        _quest.descriptionObject.GetComponentInChildren<TextMeshProUGUI>().text = _quest.Description();
-
-/*        if (_quest.isDone && _quest.nextQuest == null)
+        for (int i = 0; i < questFieldList.Count; i++)
         {
-            button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
-            button.transform.SetAsFirstSibling();
-        }*/
+            for (int j = 0; j < questFieldList[i].quests.Length; j++)
+            {
+                if (_quest.isDone && _quest.ID == questFieldList[i].quests[j].ID)
+                {
+                    questFieldList[i].field.SetActive(true);
+                    questFieldList[i].field.GetComponentInChildren<TextMeshProUGUI>().text = _quest.Description();
+                }
+            }
+        }
+    }
+
+    public void DeactivateProgress()
+    {
+        for (int i = 0; i < questFieldList.Count; i++)
+        {
+            questFieldList[i].field.SetActive(false);
+        }
     }
 
     private bool InventoryValue(Quest _quest)

@@ -3335,9 +3335,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PreviousDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 1735695681167204392, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5011982979251264312, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011982979422749699, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5011982980452082988, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3444,6 +3452,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: nextButton
+      value: 
+      objectReference: {fileID: 1013093953057824325}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 5735208296257904633}
@@ -3506,6 +3518,10 @@ PrefabInstance:
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[3].scriptText.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[0].dialogueImage.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: scriptList.Array.data[0].scriptText.Array.data[0]
@@ -3577,8 +3593,77 @@ PrefabInstance:
         en de vis vangen. Wij gaan nog even genieten van de beurs, we zien je vast
         nog wel.
       objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[0].dialogueSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[1].dialogueSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[2].dialogueSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].dialogueSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[0].dialogueSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 220f3ae3ff771f74cbcf3672a1a5f14f, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[0].dialogueSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5205dff211b1a954d8535fca6fbefa5b, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[0].dialogueSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1dc0481af34aa2141afc078e36c8771c, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[1].dialogueSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: cace4e90ac17dce47931aec510f19826, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[1].dialogueSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e6ab754c40f12149b46286044e75ee5, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[1].dialogueSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c008842405fa78f428c644d0bbf09238, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[2].dialogueSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 12ede9e536e903948a3eb9819fce4bf1, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[2].dialogueSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31a849a2a3ed50a4da2d7ad086b8392a, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[2].dialogueSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7311c3f346c3cb941a65fbac808d7ac5, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].dialogueSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: dabe67f754898584bbbb98415ffd1099, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].dialogueSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: bca42e44f88d17b4b9d639216017af19, type: 3}
+    - target: {fileID: 6223358759162194577, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: scriptList.Array.data[3].dialogueSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 38220f0cf3497104b9259804d6636672, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+--- !u!1 &1013093953057824325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 294587671816936068, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 727804645514151105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2301113069677915639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1582624243184118070, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Scripts
 {
     public bool needsFish;
-    public bool needsRecruits;
-
     public int ID;
 
     [TextArea(3, 5)]
     public string[] scriptText;
+//    public Sprite[] dialogueSprites;
 }
 
 public class Dialogue : MonoBehaviour
@@ -22,6 +22,7 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI dialogueBox;
 
     public GameObject previousButton;
+    public GameObject nextButton;
 
     private Rules rules = new Rules();
     private int index = 0;
@@ -29,7 +30,7 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
-        //dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
+        rules.SetPicture(false);
         previousButton.SetActive(false);
 
         foreach (Scripts script in scriptList)
@@ -39,7 +40,7 @@ public class Dialogue : MonoBehaviour
                 continue;
             }
 
-            SetTexts(script);
+           SetTexts(script);
         }
 
         dialogueBox.text = text[index];
@@ -76,14 +77,6 @@ public class Dialogue : MonoBehaviour
         if (_script.needsFish)
         {
             if (Inventory.GetInstance().amountOfFish > 0)
-            {
-                text = _script.scriptText;
-                return;
-            }
-        }
-        else if (_script.needsRecruits)
-        {
-            if (Inventory.GetInstance().amountOfRecruits > 0)
             {
                 text = _script.scriptText;
                 return;

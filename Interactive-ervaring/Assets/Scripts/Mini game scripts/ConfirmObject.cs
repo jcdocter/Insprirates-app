@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -71,10 +69,5 @@ public class ConfirmObject : MonoBehaviour
 
             rules.CheckOffQuest();
         }
-    }
-
-    public void Unlocked()
-    {
-        rules.CheckOffQuest();
     }
 }

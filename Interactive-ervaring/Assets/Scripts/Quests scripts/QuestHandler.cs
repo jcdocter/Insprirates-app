@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public struct QuestField
+{
+    public Quest[] quests;
+    public GameObject field;
+}
+
 public class QuestHandler : MonoBehaviour
 {    
     public GameObject treasureMap;
-    public List<Quest> questList;
+    public List<Quest> questList = new List<Quest>();
+    public List<QuestField> questFieldList = new List<QuestField>();
     public QuestTutorial questTutorial;
 
     private Animator animator;
@@ -14,8 +22,11 @@ public class QuestHandler : MonoBehaviour
 
     private void Start()
     {
+        Screen.orientation = ScreenOrientation.Portrait;
         animator = FindObjectOfType<Animator>();
+        finishingQuest = new FinishingQuest(questFieldList);
         LoadQuest();
+        finishingQuest.DeactivateProgress();
         treasureMap.SetActive(DirectoryReader.DirectoryExist());
     }
 
@@ -51,7 +62,7 @@ public class QuestHandler : MonoBehaviour
             {
                 if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].isDone)
                 {
- //                   finishingQuest.DisplayProgress(questList[i]);
+                    finishingQuest.DisplayProgress(questList[i]);
                     questTutorial.questTutorial.SetActive(false);
                     questTutorial.telescopeTutorial.SetActive(false);
                 }
@@ -61,7 +72,7 @@ public class QuestHandler : MonoBehaviour
 
             if (!questList[i].nextQuest.isDone && questList[i].isDone)
             {
-//                finishingQuest.DisplayProgress(questList[i]);
+                finishingQuest.DisplayProgress(questList[i]);
 
                 questTutorial.questTutorial.SetActive(false);
                 questTutorial.telescopeTutorial.SetActive(false);

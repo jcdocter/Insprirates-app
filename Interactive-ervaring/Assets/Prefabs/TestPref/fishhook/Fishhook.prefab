@@ -77,7 +77,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideObject: 0
-  photoCapture: {fileID: 0}
   isTest: 0
   resetTimer: 3
   fishObjects:
@@ -94,6 +93,7 @@ MonoBehaviour:
   limitRange: {x: -0.15, y: 0.15}
   startPosition: {x: 0.008104315, y: -0.3893728, z: 0.48914623}
   rules:
+    photoCapture: {fileID: 0}
     rewardObject: {fileID: 0}
     pauseScreen: {fileID: 0}
     pauseObject: {fileID: 5766614169163684626, guid: ebadfbefe568b55409b4823ecb766b2a, type: 3}

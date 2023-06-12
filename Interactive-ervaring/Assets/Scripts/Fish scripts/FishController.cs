@@ -71,14 +71,8 @@ public class FishController : MonoBehaviour
         transform.position = Vector3.MoveTowards(fishPosition, Vector3.Lerp(fishPosition, targetPosition, 0.1f), movementSpeed);
 
         Vector3 lookPos = targetPosition - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        Vector3 lookAtRotation = rotation.eulerAngles;
-        transform.localRotation = Quaternion.Euler(lookAtRotation.x, -90.0f, 90.0f);
-
-        /*        Vector3 diff = targetPosition - transform.position;
-                diff.Normalize();
-                float rot_x = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(rot_x, -90.0f, 90.0f);*/
+        float rotationZ = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(rotationZ + 180.0f, -90.0f, 90.0f);
 
         if (Vector3.Distance(fishPosition, targetPosition) < 1.0f)
         {

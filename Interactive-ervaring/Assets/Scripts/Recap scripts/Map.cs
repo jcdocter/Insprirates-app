@@ -51,7 +51,6 @@ public class Map : MonoBehaviour, IGoBack
             }
             else
             {
-                Screen.orientation = ScreenOrientation.Portrait;
                 SceneManager.LoadScene("ListPage");
             }
 

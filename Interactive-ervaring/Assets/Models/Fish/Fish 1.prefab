@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8761557113921941136, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.707094
+      objectReference: {fileID: 0}
+    - target: {fileID: -8761557113921941136, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.004257693
+      objectReference: {fileID: 0}
+    - target: {fileID: -8761557113921941136, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.707094
+      objectReference: {fileID: 0}
+    - target: {fileID: -8761557113921941136, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.004257693
+      objectReference: {fileID: 0}
+    - target: {fileID: -8761557113921941136, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8761557113921941136, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.69
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -73,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7b5ecb940e8593242bb1cb161feb8c41, type: 2}
     - target: {fileID: 919132149155446097, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
       propertyPath: m_Name
-      value: Fish 1 (1)
+      value: Fish 1
       objectReference: {fileID: 0}
     - target: {fileID: 1746044082630417582, guid: b284053befd9bda4c9ddf9c46017465a, type: 3}
       propertyPath: m_Materials.Array.data[0]
