@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/tool minigames.unity
     guid: d63c50ceac93fd241bd5fedc73f363f7
+  - enabled: 0
+    path: Assets/Scenes/UItest_quest.unity
+    guid: 9b18d315df1c4d24091375c443a91716
   m_configObjects: {}
