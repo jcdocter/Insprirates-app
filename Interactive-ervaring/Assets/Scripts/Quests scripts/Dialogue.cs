@@ -12,7 +12,6 @@ public class Scripts
 
     [TextArea(3, 5)]
     public string[] scriptText;
-//    public Sprite[] dialogueSprites;
 }
 
 public class Dialogue : MonoBehaviour

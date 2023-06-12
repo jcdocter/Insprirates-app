@@ -2683,9 +2683,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7a19429f4017c1d44847f0faa98a8f3f, type: 2}
     - {fileID: 11400000, guid: b4504e382a39b104393dfb9bb6628967, type: 2}
     field: {fileID: 1238135267}
-  questTutorial:
-    questTutorial: {fileID: 1975497085}
-    telescopeTutorial: {fileID: 1825595331}
 --- !u!224 &1591466735 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8278505338101024333, guid: 2781e256e07e463428a84185985eb920, type: 3}
@@ -2865,16 +2862,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820409132}
   m_CullTransparentMesh: 1
---- !u!1 &1825595331 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1032501099711044249, guid: 2781e256e07e463428a84185985eb920, type: 3}
-  m_PrefabInstance: {fileID: 945820552}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1975497085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1032501099711044249, guid: 2781e256e07e463428a84185985eb920, type: 3}
-  m_PrefabInstance: {fileID: 4258694825833424555}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1985308836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,9 +2915,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconList:
-  - {fileID: 21300000, guid: 6b3760ba031bfee4f9c41811341c041c, type: 3}
-  - {fileID: 21300000, guid: f612d5b2458f5dc41ab371d01298a795, type: 3}
-  - {fileID: 21300000, guid: 97a9d8f63cb91704cbcfd476b1f39ab4, type: 3}
+  - {fileID: 21300000, guid: 6fcc52f34e7e72c4a95625d4c8a5ea29, type: 3}
+  - {fileID: 21300000, guid: 5f8f3f098bef8e04fa78991cc35aca94, type: 3}
+  - {fileID: 21300000, guid: 18a801b796e240b4bbaba15efd453a95, type: 3}
 --- !u!1001 &4258694825833424555
 PrefabInstance:
   m_ObjectHideFlags: 0

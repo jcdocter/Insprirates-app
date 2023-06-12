@@ -15,7 +15,6 @@ public class QuestHandler : MonoBehaviour
     public GameObject treasureMap;
     public List<Quest> questList = new List<Quest>();
     public List<QuestField> questFieldList = new List<QuestField>();
-    public QuestTutorial questTutorial;
 
     private Animator animator;
     private FinishingQuest finishingQuest;
@@ -23,17 +22,18 @@ public class QuestHandler : MonoBehaviour
     private void Start()
     {
         Screen.orientation = ScreenOrientation.Portrait;
+
         animator = FindObjectOfType<Animator>();
         finishingQuest = new FinishingQuest(questFieldList);
-        LoadQuest();
         finishingQuest.DeactivateProgress();
+        LoadQuest();
+
         treasureMap.SetActive(DirectoryReader.DirectoryExist());
     }
 
     public void ActivateCamera()
     {
         animator.SetBool("activateScope", true);
-        questTutorial.telescopeTutorial.SetActive(false);
     }
 
     public void Recap()
@@ -57,26 +57,7 @@ public class QuestHandler : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
-
-            if (questList[i].nextQuest == null)
-            {
-                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID") || questList[i].isDone)
-                {
-                    finishingQuest.DisplayProgress(questList[i]);
-                    questTutorial.questTutorial.SetActive(false);
-                    questTutorial.telescopeTutorial.SetActive(false);
-                }
-
-                continue;
-            }
-
-            if (!questList[i].nextQuest.isDone && questList[i].isDone)
-            {
-                finishingQuest.DisplayProgress(questList[i]);
-
-                questTutorial.questTutorial.SetActive(false);
-                questTutorial.telescopeTutorial.SetActive(false);
-            }
+            finishingQuest.DisplayProgress(questList[i]);
         }
 
         SaveSystem.SaveQuest();

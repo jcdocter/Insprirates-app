@@ -108,24 +108,17 @@ public static class SaveSystem
 
         for (int i = 0; i < questCount; i++)
         {
-            Debug.Log("A");
             if (File.Exists(path + i))
             {
-                Debug.Log("B");
                 FileStream stream = new FileStream(path + i, FileMode.Open);
                 QuestData data = formatter.Deserialize(stream) as QuestData;
-
-                Debug.Log("C");
                 questList[i].isDone = data.isDone;
 
-                Debug.Log("D");
                 if (questList[i].isDone && questList[i].hasRecruits)
                 {
                     checkedID[IDIndex] = data.questID;
                     IDIndex++;
                 }
-
-                Debug.Log("E");
 
                 stream.Close();
             }
