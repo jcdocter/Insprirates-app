@@ -14,11 +14,10 @@ public class MobileVibration : MonoBehaviour
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
+    private bool done = false;
 
     private float vibrationDuration = 1.0f;
     private float coolDownDuration = 3.0f;
-
-    private bool done = false;
 
     private void Start()
     {
@@ -27,6 +26,7 @@ public class MobileVibration : MonoBehaviour
         gyroEnabled = EnableGyro();
         animator = FindObjectOfType<Animator>();
         lockPickValue = Random.Range(-100, 100);
+        Debug.Log(lockPickValue);
     }
 
     void Update()
@@ -36,7 +36,7 @@ public class MobileVibration : MonoBehaviour
             return;
         }
 
-        if(!Debugger.OnDevice())
+        if (!Debugger.OnDevice())
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
@@ -105,7 +105,7 @@ public class MobileVibration : MonoBehaviour
     // could be recursive
     private void VibrationTimer()
     {
-//        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
+        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
 
         if (canGetNewValue)
         {
@@ -113,26 +113,6 @@ public class MobileVibration : MonoBehaviour
             float duration = (5 - y) * 0.5f;
 
             vibrationDuration = duration;
-
-/*            if (differenceInValue < 40)
-            {
-                vibrationDuration = 1.0f;
-            }
-
-            if (differenceInValue < 30)
-            {
-                vibrationDuration = 1.5f;
-            }
-
-            if (differenceInValue < 20)
-            {
-                vibrationDuration = 2.0f;
-            }
-
-            if (differenceInValue < 10)
-            {
-                vibrationDuration = 2.5f;
-            }*/
 
             canGetNewValue = false;
         }

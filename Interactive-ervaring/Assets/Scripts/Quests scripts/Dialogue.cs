@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class Scripts
@@ -22,15 +22,17 @@ public class Dialogue : MonoBehaviour
 
     public GameObject previousButton;
     public GameObject nextButton;
+    public GameObject finalButton;
 
     private Rules rules = new Rules();
     private int index = 0;
-    private string[] text;
+    private string[] texts;
 
     private void Start()
     {
         rules.SetPicture(false);
         previousButton.SetActive(false);
+        finalButton.SetActive(false);
 
         foreach (Scripts script in scriptList)
         {
@@ -42,7 +44,7 @@ public class Dialogue : MonoBehaviour
            SetTexts(script);
         }
 
-        dialogueBox.text = text[index];
+        dialogueBox.text = texts[index];
     }
 
     public void NextDialogue()
@@ -50,20 +52,23 @@ public class Dialogue : MonoBehaviour
         previousButton.SetActive(true);
         index++;
 
-        if(index >= text.Length)
+        FinalText();
+
+        if (index >= texts.Length)
         {
             rules.CheckOffQuest();
             return;
         }
 
-        dialogueBox.text = text[index];
+        dialogueBox.text = texts[index];
     }
 
     public void PreviousDialogue()
     {
         index--;
+        FinalText();
 
-        dialogueBox.text = text[index];
+        dialogueBox.text = texts[index];
 
         if(index == 0)
         {
@@ -71,19 +76,33 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    public void SetTexts(Scripts _script)
+    private void SetTexts(Scripts _script)
     {
         if (_script.needsFish)
         {
             if (Inventory.GetInstance().amountOfFish > 0)
             {
-                text = _script.scriptText;
+                texts = _script.scriptText;
                 return;
             }
         }
         else
         {
-            text = _script.scriptText;
+            texts = _script.scriptText;
+        }
+    }
+
+    private void FinalText()
+    {
+        if (index == texts.Length - 1)
+        {
+            finalButton.SetActive(true);
+            nextButton.SetActive(false);
+        }
+        else
+        {
+            finalButton.SetActive(false);
+            nextButton.SetActive(true);
         }
     }
 }

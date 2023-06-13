@@ -32,13 +32,17 @@ public class Rules
 
     public void SetPicture(bool _activatePictureMode)
     {
-        photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
+        if(photoCapture == null)
+        {
+            photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
+        }
+
         photoCapture.gameObject.SetActive(_activatePictureMode);
     }
 
     public bool StartGame()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             pauseScreen.enabled = false;
             canStartGame = true;
