@@ -31,15 +31,23 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
-        if(firstTime)
-        {
-           Destroy(this.gameObject);
-
-        }
-
-        rules.SetPicture(false);
         previousButton.SetActive(false);
         finalButton.SetActive(false);
+
+        if (firstTime)
+        {
+            this.transform.parent.gameObject.SetActive(false);
+        }
+
+        if(isTutorial)
+        {
+            texts = scriptList[0].scriptText;
+            dialogueBox.text = texts[index];
+
+            return;
+        }
+
+        rules.SetPicture(false);    
 
         foreach (Scripts script in scriptList)
         {
@@ -65,8 +73,9 @@ public class Dialogue : MonoBehaviour
         {
             if(isTutorial)
             {
-                firstTime = false;
-                Destroy(this.gameObject);
+                firstTime = true;
+                this.transform.parent.gameObject.SetActive(false);
+                return;
             }
             else
             {

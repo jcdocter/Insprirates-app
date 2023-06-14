@@ -32,16 +32,16 @@ public class QuestHandler : MonoBehaviour
     }
 
     public void ActivateCamera()
-    {
-        if(!FindObjectOfType<Dialogue>().gameObject)
-        {
-            animator.SetBool("activateScope", true);
-        }
+    {        
+        animator.SetBool("activateScope", true);
     }
 
     public void Recap()
     {
-        SceneManager.LoadScene("RecapScreen");
+        if(!FindObjectOfType<Dialogue>().gameObject.activeSelf)
+        {
+            SceneManager.LoadScene("RecapScreen");
+        }
     }
 
     private void LoadQuest()
