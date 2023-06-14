@@ -6,9 +6,7 @@ using TMPro;
 [System.Serializable]
 public class Scripts
 {
-    public bool hasFish;
-    public bool hasRecruits;
-
+    public bool needsFish;
     public int ID;
 
     [TextArea(3, 5)]
@@ -17,19 +15,24 @@ public class Scripts
 
 public class Dialogue : MonoBehaviour
 {
+    public bool isTutorial;
     public List<Scripts> scriptList;
 
     public TextMeshProUGUI dialogueBox;
+
     public GameObject previousButton;
+    public GameObject nextButton;
+    public GameObject finalButton;
 
     private Rules rules = new Rules();
     private int index = 0;
-    private string[] text;
+    private string[] texts;
 
     private void Start()
     {
-        dialogueBox = GetComponentInChildren<TextMeshProUGUI>();
+        rules.SetPicture(false);
         previousButton.SetActive(false);
+        finalButton.SetActive(false);
 
         foreach (Scripts script in scriptList)
         {
@@ -38,10 +41,10 @@ public class Dialogue : MonoBehaviour
                 continue;
             }
 
-            SetTexts(script);
+           SetTexts(script);
         }
 
-        dialogueBox.text = text[index];
+        dialogueBox.text = texts[index];
     }
 
     public void NextDialogue()
@@ -49,20 +52,30 @@ public class Dialogue : MonoBehaviour
         previousButton.SetActive(true);
         index++;
 
-        if(index >= text.Length)
+        FinalText();
+
+        if (index >= texts.Length)
         {
-            rules.CheckOffQuest();
-            return;
+            if(isTutorial)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                rules.CheckOffQuest();
+                return;
+            }
         }
 
-        dialogueBox.text = text[index];
+        dialogueBox.text = texts[index];
     }
 
     public void PreviousDialogue()
     {
         index--;
+        FinalText();
 
-        dialogueBox.text = text[index];
+        dialogueBox.text = texts[index];
 
         if(index == 0)
         {
@@ -70,27 +83,33 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    public void SetTexts(Scripts _script)
+    private void SetTexts(Scripts _script)
     {
-        if (_script.hasFish)
+        if (_script.needsFish)
         {
             if (Inventory.GetInstance().amountOfFish > 0)
             {
-                text = _script.scriptText;
-                return;
-            }
-        }
-        else if (_script.hasRecruits)
-        {
-            if (Inventory.GetInstance().amountOfRecruits > 0)
-            {
-                text = _script.scriptText;
+                texts = _script.scriptText;
                 return;
             }
         }
         else
         {
-            text = _script.scriptText;
+            texts = _script.scriptText;
+        }
+    }
+
+    private void FinalText()
+    {
+        if (index == texts.Length - 1)
+        {
+            finalButton.SetActive(true);
+            nextButton.SetActive(false);
+        }
+        else
+        {
+            finalButton.SetActive(false);
+            nextButton.SetActive(true);
         }
     }
 }

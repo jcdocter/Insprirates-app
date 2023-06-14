@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Fishing : MonoBehaviour
 {
-    public bool isTest;
+    [HideInInspector]
+    public bool hideObject = false;
+
     public float resetTimer;
 
     public GameObject[] fishObjects;
-    public Vector2 limitRange;
     public Vector3 startPosition;
 
-    [HideInInspector]
     public Rules rules = new Rules();
 
-    private Gyroscope gyro;
+    private List<GameObject> fishList = new List<GameObject>();
+    private Swipe swipe = new Swipe();
 
     private bool hasThrown;
-    private bool gyroEnabled;
 
     private float throwSpeed = 4.0f;
     private float height;
@@ -26,21 +26,28 @@ public class Fishing : MonoBehaviour
 
     private void Start()
     {
+        rules.SetRules();
+
         startTimer = resetTimer;
-        gyroEnabled = EnableGyro();
         SpawnFish();
 
-        if(!isTest)
-        {
-            transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-        }
-
-        transform.localScale = new Vector3(300, 300, 300);
+//        transform.localScale = new Vector3(300, 300, 300);
         transform.position = startPosition;
     }
 
     private void Update()
     {
+        if(!rules.StartGame())
+        {
+            return;
+        }
+
+        if(hideObject)
+        {
+            RemoveFish();
+            this.gameObject.SetActive(false);
+        }
+
         Throw();
     }
 
@@ -48,89 +55,83 @@ public class Fishing : MonoBehaviour
     {
         if (!Debugger.OnDevice())
         {
-            CalculateThrow();
-            return;
-        }
-
-        if (gyroEnabled)
-        {
-            if (transform.position.z >= 9.0f)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                resetTimer -= Time.deltaTime;
-
-                if(resetTimer <= 0.0f)
-                {
-                    resetTimer = startTimer;
-                    transform.position = startPosition;
-                    hasThrown = false;
-                }
-
-                return;
+                hasThrown = true;
             }
 
-            if (Input.GetMouseButton(0) && !hasThrown)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (Input.acceleration.y > 0)
-                {
-                    releasePower = Input.acceleration.y;
-                    hasThrown = true;
-                }
+                hasThrown = false;
+                transform.position = startPosition;
             }
 
             if (hasThrown)
             {
-                Debugger.WriteData(releasePower.ToString());
-                transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
-            }
-            else
-            {
-                if(Input.GetMouseButton(0))
+                transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
+
+                if (transform.position.z >= 9.0f)
                 {
-                    return;
+                    hasThrown = false;
                 }
-
-                releasePower = 0;
-
-                Vector3 screen = transform.position;
-                screen.x = Mathf.Clamp(transform.position.x, limitRange.x, limitRange.y);
-
-                transform.position = screen;
-                transform.Translate(Vector3.right * Time.deltaTime * 1.0f * gyro.rotationRateUnbiased.y);
             }
-        }
-    }
-
-    private void CalculateThrow()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            hasThrown = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            hasThrown = false;
-            transform.position = startPosition;
-        }
-
-        if (!hasThrown)
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            Vector3 screen = transform.position;
-            screen.x = Mathf.Clamp(transform.position.x, limitRange.x, limitRange.y);
-
-            transform.position = screen;
-            transform.Translate(Vector3.right * Time.deltaTime * 1.0f * horizontalInput);
 
             return;
         }
 
-        transform.position += new Vector3(0.0f, height * Time.deltaTime, throwSpeed * Time.deltaTime);
+        CalculateThrow();
+    }
 
+    private void CalculateThrow()
+    {
         if (transform.position.z >= 9.0f)
         {
-            hasThrown = false;
+            resetTimer -= Time.deltaTime;
+
+            if (resetTimer <= 0.0f)
+            {
+                resetTimer = startTimer;
+                transform.position = startPosition;
+                hasThrown = false;
+            }
+
+            return;
         }
+
+        if (hasThrown)
+        {
+            float yDirection = (releasePower/10) * throwSpeed * Time.deltaTime;
+
+            if (transform.position.y > releasePower)
+            {
+                yDirection = releasePower;
+            }
+
+            if(transform.position.y < -releasePower)
+            {
+                yDirection = -releasePower;
+            }
+
+            transform.position += new Vector3(0.0f, yDirection, throwSpeed * Time.deltaTime);
+            Debugger.WriteData($"{transform.position.y}");
+            return;
+        }
+
+        if (Input.acceleration.y > 0 || swipe.CheckSwipe())
+        {
+            releasePower = Input.acceleration.y > 0 ? Scale(0.0f, 1.0f, -5.0f, 5.0f, Input.acceleration.y) : Scale(42.0f, 2414.0f, -5.0f, 5.0f, swipe.endTouchPosition.y - swipe.startTouchPosition.y);
+
+           hasThrown = true;
+        }
+    }
+
+    private float Scale(float OldMin, float OldMax, float NewMin, float NewMax, float OldValue)
+    {
+        float OldRange = (OldMax - OldMin);
+        float NewRange = (NewMax - NewMin);
+        float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
+
+        return (NewValue);
     }
 
     private void SpawnFish()
@@ -138,21 +139,18 @@ public class Fishing : MonoBehaviour
        foreach (GameObject fish in fishObjects) 
         {
             Vector3 spawnPoint = new Vector3(Random.Range(-2.75f, 2.75f), Random.Range(-5.3f, 5.3f), 9.0f);
-            Instantiate(fish, spawnPoint, Quaternion.identity);
+            GameObject fishObject = Instantiate(fish, spawnPoint, Quaternion.identity);
+
+            fishList.Add(fishObject);
         }
     }
 
-    private bool EnableGyro()
+    private void RemoveFish()
     {
-        if (SystemInfo.supportsGyroscope)
-        {
-            gyro = Input.gyro;
-            gyro.enabled = true;
-
-            return true;
+        foreach(GameObject fish in fishList)
+        {   
+            Destroy(fish);
         }
-
-        return false;
     }
 }
 

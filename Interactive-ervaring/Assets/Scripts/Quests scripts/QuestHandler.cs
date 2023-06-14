@@ -2,29 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
+[System.Serializable]
+public struct QuestField
+{
+    public Quest[] quests;
+    public GameObject field;
+}
 
 public class QuestHandler : MonoBehaviour
 {    
-    public List<Quest> questList;
-    public QuestTutorial questTutorial;
+    public GameObject treasureMap;
+    public List<Quest> questList = new List<Quest>();
+    public List<QuestField> questFieldList = new List<QuestField>();
 
-    private GameObject buttonParent;
+    private Animator animator;
     private FinishingQuest finishingQuest;
 
     private void Start()
     {
-        buttonParent = FindObjectOfType<GridLayoutGroup>().gameObject;
-        questTutorial.firstQuestTutorial.SetActive(false);
-        
-        finishingQuest = new FinishingQuest(buttonParent);
+        Screen.orientation = ScreenOrientation.Portrait;
+
+        animator = FindObjectOfType<Animator>();
+        finishingQuest = new FinishingQuest(questFieldList);
+        finishingQuest.DeactivateProgress();
         LoadQuest();
+
+        treasureMap.SetActive(DirectoryReader.DirectoryExist());
     }
 
     public void ActivateCamera()
     {
-        questTutorial.telescopeTutorial.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(!FindObjectOfType<Dialogue>().gameObject)
+        {
+            animator.SetBool("activateScope", true);
+        }
     }
 
     public void Recap()
@@ -48,37 +60,11 @@ public class QuestHandler : MonoBehaviour
         for (int i = 0; i < questList.Count; i++)
         {
             questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
+            finishingQuest.DisplayProgress(questList[i]);
         }
 
-        foreach (Transform child in buttonParent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-
-        for (int i = 0; i < questList.Count; i++)
-        {
-            if (questList[i].nextQuest == null)
-            {
-
-                if(questList[i].ID == PlayerPrefs.GetInt("confirmedID"))
-                {
-                    finishingQuest.DisplayProgress(questList[i]);
-                }
-
-                questTutorial.questTutorial.SetActive(false);
-                questTutorial.telescopeTutorial.SetActive(false);
-                continue;
-            }
-
-            if (!questList[i].nextQuest.isDone && questList[i].isDone)
-            {
-                finishingQuest.DisplayProgress(questList[i]);
-
-                questTutorial.questTutorial.SetActive(false);
-                questTutorial.telescopeTutorial.SetActive(false);
-            }
-        }
-
+        SaveSystem.SaveQuest();
         PlayerPrefs.SetInt("confirmedID", 0);
+        PlayerPrefs.SetString("qrID", " ");
     }
 }

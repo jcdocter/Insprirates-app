@@ -1,35 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
 {
+    public GameObject finalReward;
+    public Rules rules = new Rules();
     private Gyroscope gyro;
+    private Animator animator;
 
     private int lockPickValue;
     private int rotateValue;
+    private int differenceInValue;
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
-
-    private float vibrationDuration = 5.0f;
-    private float coolDownDuration = 3.0f;
-
-    //debug variable. Can be deleted later
     private bool done = false;
+    private bool foundPiece;
+
+    private float vibrationDuration = 1.0f;
+    private float coolDownDuration = 3.0f;
 
     private void Start()
     {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        rules.SetRules();
         gyroEnabled = EnableGyro();
+        animator = FindObjectOfType<Animator>();
         lockPickValue = Random.Range(-100, 100);
+        Debug.Log(lockPickValue);
     }
 
     void Update()
     {
+        if (!rules.StartGame())
+        {
+            return;
+        }
+
+        if (!Debugger.OnDevice())
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                done = true;
+            }
+        }
+
+        FoundPiece();
+
         if (done)
         {
-            Debugger.WriteData("You did it !!!");
+            // play animation
+            animator.SetBool("openChest", true);
             return;
         }
 
@@ -45,6 +67,7 @@ public class MobileVibration : MonoBehaviour
             }
         }
 
+        differenceInValue = Mathf.Abs(lockPickValue - rotateValue);
         VibrationTimer();
     }
 
@@ -61,36 +84,53 @@ public class MobileVibration : MonoBehaviour
         return false;
     }
 
+    public void OpenChest()
+    {
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        Inventory.GetInstance().amountOfCrownPieces++;
+
+        if(Inventory.GetInstance().amountOfCrownPieces == 4)
+        {
+            rules.SetPicture(true);
+            rules.rewardObject = finalReward;
+        }
+
+        rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+    }
+
+    private void FoundPiece()
+    {
+        if (!foundPiece)
+        {
+            return;
+        }
+
+        if (rules.photoCapture.tookPhoto)
+        {
+            rules.CheckOffQuest();
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                rules.CheckOffQuest();
+            }
+        }
+    }
+
     private void VibrationTimer()
     {
-        int DifferenceInValue = Mathf.Abs(lockPickValue - rotateValue);
-
-        if(canGetNewValue)
+        if (canGetNewValue)
         {
-            if(DifferenceInValue < 40)
-            {
-                vibrationDuration = 1.0f;
-            }
+            int y = differenceInValue / 10;
+            float duration = (5 - y) * 0.5f;
 
-            if (DifferenceInValue < 30)
-            {
-                vibrationDuration = 1.5f;
-            }
-
-            if (DifferenceInValue < 20)
-            {
-                vibrationDuration = 2.0f;
-            }
-
-            if (DifferenceInValue < 10)
-            {
-                vibrationDuration = 2.5f;
-            }
+            vibrationDuration = duration;
 
             canGetNewValue = false;
         }
 
-        if(DifferenceInValue > 40)
+        if(differenceInValue > 40)
         {
             coolDownDuration = 3.0f;
             canGetNewValue = true;
