@@ -15,6 +15,7 @@ public class Scripts
 
 public class Dialogue : MonoBehaviour
 {
+    public static bool firstTime = false;
     public bool isTutorial;
     public List<Scripts> scriptList;
 
@@ -30,6 +31,12 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
+        if(firstTime)
+        {
+           Destroy(this.gameObject);
+
+        }
+
         rules.SetPicture(false);
         previousButton.SetActive(false);
         finalButton.SetActive(false);
@@ -58,6 +65,7 @@ public class Dialogue : MonoBehaviour
         {
             if(isTutorial)
             {
+                firstTime = false;
                 Destroy(this.gameObject);
             }
             else
