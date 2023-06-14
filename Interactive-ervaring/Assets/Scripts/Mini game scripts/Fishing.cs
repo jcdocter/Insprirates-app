@@ -119,13 +119,9 @@ public class Fishing : MonoBehaviour
 
         if (Input.acceleration.y > 0 || swipe.CheckSwipe())
         {
-/*            releasePower = Input.acceleration.y > 0 ? Mathf.Clamp(Input.acceleration.y, -5.0f, 5.0f) : Mathf.Clamp(swipe.endTouchPosition.y - swipe.startTouchPosition.y, -5.0f, 5.0f);*/
-
             releasePower = Input.acceleration.y > 0 ? Scale(0.0f, 1.0f, -5.0f, 5.0f, Input.acceleration.y) : Scale(42.0f, 2414.0f, -5.0f, 5.0f, swipe.endTouchPosition.y - swipe.startTouchPosition.y);
 
            hasThrown = true;
-
-            //           Debugger.WriteData("Accel: " + Input.acceleration.y);
         }
     }
 

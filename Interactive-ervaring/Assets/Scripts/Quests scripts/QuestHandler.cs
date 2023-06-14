@@ -33,7 +33,10 @@ public class QuestHandler : MonoBehaviour
 
     public void ActivateCamera()
     {
-        animator.SetBool("activateScope", true);
+        if(!FindObjectOfType<Dialogue>().gameObject)
+        {
+            animator.SetBool("activateScope", true);
+        }
     }
 
     public void Recap()

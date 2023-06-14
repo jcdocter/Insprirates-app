@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 [System.Serializable]
@@ -16,6 +15,7 @@ public class Scripts
 
 public class Dialogue : MonoBehaviour
 {
+    public bool isTutorial;
     public List<Scripts> scriptList;
 
     public TextMeshProUGUI dialogueBox;
@@ -56,8 +56,15 @@ public class Dialogue : MonoBehaviour
 
         if (index >= texts.Length)
         {
-            rules.CheckOffQuest();
-            return;
+            if(isTutorial)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                rules.CheckOffQuest();
+                return;
+            }
         }
 
         dialogueBox.text = texts[index];

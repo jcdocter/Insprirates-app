@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ConfirmObject : MonoBehaviour
 {
-    public bool canTap;
-
     private PhotoCapture photoCapture;
     private Rules rules = new Rules();
     private Swipe swipe = new Swipe();
@@ -29,30 +26,15 @@ public class ConfirmObject : MonoBehaviour
             }
         }
 
-        if(photoCapture.gameObject.activeSelf)
+/*        if(photoCapture.gameObject.activeSelf)
         {
             if(rules.photoCapture.tookPhoto)
             {
                 rules.CheckOffQuest();
             }
-        }
+        }*/
 
-        if(canTap)
-        {
-            Tap();
-        }
-        else
-        {
-            Swipe();
-        }
-    }
-
-    private void Tap()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
-        }
+        Swipe();
     }
 
     private void Swipe()

@@ -560,16 +560,16 @@ MonoBehaviour:
     model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
   - quests:
     - {fileID: 11400000, guid: 11b7e46b0ef3fa241b96cfcc36c5f9ef, type: 2}
-    model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+    model: {fileID: 5735555059871870307, guid: d38dd26689e9eb44e8f29e17a2475f14, type: 3}
   - quests:
     - {fileID: 11400000, guid: 7edb15656eb84f944b51756af9b7b04b, type: 2}
-    model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+    model: {fileID: 5735555059871870307, guid: b02bd06c69b3dbf44899761c756c77e9, type: 3}
   - quests:
     - {fileID: 11400000, guid: f812b923ef9579a43b079c2b6e02c6f4, type: 2}
-    model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+    model: {fileID: 5735555059871870307, guid: 50e3e79906686f94a9d764ce68e3e8e1, type: 3}
   - quests:
     - {fileID: 11400000, guid: 357315a66a1f941458d71133d35002dd, type: 2}
-    model: {fileID: 2886447473645115398, guid: 67ed6e613fe7fc94391fb2b666cd63fd, type: 3}
+    model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
   - quests:
     - {fileID: 11400000, guid: 9ae8f9bf1c787234d90097808d51d65e, type: 2}
     model: {fileID: 2886447473645115398, guid: a71ba4a1a59e2b6468065f8c060f47e7, type: 3}

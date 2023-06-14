@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
 {
+    public GameObject finalReward;
     public Rules rules = new Rules();
     private Gyroscope gyro;
     private Animator animator;
@@ -15,6 +16,7 @@ public class MobileVibration : MonoBehaviour
     private bool gyroEnabled;
     private bool canGetNewValue = true;
     private bool done = false;
+    private bool foundPiece;
 
     private float vibrationDuration = 1.0f;
     private float coolDownDuration = 3.0f;
@@ -44,10 +46,7 @@ public class MobileVibration : MonoBehaviour
             }
         }
 
-        if (rules.photoCapture.tookPhoto)
-        {
-            rules.CheckOffQuest();
-        }
+        FoundPiece();
 
         if (done)
         {
@@ -87,26 +86,40 @@ public class MobileVibration : MonoBehaviour
 
     public void OpenChest()
     {
-        Screen.orientation = ScreenOrientation.Portrait;
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         Inventory.GetInstance().amountOfCrownPieces++;
 
         if(Inventory.GetInstance().amountOfCrownPieces == 4)
         {
             rules.SetPicture(true);
-            rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
-            transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+            rules.rewardObject = finalReward;
         }
-        else
+
+        rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+    }
+
+    private void FoundPiece()
+    {
+        if (!foundPiece)
+        {
+            return;
+        }
+
+        if (rules.photoCapture.tookPhoto)
         {
             rules.CheckOffQuest();
         }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                rules.CheckOffQuest();
+            }
+        }
     }
 
-    // could be recursive
     private void VibrationTimer()
     {
-        Debugger.WriteData($"{lockPickValue} == {rotateValue}");
-
         if (canGetNewValue)
         {
             int y = differenceInValue / 10;
