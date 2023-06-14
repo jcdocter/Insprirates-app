@@ -7,11 +7,9 @@ public class Fishing : MonoBehaviour
     [HideInInspector]
     public bool hideObject = false;
 
-    public bool isTest;
     public float resetTimer;
 
     public GameObject[] fishObjects;
-    public Vector2 limitRange;
     public Vector3 startPosition;
 
     public Rules rules = new Rules();
@@ -33,12 +31,7 @@ public class Fishing : MonoBehaviour
         startTimer = resetTimer;
         SpawnFish();
 
-        if(!isTest)
-        {
-            transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-        }
-
-        transform.localScale = new Vector3(300, 300, 300);
+//        transform.localScale = new Vector3(300, 300, 300);
         transform.position = startPosition;
     }
 
@@ -107,16 +100,42 @@ public class Fishing : MonoBehaviour
 
         if (hasThrown)
         {
-            transform.position += new Vector3(0.0f, releasePower * throwSpeed * Time.deltaTime, throwSpeed * Time.deltaTime);
+            float yDirection = (releasePower/10) * throwSpeed * Time.deltaTime;
+
+            if (transform.position.y > releasePower)
+            {
+                yDirection = releasePower;
+            }
+
+            if(transform.position.y < -releasePower)
+            {
+                yDirection = -releasePower;
+            }
+
+            transform.position += new Vector3(0.0f, yDirection, throwSpeed * Time.deltaTime);
+            Debugger.WriteData($"{transform.position.y}");
             return;
         }
 
         if (Input.acceleration.y > 0 || swipe.CheckSwipe())
         {
-            releasePower = Input.acceleration.y > 0 ? Mathf.Clamp(Input.acceleration.y, -5.0f, 5.0f) : Mathf.Clamp(swipe.endTouchPosition.y - swipe.startTouchPosition.y, -5.0f, 5.0f);
+/*            releasePower = Input.acceleration.y > 0 ? Mathf.Clamp(Input.acceleration.y, -5.0f, 5.0f) : Mathf.Clamp(swipe.endTouchPosition.y - swipe.startTouchPosition.y, -5.0f, 5.0f);*/
 
-            hasThrown = true;
+            releasePower = Input.acceleration.y > 0 ? Scale(0.0f, 1.0f, -5.0f, 5.0f, Input.acceleration.y) : Scale(42.0f, 2414.0f, -5.0f, 5.0f, swipe.endTouchPosition.y - swipe.startTouchPosition.y);
+
+           hasThrown = true;
+
+            //           Debugger.WriteData("Accel: " + Input.acceleration.y);
         }
+    }
+
+    private float Scale(float OldMin, float OldMax, float NewMin, float NewMax, float OldValue)
+    {
+        float OldRange = (OldMax - OldMin);
+        float NewRange = (NewMax - NewMin);
+        float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
+
+        return (NewValue);
     }
 
     private void SpawnFish()
@@ -133,8 +152,8 @@ public class Fishing : MonoBehaviour
     private void RemoveFish()
     {
         foreach(GameObject fish in fishList)
-        {
-            fish.SetActive(false);
+        {   
+            Destroy(fish);
         }
     }
 }

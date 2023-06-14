@@ -21,9 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/ReleasedScenes/RecapScreen.unity
     guid: aa58117ce2da0e048907ca204128b131
   - enabled: 0
-    path: Assets/Scenes/ModelTestingScene.unity
-    guid: 07ddf18ea7f558241bcb8a71750283df
-  - enabled: 0
     path: Assets/Scenes/UI mockup.unity
     guid: 65ade4b586f98a143869e8a89b3102ba
   - enabled: 0
@@ -32,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/UItest_quest.unity
     guid: 9b18d315df1c4d24091375c443a91716
+  - enabled: 0
+    path: Assets/Scenes/ModelTestingScene.unity
+    guid: d8f262ffbb8f9c940a8e506ced6c59eb
   m_configObjects: {}
