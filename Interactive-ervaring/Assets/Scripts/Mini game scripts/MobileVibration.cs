@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
 {
+    [HideInInspector]
+    public GameObject tutorialClone;
+
+    public GameObject tutorialCharacter;
+
     public GameObject finalReward;
-    public GameObject tutorialcharacter;
     public Rules rules = new Rules();
-    private Tutorial tutorial;
     private Gyroscope gyro;
+    private Vector3 originalScale;
 
     private Animator animator;
 
@@ -18,6 +23,7 @@ public class MobileVibration : MonoBehaviour
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
+    private bool canStart = true;
     private bool done = false;
     private bool foundPiece;
 
@@ -26,18 +32,36 @@ public class MobileVibration : MonoBehaviour
 
     private void Start()
     {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-        rules.SetRules();
+        rules.SetPicture(false);
 
-        gyroEnabled = EnableGyro();
-        animator = FindObjectOfType<Animator>();
-        GameObject.Instantiate(tutorialcharacter, tutorialcharacter.transform);
-        tutorial = tutorialcharacter.GetComponent<Tutorial>();
-        lockPickValue = Random.Range(-100, 100);
+        originalScale = transform.localScale;
+        transform.localScale = new Vector3(0, 0, 0);
+        tutorialClone = GameObject.Instantiate(tutorialCharacter);
+
+        if (Inventory.GetInstance().amountOfCrownPieces > 0)
+        {
+            tutorialClone.SetActive(false);
+        }
+
+        if(!tutorialClone.activeSelf)
+        {
+            SetTreasureGame();
+        }
     }
 
     void Update()
     {
+        if (canStart && !tutorialClone.activeSelf)
+        {
+            SetTreasureGame();
+            canStart = false;
+        }
+
+        if (tutorialClone.activeSelf)
+        {
+            return;
+        }
+
         if (!rules.StartGame())
         {
             return;
@@ -74,6 +98,16 @@ public class MobileVibration : MonoBehaviour
 
         differenceInValue = Mathf.Abs(lockPickValue - rotateValue);
         VibrationTimer();
+    }
+
+    private void SetTreasureGame()
+    {
+        rules.SetRules();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        transform.localScale = originalScale;
+        gyroEnabled = EnableGyro();
+        animator = FindObjectOfType<Animator>();
+        lockPickValue = Random.Range(-100, 100);
     }
 
     private bool EnableGyro()
@@ -119,7 +153,16 @@ public class MobileVibration : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                tutorial.LastLine();
+                if(Inventory.GetInstance().amountOfCrownPieces == 1)
+                {
+                    tutorialClone.SetActive(true);
+                    FindObjectOfType<Tutorial>().LastLine();
+                }
+                else
+                {
+                    rules.CheckOffQuest();
+                }
+
             }
         }
     }
