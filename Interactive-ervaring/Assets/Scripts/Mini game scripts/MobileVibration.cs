@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
 {
+    [HideInInspector]
+    public GameObject tutorialClone;
+
+    public GameObject tutorialCharacter;
+
     public GameObject finalReward;
     public Rules rules = new Rules();
     private Gyroscope gyro;
+    private Vector3 originalScale;
+
     private Animator animator;
 
     private int lockPickValue;
@@ -15,6 +23,7 @@ public class MobileVibration : MonoBehaviour
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
+    private bool canStart = true;
     private bool done = false;
     private bool foundPiece;
 
@@ -23,16 +32,36 @@ public class MobileVibration : MonoBehaviour
 
     private void Start()
     {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-        rules.SetRules();
-        gyroEnabled = EnableGyro();
-        animator = FindObjectOfType<Animator>();
-        lockPickValue = Random.Range(-100, 100);
-        Debug.Log(lockPickValue);
+        rules.SetPicture(false);
+
+        originalScale = transform.localScale;
+        transform.localScale = new Vector3(0, 0, 0);
+        tutorialClone = GameObject.Instantiate(tutorialCharacter);
+
+        if (Inventory.GetInstance().amountOfCrownPieces > 0)
+        {
+            tutorialClone.SetActive(false);
+        }
+
+        if(!tutorialClone.activeSelf)
+        {
+            SetTreasureGame();
+        }
     }
 
     void Update()
     {
+        if (canStart && !tutorialClone.activeSelf)
+        {
+            SetTreasureGame();
+            canStart = false;
+        }
+
+        if (tutorialClone.activeSelf)
+        {
+            return;
+        }
+
         if (!rules.StartGame())
         {
             return;
@@ -71,6 +100,16 @@ public class MobileVibration : MonoBehaviour
         VibrationTimer();
     }
 
+    private void SetTreasureGame()
+    {
+        rules.SetRules();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        transform.localScale = originalScale;
+        gyroEnabled = EnableGyro();
+        animator = FindObjectOfType<Animator>();
+        lockPickValue = Random.Range(-100, 100);
+    }
+
     private bool EnableGyro()
     {
         if (SystemInfo.supportsGyroscope)
@@ -95,7 +134,8 @@ public class MobileVibration : MonoBehaviour
             rules.rewardObject = finalReward;
         }
 
-        rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+        rules.ShowReward(new Vector3(0,0, 5.0f));
+        foundPiece = true;
     }
 
     private void FoundPiece()
@@ -105,7 +145,7 @@ public class MobileVibration : MonoBehaviour
             return;
         }
 
-        if (rules.photoCapture.tookPhoto)
+        if (rules.photoCapture.tookPhoto && rules.photoCapture.gameObject.activeSelf)
         {
             rules.CheckOffQuest();
         }
@@ -113,7 +153,17 @@ public class MobileVibration : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                rules.CheckOffQuest();
+                if(Inventory.GetInstance().amountOfCrownPieces == 1)
+                {
+                    Destroy(rules.rewardObject);
+                    tutorialClone.SetActive(true);
+                    FindObjectOfType<Tutorial>().LastLine();
+                }
+                else
+                {
+                    rules.CheckOffQuest();
+                }
+
             }
         }
     }

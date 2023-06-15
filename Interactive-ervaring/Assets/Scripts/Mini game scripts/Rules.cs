@@ -12,7 +12,6 @@ public class Rules
     [HideInInspector]
     public Canvas pauseScreen;
 
-    public GameObject tutorialCharacter;
     public GameObject rewardObject;
     public Canvas pauseObject;
 
@@ -26,17 +25,12 @@ public class Rules
         pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen.GetComponent<Canvas>().worldCamera = Camera.main;
 
-        if(tutorialCharacter != null )
-        {
-            GameObject.Instantiate(tutorialCharacter, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
-        }
-
         SetPicture(false);
     }
 
     public void SetPicture(bool _activatePictureMode)
     {
-        if(photoCapture == null)
+        if (photoCapture == null)
         {
             photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
         }
@@ -55,9 +49,10 @@ public class Rules
         return canStartGame;
     }
 
-    public void ShowReward(Transform _display)
+    public void ShowReward(Vector3 _position)
     {
-        GameObject.Instantiate(rewardObject, _display.position, rewardObject.transform.localRotation);
+        Debug.Log(rewardObject);
+        GameObject.Instantiate(rewardObject, _position, rewardObject.transform.localRotation);
     }
 
     public void CheckOffQuest()

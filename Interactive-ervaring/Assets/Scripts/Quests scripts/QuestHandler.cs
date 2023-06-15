@@ -18,6 +18,7 @@ public class QuestHandler : MonoBehaviour
 
     private Animator animator;
     private FinishingQuest finishingQuest;
+    private GameObject tutorial;
 
     private void Start()
     {
@@ -26,22 +27,23 @@ public class QuestHandler : MonoBehaviour
         animator = FindObjectOfType<Animator>();
         finishingQuest = new FinishingQuest(questFieldList);
         finishingQuest.DeactivateProgress();
+        tutorial = FindObjectOfType<Tutorial>().transform.parent.gameObject;
         LoadQuest();
 
         treasureMap.SetActive(DirectoryReader.DirectoryExist());
     }
 
     public void ActivateCamera()
-    {        
-        animator.SetBool("activateScope", true);
+    {
+        if(!tutorial.activeSelf)
+        {
+            animator.SetBool("activateScope", true);
+        }
     }
 
     public void Recap()
     {
-        if(!FindObjectOfType<Dialogue>().gameObject.activeSelf)
-        {
-            SceneManager.LoadScene("RecapScreen");
-        }
+        SceneManager.LoadScene("RecapScreen");
     }
 
     private void LoadQuest()
@@ -61,6 +63,11 @@ public class QuestHandler : MonoBehaviour
         {
             questList[i].isDone = finishingQuest.CheckProgress(questList[i]);
             finishingQuest.DisplayProgress(questList[i]);
+
+            if (finishingQuest.showProgress)
+            {
+                tutorial.SetActive(false);
+            }
         }
 
         SaveSystem.SaveQuest();

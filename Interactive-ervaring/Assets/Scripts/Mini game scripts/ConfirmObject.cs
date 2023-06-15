@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class ConfirmObject : MonoBehaviour
 {
-    private PhotoCapture photoCapture;
+    private MaskmanDialogue maskmanDialogue;
     private Rules rules = new Rules();
     private Swipe swipe = new Swipe();
 
     private void Start()
     {
-        photoCapture = FindObjectOfType<PhotoCapture>();
-        photoCapture.gameObject.SetActive(false);
+        maskmanDialogue = GetComponentInChildren<MaskmanDialogue>();
+        rules.SetPicture(false);
     }
 
     private void Update()
     {
+        if(!maskmanDialogue.endDialogue)
+        {
+            return;
+        }
+
         if(!Debugger.OnDevice())
         {
             if(Input.GetKeyDown(KeyCode.Space))
@@ -26,14 +31,6 @@ public class ConfirmObject : MonoBehaviour
             }
         }
 
-/*        if(photoCapture.gameObject.activeSelf)
-        {
-            if(rules.photoCapture.tookPhoto)
-            {
-                rules.CheckOffQuest();
-            }
-        }*/
-
         Swipe();
     }
 
@@ -42,13 +39,6 @@ public class ConfirmObject : MonoBehaviour
         if(swipe.CheckSwipe())
         {
             Inventory.GetInstance().amountOfRecruits++;
-
-/*            if(Inventory.GetInstance().amountOfRecruits == 5)
-            {
-                photoCapture.gameObject.SetActive(true);
-                rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
-            }*/
-
             rules.CheckOffQuest();
         }
     }
