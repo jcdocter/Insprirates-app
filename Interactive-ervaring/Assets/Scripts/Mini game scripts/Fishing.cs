@@ -146,7 +146,6 @@ public class Fishing : MonoBehaviour
             }
 
             transform.position += new Vector3(0.0f, yDirection, throwSpeed * Time.deltaTime);
-            Debugger.WriteData($"{transform.position.y}");
             return;
         }
 

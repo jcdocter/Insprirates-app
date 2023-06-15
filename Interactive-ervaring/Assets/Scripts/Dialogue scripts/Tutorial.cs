@@ -21,7 +21,7 @@ public class Tutorial : Dialogue
 
     protected override void EndCondition()
     {
-        if(isEnd)
+        if(isEnd && !startOnly)
         {
             rule.CheckOffQuest();
         }
