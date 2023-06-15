@@ -327,15 +327,18 @@ MonoBehaviour:
   nextButton: {fileID: 3510447910661285630}
   finalButton: {fileID: 9033013916609217342}
   startOnly: 0
-  startGame: 0
   scriptList:
   - isEnd: 0
     tutorialTexts:
-    - First thing first
-    - Second of all
+    - Arrgg, waarom gaat deze schatkist niet open!?
+    - "Oh, wat doe jij hier!? Ik ben RAGING RICO en ik was net bezig deze schatkist
+      te openen\u2026 maar het lukt me niet. Arrgg"
+    - Stomme kist
+    - "Kan jij het eens proberen, je moet \u2018m draaien volgens mij"
+    - "Wow, voel je die trilling? Hoe harder \u2018ie trilt, hoe beter! "
   - isEnd: 1
     tutorialTexts:
-    - final text
+    - "Hey joh, het is je gelukt! Wel wat schatten voor mij overlaten h\xE8!?"
 --- !u!224 &2082433488722887655 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
