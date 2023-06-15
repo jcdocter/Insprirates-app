@@ -79,7 +79,7 @@ public class FishController : MonoBehaviour
             this.gameObject.transform.localScale *= 5.0f;
             this.gameObject.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
             fishing.rules.rewardObject = this.gameObject;
-            fishing.rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+            fishing.rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform.position);
 
             fishing.RemoveFish();
         }

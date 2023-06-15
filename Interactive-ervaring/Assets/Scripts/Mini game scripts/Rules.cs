@@ -49,10 +49,10 @@ public class Rules
         return canStartGame;
     }
 
-    public void ShowReward(Transform _display)
+    public void ShowReward(Vector3 _position)
     {
         Debug.Log(rewardObject);
-        GameObject.Instantiate(rewardObject, _display.position, rewardObject.transform.localRotation);
+        GameObject.Instantiate(rewardObject, _position, rewardObject.transform.localRotation);
     }
 
     public void CheckOffQuest()

@@ -134,7 +134,7 @@ public class MobileVibration : MonoBehaviour
             rules.rewardObject = finalReward;
         }
 
-        rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+        rules.ShowReward(new Vector3(0,0, 5.0f));
         foundPiece = true;
     }
 
@@ -155,6 +155,7 @@ public class MobileVibration : MonoBehaviour
             {
                 if(Inventory.GetInstance().amountOfCrownPieces == 1)
                 {
+                    Destroy(rules.rewardObject);
                     tutorialClone.SetActive(true);
                     FindObjectOfType<Tutorial>().LastLine();
                 }
