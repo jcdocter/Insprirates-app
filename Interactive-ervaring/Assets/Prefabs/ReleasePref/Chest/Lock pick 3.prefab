@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 7447216068696452664}
   - component: {fileID: 6952342451401939706}
   m_Layer: 5
-  m_Name: Lock pick 2
+  m_Name: Lock pick 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,11 +486,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23564e37669d39a45a14392ca987d2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialClone: {fileID: 0}
+  tutorialCharacter: {fileID: 6442515602974594989, guid: 0ef0320a29a31b9468ca0188f5283a24, type: 3}
   finalReward: {fileID: 6900533014134240083, guid: dabb2a8c590171f4a8c785066a143a39, type: 3}
   rules:
     photoCapture: {fileID: 0}
     pauseScreen: {fileID: 0}
-    rewardObject: {fileID: 6900533014134240083, guid: 6e8f827f8bd3fb34e8f89e602f2e7ae8, type: 3}
+    rewardObject: {fileID: 6900533014134240083, guid: 11093a3d5da7c4f45a487b4149d70f5c, type: 3}
     pauseObject: {fileID: 5766614169163684626, guid: ebadfbefe568b55409b4823ecb766b2a, type: 3}
 --- !u!1 &6720929228137823515
 GameObject:

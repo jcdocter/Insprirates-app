@@ -10,7 +10,6 @@ public class FishController : MonoBehaviour
     private Fishing fishing;
     private Vector3 spawnPoint;
     private Animator animator;
-    private bool showFish;
 
     private void Start()
     {
@@ -33,7 +32,9 @@ public class FishController : MonoBehaviour
             if(fishing.rules.photoCapture.tookPhoto)
             {
                 Inventory.GetInstance().amountOfFish++;
-                fishing.rules.CheckOffQuest();
+                fishing.tutorialClone.SetActive(true);
+                FindObjectOfType<Tutorial>().LastLine();
+                Destroy(this.gameObject);
             }
 
             return;
@@ -48,16 +49,6 @@ public class FishController : MonoBehaviour
                 fishing.rules.CheckOffQuest();
             }
             return;
-        }
-
-        if(showFish)
-        {
-            this.gameObject.transform.localScale *= 5.0f;
-            this.gameObject.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
-            fishing.rules.rewardObject = this.gameObject;
-//            fishing.rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
-
-            fishing.hideObject = true;
         }
 
         MoveToPoint();
@@ -85,7 +76,12 @@ public class FishController : MonoBehaviour
     {
         if (_other.gameObject.GetComponent<Fishing>())
         {
-            showFish = true;
+            this.gameObject.transform.localScale *= 5.0f;
+            this.gameObject.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+            fishing.rules.rewardObject = this.gameObject;
+            fishing.rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform.position);
+
+            fishing.RemoveFish();
         }
     }
 }

@@ -9,6 +9,11 @@ public class Fishing : MonoBehaviour
 
     public float resetTimer;
 
+    [HideInInspector]
+    public GameObject tutorialClone;
+
+    public GameObject tutorialCharacter;
+
     public GameObject[] fishObjects;
     public Vector3 startPosition;
 
@@ -17,38 +22,66 @@ public class Fishing : MonoBehaviour
     private List<GameObject> fishList = new List<GameObject>();
     private Swipe swipe = new Swipe();
 
+
     private bool hasThrown;
+    private bool canStart = true;
 
     private float throwSpeed = 4.0f;
     private float height;
     private float releasePower;
     private float startTimer;
 
+    private void Awake()
+    {
+        transform.localScale = new Vector3(0, 0, 0);
+        rules.SetPicture(false);
+        tutorialClone = GameObject.Instantiate(tutorialCharacter);
+
+        if (Inventory.GetInstance().amountOfFish > 0)
+        {
+            tutorialClone.SetActive(false);
+        }
+    }
+
     private void Start()
+    {
+        if(!tutorialClone.activeSelf)
+        {
+            SetFishGame();
+            canStart = false;
+        }
+    }
+
+    private void Update()
+    {
+        if(canStart && !tutorialClone.activeSelf)
+        {
+            SetFishGame();
+            canStart = false;
+        }
+
+        if(tutorialClone.activeSelf)
+        {
+            return;
+        }
+
+        if(!rules.StartGame())
+        {
+            return;
+        }
+
+        Throw();
+    }
+
+    private void SetFishGame()
     {
         rules.SetRules();
 
         startTimer = resetTimer;
         SpawnFish();
 
-//        transform.localScale = new Vector3(300, 300, 300);
+        transform.localScale = new Vector3(300, 300, 300);
         transform.position = startPosition;
-    }
-
-    private void Update()
-    {
-        if(!rules.StartGame())
-        {
-            return;
-        }
-
-        if(hideObject)
-        {
-            RemoveFish();
-            this.gameObject.SetActive(false);
-        }
-
-        Throw();
     }
 
     private void Throw()
@@ -145,12 +178,14 @@ public class Fishing : MonoBehaviour
         }
     }
 
-    private void RemoveFish()
+    public void RemoveFish()
     {
         foreach(GameObject fish in fishList)
         {   
-            Destroy(fish);
+            fish.SetActive(false);
         }
+
+        this.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 }
 
