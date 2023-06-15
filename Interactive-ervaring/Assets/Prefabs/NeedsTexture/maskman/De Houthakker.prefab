@@ -74,6 +74,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177497739389975666}
     m_Modifications:
+    - target: {fileID: 998139877558165358, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7719135221364940012}
+    - target: {fileID: 998139877558165358, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835811351873466700, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7719135221364940012}
+    - target: {fileID: 1835811351873466700, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735501945209297835, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7719135221364940012}
+    - target: {fileID: 3735501945209297835, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousDialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 5011982980723233632, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: m_Name
       value: Dialogue canvas

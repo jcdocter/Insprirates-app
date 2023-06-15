@@ -20,5 +20,4 @@ MonoBehaviour:
   amountToTrack: 4
   descriptionNextQuest: De hoeveelheid schatkisten die je heb gevonden
   QRID: treasure_1
-  descriptionObject: {fileID: 8122514824815986802, guid: 9480396138230744b8ec1ea6ca130b35, type: 3}
   nextQuest: {fileID: 0}

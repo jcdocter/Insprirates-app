@@ -74,6 +74,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9177497739389975666}
     m_Modifications:
+    - target: {fileID: 998139877558165358, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1553372300504631714}
+    - target: {fileID: 998139877558165358, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835811351873466700, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1553372300504631714}
+    - target: {fileID: 1835811351873466700, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735501945209297835, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1553372300504631714}
+    - target: {fileID: 3735501945209297835, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousDialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 5011982980723233632, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
       propertyPath: m_Name
       value: Dialogue canvas
@@ -180,6 +204,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+--- !u!1 &3372588190869767110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2608674361826890682, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 792080024753934460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5127052246836055742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5609508554452770498, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 792080024753934460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5724122828969329436 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5011982980723233632, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
@@ -197,10 +231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a68e66b5e03448a1af331f883b257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 0}
-  previousButton: {fileID: 0}
-  nextButton: {fileID: 0}
-  finalButton: {fileID: 0}
+  dialogueBox: {fileID: 5724122830450674500}
+  previousButton: {fileID: 5127052246836055742}
+  nextButton: {fileID: 7143268237804119558}
+  finalButton: {fileID: 3372588190869767110}
   endDialogue: 0
   maskDialogue:
   - 'Pffff, het is eigenlijk al warm genoeg hier, maar ja een kampvuur kan nooit
@@ -209,6 +243,22 @@ MonoBehaviour:
 --- !u!224 &5724122828969329439 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 792080024753934460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5724122830450674500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5011982979251264312, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 792080024753934460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7143268237804119558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7629084610672014970, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
   m_PrefabInstance: {fileID: 792080024753934460}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9177497739169521098
