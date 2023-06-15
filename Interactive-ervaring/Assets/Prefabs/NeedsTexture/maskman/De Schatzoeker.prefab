@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9177497739389975669}
   - component: {fileID: 9177497739389975668}
   m_Layer: 5
-  m_Name: Maskman 3
+  m_Name: De Schatzoeker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,6 +180,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+--- !u!1 &5724122828969329436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5011982980723233632, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 792080024753934460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &551618145608208278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724122828969329436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807a68e66b5e03448a1af331f883b257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 0}
+  previousButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  finalButton: {fileID: 0}
+  endDialogue: 0
+  maskDialogue:
+  - "Hoi, ik ben de hele dag al schatten aan het zoeken. Dat is best leuk maar eigenlijk
+    zoek ik een vlot\u2026 "
+  - Daarmee kan je veel sneller zoeken, als ik jou nou een schatkaart geef, stuur
+    jij mij dan op naar een vlot? Lijkt mij een goede deal!
 --- !u!224 &5724122828969329439 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}

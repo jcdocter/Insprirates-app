@@ -327,15 +327,17 @@ MonoBehaviour:
   nextButton: {fileID: 3510447910661285630}
   finalButton: {fileID: 9033013916609217342}
   startOnly: 0
-  startGame: 0
   scriptList:
   - isEnd: 0
     tutorialTexts:
-    - First thing first
-    - Second of all
+    - Hey, jij ook hier!? Ik ben Platinum Patty!
+    - Wist je dat jouw magische verrekijker een ingebouwde vishaak heeft? Zo moet
+      het!
+    - Beweeg je vishaak naar voren! Probeer maar uit!
   - isEnd: 1
     tutorialTexts:
-    - final text
+    - Wat een mooie vis heb je gevangen, goed gedaan!
+    - Er zijn nog veel meer soorten vissen, probeer ze allemaal te vangen!
 --- !u!224 &2082433488722887655 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}

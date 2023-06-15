@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9177497739389975669}
   - component: {fileID: 9177497739389975668}
   m_Layer: 5
-  m_Name: Maskman 4
+  m_Name: De Stoker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,6 +180,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+--- !u!1 &5724122828969329436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5011982980723233632, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
+  m_PrefabInstance: {fileID: 792080024753934460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1553372300504631714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724122828969329436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807a68e66b5e03448a1af331f883b257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 0}
+  previousButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  finalButton: {fileID: 0}
+  endDialogue: 0
+  maskDialogue:
+  - 'Pffff, het is eigenlijk al warm genoeg hier, maar ja een kampvuur kan nooit
+    kwaad zeg ik altijd. Maar ja, ik kan niet zomaar overal een fikkie stoken. '
+  - Kan jij mij misschien naar een vlot sturen waar een stoker lekker kan stoken?
 --- !u!224 &5724122828969329439 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
@@ -210,11 +236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.08
+      value: 0.07999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalPosition.y
@@ -230,15 +256,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4ebde1fc8e06045be0f6236febc0be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
