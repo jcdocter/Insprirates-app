@@ -3513,8 +3513,9 @@ MonoBehaviour:
   - needsFish: 0
     ID: 1
     scriptText:
-    - Hallo, wie ben jij? Het is echt groot en druk hier. Ik zoek naar een vis
-    - maar ik kan met al deze dingen niet gaan vissen. Grrrr wat een drukte.
+    - Hallo, wie ben jij? Het is echt groot en druk hier. Ik zoek naar een vis maar
+      ik kan met al deze dingen niet gaan vissen.
+    - "Grrrr wat een drukte.\r"
   - needsFish: 0
     ID: 2
     scriptText:
