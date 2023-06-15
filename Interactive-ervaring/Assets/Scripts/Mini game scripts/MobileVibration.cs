@@ -5,8 +5,11 @@ using UnityEngine;
 public class MobileVibration : MonoBehaviour
 {
     public GameObject finalReward;
+    public GameObject tutorialcharacter;
     public Rules rules = new Rules();
+    private Tutorial tutorial;
     private Gyroscope gyro;
+
     private Animator animator;
 
     private int lockPickValue;
@@ -25,10 +28,12 @@ public class MobileVibration : MonoBehaviour
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         rules.SetRules();
+
         gyroEnabled = EnableGyro();
         animator = FindObjectOfType<Animator>();
+        GameObject.Instantiate(tutorialcharacter, tutorialcharacter.transform);
+        tutorial = tutorialcharacter.GetComponent<Tutorial>();
         lockPickValue = Random.Range(-100, 100);
-        Debug.Log(lockPickValue);
     }
 
     void Update()
@@ -96,6 +101,7 @@ public class MobileVibration : MonoBehaviour
         }
 
         rules.ShowReward(FindObjectOfType<ObjectSpawner>().transform);
+        foundPiece = true;
     }
 
     private void FoundPiece()
@@ -105,7 +111,7 @@ public class MobileVibration : MonoBehaviour
             return;
         }
 
-        if (rules.photoCapture.tookPhoto)
+        if (rules.photoCapture.tookPhoto && rules.photoCapture.gameObject.activeSelf)
         {
             rules.CheckOffQuest();
         }
@@ -113,7 +119,7 @@ public class MobileVibration : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                rules.CheckOffQuest();
+                tutorial.LastLine();
             }
         }
     }

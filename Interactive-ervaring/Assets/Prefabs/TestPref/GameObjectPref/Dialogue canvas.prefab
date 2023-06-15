@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6223358759162194577}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
         m_MethodName: NextDialogue
         m_Mode: 1
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6223358759162194577}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
         m_MethodName: PreviousDialogue
         m_Mode: 1
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6223358759162194577}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
         m_MethodName: NextDialogue
         m_Mode: 1
@@ -777,7 +777,6 @@ GameObject:
   - component: {fileID: 5011982980723233635}
   - component: {fileID: 5011982980723233644}
   - component: {fileID: 5011982980723233634}
-  - component: {fileID: 6223358759162194577}
   m_Layer: 5
   m_Name: Dialogue canvas
   m_TagString: Untagged
@@ -844,49 +843,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6223358759162194577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5011982980723233632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d24910e2fd254314f9c9ed7fc53eeaa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTutorial: 0
-  scriptList:
-  - needsFish: 0
-    ID: 1
-    scriptText:
-    - 'Hallo, wie ben jij? Het is echt groot en druk hier. Ik zoek naar een vis '
-    - "maar ik kan met al deze dingen niet gaan vissen. Grrrr wat een drukte.\r"
-  - needsFish: 0
-    ID: 2
-    scriptText:
-    - 'Hallo, daar ben je weer, heb je geen vis? Ja hallo. Het is dat ik op mijn
-      familie moet letten anders zou ik het zelf doen! '
-    - "Ik had ook al wat vissen gezien, dus zo ver is het niet, argh.\r"
-  - needsFish: 1
-    ID: 2
-    scriptText:
-    - 'Wat? Je hebt een vis? Die was voor mijn kleinkind, Krietje,  maar die is verdwenen
-      aaa. '
-    - Ik moet die vinden. Waar is die toch heen?!
-  - needsFish: 0
-    ID: 3
-    scriptText:
-    - 'Och gelukkig hier ben je Krietje. Ik was je kwijt! Hier eet deze vis maar,
-      dat is goed voor je. '
-    - 'Sorry dat ik zo bot tegen jou deed, bedankt voor het helpen met zoeken en
-      de vis vangen. '
-    - Wij gaan nog even genieten van de beurs, we zien je vast nog wel.
-  dialogueBox: {fileID: 5011982979251264312}
-  previousButton: {fileID: 5609508554452770498}
-  nextButton: {fileID: 7629084610672014970}
-  finalButton: {fileID: 2608674361826890682}
 --- !u!1 &5609508554452770498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +964,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6223358759162194577}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
         m_MethodName: PreviousDialogue
         m_Mode: 1
@@ -1141,7 +1097,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6223358759162194577}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
         m_MethodName: NextDialogue
         m_Mode: 1
