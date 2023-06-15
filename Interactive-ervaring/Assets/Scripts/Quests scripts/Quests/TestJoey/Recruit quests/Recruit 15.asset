@@ -18,7 +18,7 @@ MonoBehaviour:
   hasCrown: 0
   hasRecruits: 1
   amountToTrack: 5
-  descriptionNextQuest: 
+  descriptionNextQuest: aantal masker mannetjes dat je hebt gevonden
   QRID: raft_1
   descriptionObject: {fileID: 0}
   nextQuest: {fileID: 11400000, guid: c070fec3e099a1241b463eb50b32635f, type: 2}

@@ -5,11 +5,12 @@ using TMPro;
 
 public class FinishingQuest
 {
-    private GameObject displayParent;
+    public bool showProgress;
+    private List<QuestField> questFieldList;
 
-    public FinishingQuest(GameObject _buttonParent)
-    {
-       this.displayParent = _buttonParent;
+    public FinishingQuest(List<QuestField> _questFieldList) 
+    { 
+        this.questFieldList = _questFieldList;
     }
 
     public bool CheckProgress(Quest _quest)
@@ -26,15 +27,39 @@ public class FinishingQuest
 
     public void DisplayProgress(Quest _quest)
     {
-        _quest.descriptionObject.GetComponentInChildren<TextMeshProUGUI>().text = _quest.Description();
-
-        GameObject button = GameObject.Instantiate(_quest.descriptionObject, displayParent.transform);
-
-/*        if (_quest.isDone && _quest.nextQuest == null)
+        for (int i = 0; i < questFieldList.Count; i++)
         {
-            button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
-            button.transform.SetAsFirstSibling();
-        }*/
+            for (int j = 0; j < questFieldList[i].quests.Length; j++)
+            {
+                if ((_quest.isDone || fishCheck(_quest)) && _quest.ID == questFieldList[i].quests[j].ID)
+                {
+                    questFieldList[i].field.SetActive(true);
+                    questFieldList[i].field.GetComponentInChildren<TextMeshProUGUI>().text = _quest.Description();
+                    showProgress = true;
+                }
+            }
+        }
+    }
+
+    public void DeactivateProgress()
+    {
+        for (int i = 0; i < questFieldList.Count; i++)
+        {
+            questFieldList[i].field.SetActive(false);
+        }
+    }
+
+    private bool fishCheck(Quest _quest)
+    {
+        if(_quest.hasFish)
+        {
+            if (Inventory.GetInstance().amountOfFish > 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool InventoryValue(Quest _quest)

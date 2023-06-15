@@ -24,7 +24,7 @@ public class Models
     }
 }
 
-public class ObjectSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour, IGoBack
 {
     public List<Models> modelList = new List<Models>();
 
@@ -47,5 +47,10 @@ public class ObjectSpawner : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         }
+    }
+
+    public void ReturnToPage()
+    {
+        SceneManager.LoadScene("ListPage");
     }
 }

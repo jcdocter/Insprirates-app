@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,13 +9,12 @@ public class Rules
     [HideInInspector]
     public PhotoCapture photoCapture;
 
-    public GameObject rewardObject;
-
     [HideInInspector]
     public Canvas pauseScreen;
-    
+
+    public GameObject rewardObject;
     public Canvas pauseObject;
-    public Canvas instructionCanavas;
+
     private RecCamera recCam;
     private bool canStartGame = false;
 
@@ -24,22 +22,25 @@ public class Rules
     {
         recCam = GameObject.FindObjectOfType<RecCamera>();
         recCam.canSwitchCam = false;
-        instructionCanavas = GameObject.Instantiate(instructionCanavas, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         pauseScreen.GetComponent<Canvas>().worldCamera = Camera.main;
-        photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
 
         SetPicture(false);
     }
 
     public void SetPicture(bool _activatePictureMode)
     {
+        if (photoCapture == null)
+        {
+            photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
+        }
+
         photoCapture.gameObject.SetActive(_activatePictureMode);
     }
 
     public bool StartGame()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             pauseScreen.enabled = false;
             canStartGame = true;
@@ -48,9 +49,10 @@ public class Rules
         return canStartGame;
     }
 
-    public void ShowReward(Transform _display)
+    public void ShowReward(Vector3 _position)
     {
-        GameObject.Instantiate(rewardObject, _display.position, rewardObject.transform.localRotation);
+        Debug.Log(rewardObject);
+        GameObject.Instantiate(rewardObject, _position, rewardObject.transform.localRotation);
     }
 
     public void CheckOffQuest()
