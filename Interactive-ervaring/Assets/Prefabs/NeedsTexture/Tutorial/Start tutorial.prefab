@@ -326,16 +326,12 @@ MonoBehaviour:
   previousButton: {fileID: 1490853662029205062}
   nextButton: {fileID: 3510447910661285630}
   finalButton: {fileID: 9033013916609217342}
-  startOnly: 0
-  secondTime: 0
+  startOnly: 1
   scriptList:
-  - isEnd: 0
+  - isEnd: 1
     tutorialTexts:
     - First thing first
     - Second of all
-  - isEnd: 1
-    tutorialTexts:
-    - final text
 --- !u!224 &2082433488722887655 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5011982980723233635, guid: 83ccf3c35b9131c40abb88eb994fc66f, type: 3}
