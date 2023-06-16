@@ -581,19 +581,19 @@ MonoBehaviour:
     model: {fileID: 2886447473645115398, guid: 8579b8325a01b284f9a46bb3aec9d4a7, type: 3}
   - quests:
     - {fileID: 11400000, guid: e050a734662098f41bc7c02c61257634, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 3a6752087da669c4f94103c7b5a70bf0, type: 3}
   - quests:
     - {fileID: 11400000, guid: 309b7b36645d8b345b63e0df669c0968, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 7a32c37911aa01048b0c7db737a444ad, type: 3}
   - quests:
     - {fileID: 11400000, guid: 9f9e8534e3d2f8e4a8265bfcafa104da, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 293cf3dc21d475c458c55550e79e55ec, type: 3}
   - quests:
     - {fileID: 11400000, guid: 7a19429f4017c1d44847f0faa98a8f3f, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 636718d3d3257a246a03b46c9cd4c93f, type: 3}
   - quests:
     - {fileID: 11400000, guid: b4504e382a39b104393dfb9bb6628967, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 48e22a163acc4704d9cff7b9aa3dad63, type: 3}
 --- !u!1001 &1120003303
 PrefabInstance:
   m_ObjectHideFlags: 0
