@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8927333044742086220}
+  - component: {fileID: 6977360437755957622}
   m_Layer: 5
   m_Name: Map 4
   m_TagString: Untagged
@@ -37,6 +38,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6977360437755957622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2886447473645115398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4799d612c004c54f9c6e14a4872f2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 0}
+  previousButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  finalButton: {fileID: 0}
+  startOnly: 0
+  isMap: 1
+  scriptList: []
 --- !u!1 &3919055598867191407
 GameObject:
   m_ObjectHideFlags: 0

@@ -135,7 +135,7 @@ public class Fishing : MonoBehaviour
         {
             float yDirection = (releasePower/10) * throwSpeed * Time.deltaTime;
 
-            if (transform.position.y > releasePower)
+/*            if (transform.position.y > releasePower)
             {
                 yDirection = releasePower;
             }
@@ -143,7 +143,7 @@ public class Fishing : MonoBehaviour
             if(transform.position.y < -releasePower)
             {
                 yDirection = -releasePower;
-            }
+            }*/
 
             transform.position += new Vector3(0.0f, yDirection, throwSpeed * Time.deltaTime);
             return;

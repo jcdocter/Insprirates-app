@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideObject: 0
   resetTimer: 3
+  tutorialClone: {fileID: 0}
   tutorialCharacter: {fileID: 6442515602974594989, guid: 872dcad3cdef0404589c75e7caee6828, type: 3}
   fishObjects:
   - {fileID: 1077232906755642129, guid: aba5803815fdccf449ce4004e40bb110, type: 3}
@@ -92,8 +93,8 @@ MonoBehaviour:
   - {fileID: 5392043671324464975, guid: 523de60cf5bfb6b47b257bf97500b6cc, type: 3}
   startPosition: {x: 0.008104315, y: -0.3893728, z: 0.48914623}
   rules:
-    photoCapture: {fileID: 0}
     pauseScreen: {fileID: 0}
+    photoCapture: {fileID: 3622170993651866233, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
     rewardObject: {fileID: 0}
     pauseObject: {fileID: 5766614169163684626, guid: ebadfbefe568b55409b4823ecb766b2a, type: 3}
 --- !u!1001 &4953326846189634068

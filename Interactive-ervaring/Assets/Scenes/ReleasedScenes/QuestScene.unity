@@ -569,16 +569,13 @@ MonoBehaviour:
     model: {fileID: 5735555059871870307, guid: 50e3e79906686f94a9d764ce68e3e8e1, type: 3}
   - quests:
     - {fileID: 11400000, guid: 357315a66a1f941458d71133d35002dd, type: 2}
-    model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+    model: {fileID: 2886447473645115398, guid: 67ed6e613fe7fc94391fb2b666cd63fd, type: 3}
   - quests:
     - {fileID: 11400000, guid: 9ae8f9bf1c787234d90097808d51d65e, type: 2}
     model: {fileID: 2886447473645115398, guid: a71ba4a1a59e2b6468065f8c060f47e7, type: 3}
   - quests:
     - {fileID: 11400000, guid: 3fd168e2cd8141b4cb699a04c4fc28af, type: 2}
     model: {fileID: 2886447473645115398, guid: 98701d824f65faa41bb4ca15281171dd, type: 3}
-  - quests:
-    - {fileID: 11400000, guid: adbfa9eac2ce05d4d9a1be5c8929fbe4, type: 2}
-    model: {fileID: 2886447473645115398, guid: 8579b8325a01b284f9a46bb3aec9d4a7, type: 3}
   - quests:
     - {fileID: 11400000, guid: e050a734662098f41bc7c02c61257634, type: 2}
     model: {fileID: 9177497739389975671, guid: 3a6752087da669c4f94103c7b5a70bf0, type: 3}
@@ -1146,6 +1143,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1925616926}
@@ -1157,6 +1166,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 309
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 265
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.822
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.822
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.822
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1303
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216166, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216166, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 534ad12a07544df48b153ed604feccf9, type: 3}
     - target: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_Name
       value: Photo camera
