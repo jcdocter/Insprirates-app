@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
@@ -20,6 +19,7 @@ public class MobileVibration : MonoBehaviour
     private int lockPickValue;
     private int rotateValue;
     private int differenceInValue;
+    private int questID;
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
@@ -126,6 +126,8 @@ public class MobileVibration : MonoBehaviour
 
         if(Inventory.GetInstance().amountOfCrownPieces == 4)
         {
+            questID = PlayerPrefs.GetInt("questID");
+            PlayerPrefs.SetInt("questID", 7);
             rules.SetPicture(true);
             rules.rewardObject = finalReward;
         }
@@ -143,6 +145,7 @@ public class MobileVibration : MonoBehaviour
 
         if (rules.photoCapture.tookPhoto && rules.photoCapture.gameObject.activeSelf)
         {
+            PlayerPrefs.SetInt("questID", questID);
             rules.CheckOffQuest();
         }
         else

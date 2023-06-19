@@ -2578,7 +2578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 261327053735066265, guid: 147529654bb82ef49952936967c0150d, type: 3}
       propertyPath: piecesList.Array.data[3].photoID
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 261327053735066343, guid: 147529654bb82ef49952936967c0150d, type: 3}
       propertyPath: m_Name
