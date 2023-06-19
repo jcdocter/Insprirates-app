@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -683,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5277217959665165024, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00091552734
+      value: 0.0008544922
       objectReference: {fileID: 0}
     - target: {fileID: 5277217959665165024, guid: 69432264afee6ea4cba319dce18e7e2d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1146,6 +1146,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216161, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1925616926}
@@ -1157,6 +1169,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 309
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 265
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4327114
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4327114
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4327114
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1393.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216166, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128459496635216166, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 39611d4441b8ecd44afb6adeeceed1cc, type: 3}
     - target: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_Name
       value: Photo camera
