@@ -14,6 +14,7 @@ public class TutorialScripts
 public class Tutorial : Dialogue
 {
     public bool startOnly;
+    public bool isMap;
     public List<TutorialScripts> scriptList;
 
     private Rules rule = new Rules();
@@ -21,7 +22,7 @@ public class Tutorial : Dialogue
 
     protected override void EndCondition()
     {
-        if(isEnd)
+        if(isEnd && !startOnly)
         {
             rule.CheckOffQuest();
         }
@@ -33,7 +34,12 @@ public class Tutorial : Dialogue
 
     protected override void SetScript()
     {
-        if(startOnly)
+        if (DeactivateDialogue())
+        {
+            return;
+        }
+
+        if (startOnly)
         {
             RevertValue();
         }
@@ -65,5 +71,16 @@ public class Tutorial : Dialogue
         }
 
         isEnd = true;
+    }
+
+    private bool DeactivateDialogue()
+    {
+        if(isMap)
+        {
+            rule.SetPicture(false);
+            return true;
+        }
+
+        return false;
     }
 }

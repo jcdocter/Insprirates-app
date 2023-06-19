@@ -13,6 +13,7 @@ public class QRID
 public class Quest : ScriptableObject
 {
     public int ID;
+    public string QRID;
     public bool isDone;
 //    public bool showDescription;
 
@@ -22,7 +23,6 @@ public class Quest : ScriptableObject
     public int amountToTrack;
     public string descriptionNextQuest;
 
-    public string QRID;
     public Quest nextQuest;
 
     public string Description()

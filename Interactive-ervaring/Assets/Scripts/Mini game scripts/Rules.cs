@@ -51,7 +51,6 @@ public class Rules
 
     public void ShowReward(Vector3 _position)
     {
-        Debug.Log(rewardObject);
         GameObject.Instantiate(rewardObject, _position, rewardObject.transform.localRotation);
     }
 

@@ -569,7 +569,7 @@ MonoBehaviour:
     model: {fileID: 5735555059871870307, guid: 50e3e79906686f94a9d764ce68e3e8e1, type: 3}
   - quests:
     - {fileID: 11400000, guid: 357315a66a1f941458d71133d35002dd, type: 2}
-    model: {fileID: 5735555059871870307, guid: 3808c2b1b906213448d6869c6d278e13, type: 3}
+    model: {fileID: 2886447473645115398, guid: 67ed6e613fe7fc94391fb2b666cd63fd, type: 3}
   - quests:
     - {fileID: 11400000, guid: 9ae8f9bf1c787234d90097808d51d65e, type: 2}
     model: {fileID: 2886447473645115398, guid: a71ba4a1a59e2b6468065f8c060f47e7, type: 3}
@@ -577,23 +577,20 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3fd168e2cd8141b4cb699a04c4fc28af, type: 2}
     model: {fileID: 2886447473645115398, guid: 98701d824f65faa41bb4ca15281171dd, type: 3}
   - quests:
-    - {fileID: 11400000, guid: adbfa9eac2ce05d4d9a1be5c8929fbe4, type: 2}
-    model: {fileID: 2886447473645115398, guid: 8579b8325a01b284f9a46bb3aec9d4a7, type: 3}
-  - quests:
     - {fileID: 11400000, guid: e050a734662098f41bc7c02c61257634, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 3a6752087da669c4f94103c7b5a70bf0, type: 3}
   - quests:
     - {fileID: 11400000, guid: 309b7b36645d8b345b63e0df669c0968, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 7a32c37911aa01048b0c7db737a444ad, type: 3}
   - quests:
     - {fileID: 11400000, guid: 9f9e8534e3d2f8e4a8265bfcafa104da, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 293cf3dc21d475c458c55550e79e55ec, type: 3}
   - quests:
     - {fileID: 11400000, guid: 7a19429f4017c1d44847f0faa98a8f3f, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 636718d3d3257a246a03b46c9cd4c93f, type: 3}
   - quests:
     - {fileID: 11400000, guid: b4504e382a39b104393dfb9bb6628967, type: 2}
-    model: {fileID: 9177497739389975671, guid: 148a02da5e9212d4dbf56fbc1524fc0a, type: 3}
+    model: {fileID: 9177497739389975671, guid: 48e22a163acc4704d9cff7b9aa3dad63, type: 3}
 --- !u!1001 &1120003303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1179,19 +1176,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4327114
+      value: 1.822
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4327114
+      value: 1.822
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4327114
+      value: 1.822
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216163, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1393.7
+      value: -1303
       objectReference: {fileID: 0}
     - target: {fileID: 3128459496635216166, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_Type
@@ -1200,7 +1197,7 @@ PrefabInstance:
     - target: {fileID: 3128459496635216166, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 39611d4441b8ecd44afb6adeeceed1cc, type: 3}
+      objectReference: {fileID: 21300000, guid: 534ad12a07544df48b153ed604feccf9, type: 3}
     - target: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_Name
       value: Photo camera

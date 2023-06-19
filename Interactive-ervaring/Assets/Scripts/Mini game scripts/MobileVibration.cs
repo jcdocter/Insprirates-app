@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
@@ -20,6 +19,7 @@ public class MobileVibration : MonoBehaviour
     private int lockPickValue;
     private int rotateValue;
     private int differenceInValue;
+    private int questID;
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
@@ -33,23 +33,17 @@ public class MobileVibration : MonoBehaviour
     private void Start()
     {
         rules.SetPicture(false);
-
         originalScale = transform.localScale;
         transform.localScale = new Vector3(0, 0, 0);
         tutorialClone = GameObject.Instantiate(tutorialCharacter);
 
-        if (Inventory.GetInstance().amountOfCrownPieces > 0)
+        if (Inventory.GetInstance().amountOfCrownPieces > 0 || Debugger.OnDevice())
         {
             tutorialClone.SetActive(false);
         }
-
-        if(!tutorialClone.activeSelf)
-        {
-            SetTreasureGame();
-        }
     }
 
-    void Update()
+    private void Update()
     {
         if (canStart && !tutorialClone.activeSelf)
         {
@@ -94,10 +88,11 @@ public class MobileVibration : MonoBehaviour
             {
                 rotateValue--;
             }
+
+            differenceInValue = Mathf.Abs(lockPickValue - rotateValue);
+            VibrationTimer();
         }
 
-        differenceInValue = Mathf.Abs(lockPickValue - rotateValue);
-        VibrationTimer();
     }
 
     private void SetTreasureGame()
@@ -125,11 +120,14 @@ public class MobileVibration : MonoBehaviour
 
     public void OpenChest()
     {
+        Screen.orientation = ScreenOrientation.Portrait;
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         Inventory.GetInstance().amountOfCrownPieces++;
 
         if(Inventory.GetInstance().amountOfCrownPieces == 4)
         {
+            questID = PlayerPrefs.GetInt("questID");
+            PlayerPrefs.SetInt("questID", 7);
             rules.SetPicture(true);
             rules.rewardObject = finalReward;
         }
@@ -147,6 +145,7 @@ public class MobileVibration : MonoBehaviour
 
         if (rules.photoCapture.tookPhoto && rules.photoCapture.gameObject.activeSelf)
         {
+            PlayerPrefs.SetInt("questID", questID);
             rules.CheckOffQuest();
         }
         else
@@ -155,7 +154,7 @@ public class MobileVibration : MonoBehaviour
             {
                 if(Inventory.GetInstance().amountOfCrownPieces == 1)
                 {
-                    Destroy(rules.rewardObject);
+                    rules.rewardObject.SetActive(false);
                     tutorialClone.SetActive(true);
                     FindObjectOfType<Tutorial>().LastLine();
                 }
@@ -170,6 +169,7 @@ public class MobileVibration : MonoBehaviour
 
     private void VibrationTimer()
     {
+        Debugger.WriteData($"{rotateValue} == {lockPickValue}");
         if (canGetNewValue)
         {
             int y = differenceInValue / 10;
