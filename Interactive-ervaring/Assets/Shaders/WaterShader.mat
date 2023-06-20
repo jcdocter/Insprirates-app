@@ -103,9 +103,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 1.4
-    - _FoamCutOff: 1
-    - _FoamScale: 51.9
+    - _FoamAmount: 4.09
+    - _FoamCutOff: 2.2
+    - _FoamScale: 200
     - _FoamSpeed: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
