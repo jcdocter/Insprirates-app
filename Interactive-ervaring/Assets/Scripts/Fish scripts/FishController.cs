@@ -76,6 +76,8 @@ public class FishController : MonoBehaviour
     {
         if (_other.gameObject.GetComponent<Fishing>())
         {
+            fishing.amountOfFish++;
+            Debug.Log(this.gameObject.name +" : "+ fishing.amountOfFish);
             this.gameObject.transform.localScale *= 5.0f;
             this.gameObject.transform.localRotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
             fishing.rules.rewardObject = this.gameObject;

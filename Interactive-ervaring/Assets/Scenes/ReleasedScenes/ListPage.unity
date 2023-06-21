@@ -2760,7 +2760,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0a22d579295b5c45bbfaf869aed168d, type: 2}
   - {fileID: 11400000, guid: c2c4d002099364d41acb3b68524f3bb6, type: 2}
   - {fileID: 11400000, guid: b72739566681e49459417e14a45ba7a3, type: 2}
-  - {fileID: 11400000, guid: fe9dfc7cec8e37846a2ab59d16f7668d, type: 2}
   - {fileID: 11400000, guid: 16689be37da271642aa39c9908e20c5d, type: 2}
   - {fileID: 11400000, guid: 11b7e46b0ef3fa241b96cfcc36c5f9ef, type: 2}
   - {fileID: 11400000, guid: 7edb15656eb84f944b51756af9b7b04b, type: 2}
@@ -2768,7 +2767,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 357315a66a1f941458d71133d35002dd, type: 2}
   - {fileID: 11400000, guid: 9ae8f9bf1c787234d90097808d51d65e, type: 2}
   - {fileID: 11400000, guid: 3fd168e2cd8141b4cb699a04c4fc28af, type: 2}
-  - {fileID: 11400000, guid: adbfa9eac2ce05d4d9a1be5c8929fbe4, type: 2}
   - {fileID: 11400000, guid: e050a734662098f41bc7c02c61257634, type: 2}
   - {fileID: 11400000, guid: 309b7b36645d8b345b63e0df669c0968, type: 2}
   - {fileID: 11400000, guid: 9f9e8534e3d2f8e4a8265bfcafa104da, type: 2}
@@ -3032,7 +3030,7 @@ MonoBehaviour:
   iconList:
   - {fileID: 21300000, guid: 6fcc52f34e7e72c4a95625d4c8a5ea29, type: 3}
   - {fileID: 21300000, guid: 5f8f3f098bef8e04fa78991cc35aca94, type: 3}
-  - {fileID: 21300000, guid: 18a801b796e240b4bbaba15efd453a95, type: 3}
+  - {fileID: 21300000, guid: eb94e8adece452c4bad3811708753a00, type: 3}
 --- !u!1001 &2065044222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3089,16 +3087,20 @@ PrefabInstance:
       value: Start tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 7851334505107275325, guid: f7113ac0efd97f8478c03ba3515fb11f, type: 3}
-      propertyPath: startOnly
-      value: 1
+      propertyPath: nextButton
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7851334505107275325, guid: f7113ac0efd97f8478c03ba3515fb11f, type: 3}
-      propertyPath: scriptList.Array.size
-      value: 1
+      propertyPath: dialogueBox
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7851334505107275325, guid: f7113ac0efd97f8478c03ba3515fb11f, type: 3}
-      propertyPath: scriptList.Array.data[0].isEnd
-      value: 1
+      propertyPath: finalButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7851334505107275325, guid: f7113ac0efd97f8478c03ba3515fb11f, type: 3}
+      propertyPath: previousButton
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7113ac0efd97f8478c03ba3515fb11f, type: 3}

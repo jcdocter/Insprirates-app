@@ -77,7 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideObject: 0
+  amountOfFish: 0
   resetTimer: 3
+  tutorialClone: {fileID: 0}
   tutorialCharacter: {fileID: 6442515602974594989, guid: 872dcad3cdef0404589c75e7caee6828, type: 3}
   fishObjects:
   - {fileID: 1077232906755642129, guid: aba5803815fdccf449ce4004e40bb110, type: 3}

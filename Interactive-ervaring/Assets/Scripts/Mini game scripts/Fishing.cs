@@ -7,6 +7,9 @@ public class Fishing : MonoBehaviour
     [HideInInspector]
     public bool hideObject = false;
 
+    [HideInInspector]
+    public int amountOfFish;
+
     public float resetTimer;
 
     [HideInInspector]
@@ -22,7 +25,6 @@ public class Fishing : MonoBehaviour
     private List<GameObject> fishList = new List<GameObject>();
     private Swipe swipe = new Swipe();
 
-
     private bool hasThrown;
     private bool canStart = true;
 
@@ -31,8 +33,9 @@ public class Fishing : MonoBehaviour
     private float releasePower;
     private float startTimer;
 
-    private void Awake()
+    private void Start()
     {
+        amountOfFish = 0;
         transform.localScale = new Vector3(0, 0, 0);
         rules.SetPicture(false);
         tutorialClone = GameObject.Instantiate(tutorialCharacter);
@@ -40,15 +43,6 @@ public class Fishing : MonoBehaviour
         if (Inventory.GetInstance().amountOfFish > 0)
         {
             tutorialClone.SetActive(false);
-        }
-    }
-
-    private void Start()
-    {
-        if(!tutorialClone.activeSelf)
-        {
-            SetFishGame();
-            canStart = false;
         }
     }
 
@@ -135,7 +129,7 @@ public class Fishing : MonoBehaviour
         {
             float yDirection = (releasePower/10) * throwSpeed * Time.deltaTime;
 
-            if (transform.position.y > releasePower)
+/*            if (transform.position.y > releasePower)
             {
                 yDirection = releasePower;
             }
@@ -143,7 +137,7 @@ public class Fishing : MonoBehaviour
             if(transform.position.y < -releasePower)
             {
                 yDirection = -releasePower;
-            }
+            }*/
 
             transform.position += new Vector3(0.0f, yDirection, throwSpeed * Time.deltaTime);
             return;

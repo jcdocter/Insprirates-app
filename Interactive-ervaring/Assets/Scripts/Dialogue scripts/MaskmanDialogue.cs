@@ -16,5 +16,6 @@ public class MaskmanDialogue : Dialogue
     protected override void SetScript()
     {
         texts = maskDialogue;
+        base.SetScript();
     }
 }

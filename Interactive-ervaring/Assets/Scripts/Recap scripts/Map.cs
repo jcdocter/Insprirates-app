@@ -41,6 +41,7 @@ public class Map : MonoBehaviour, IGoBack
         {
             if (hitPiece)
             {
+                Screen.orientation = ScreenOrientation.LandscapeLeft;
                 photo.texture = null;
                 hitPiece = false;
 
@@ -84,6 +85,7 @@ public class Map : MonoBehaviour, IGoBack
                     transform.GetChild(i).gameObject.SetActive(false);
                 }
 
+                Screen.orientation = ScreenOrientation.Portrait;
                 photo.texture = PhotoExist(piece.photoID, Screen.width, Screen.height);
             }
         }
