@@ -6,23 +6,52 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class Rules
 {
-    public GameObject photoButton;
+    [HideInInspector]
+    public PhotoCapture photoCapture;
 
-    public bool canTakePhoto;
+    [HideInInspector]
+    public Canvas pauseScreen;
 
-    public float elapsedTime = 300.0f;
+    public GameObject rewardObject;
+    public Canvas pauseObject;
 
-    private Transform canvasTransform;
+    private RecCamera recCam;
+    private bool canStartGame = false;
 
     public void SetRules()
     {
-        canvasTransform = GameObject.FindObjectOfType<Canvas>().transform;
+        recCam = GameObject.FindObjectOfType<RecCamera>();
+        recCam.canSwitchCam = false;
+        pauseScreen = GameObject.Instantiate(pauseObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        pauseScreen.GetComponent<Canvas>().worldCamera = Camera.main;
 
-        if(canTakePhoto)
+        SetPicture(false);
+    }
+
+    public void SetPicture(bool _activatePictureMode)
+    {
+        if (photoCapture == null)
         {
-            GameObject camera = GameObject.Instantiate(photoButton, canvasTransform);
-            camera.transform.parent = canvasTransform;
+            photoCapture = GameObject.FindObjectOfType<PhotoCapture>();
         }
+
+        photoCapture.gameObject.SetActive(_activatePictureMode);
+    }
+
+    public bool StartGame()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            pauseScreen.enabled = false;
+            canStartGame = true;
+        }
+
+        return canStartGame;
+    }
+
+    public void ShowReward(Vector3 _position)
+    {
+        GameObject.Instantiate(rewardObject, _position, rewardObject.transform.localRotation);
     }
 
     public void CheckOffQuest()

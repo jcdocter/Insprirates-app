@@ -1,35 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MobileVibration : MonoBehaviour
 {
+    [HideInInspector]
+    public GameObject tutorialClone;
+
+    public GameObject tutorialCharacter;
+
+    public GameObject finalReward;
+    public Rules rules = new Rules();
     private Gyroscope gyro;
+    private Vector3 originalScale;
+
+    private Animator animator;
 
     private int lockPickValue;
     private int rotateValue;
+    private int differenceInValue;
+    private int questID;
 
     private bool gyroEnabled;
     private bool canGetNewValue = true;
-
-    private float vibrationDuration = 5.0f;
-    private float coolDownDuration = 3.0f;
-
-    //debug variable. Can be deleted later
+    private bool canStart = true;
     private bool done = false;
+    private bool foundPiece;
+
+    private float vibrationDuration = 1.0f;
+    private float coolDownDuration = 3.0f;
 
     private void Start()
     {
-        gyroEnabled = EnableGyro();
-        lockPickValue = Random.Range(-100, 100);
+        rules.SetPicture(false);
+        originalScale = transform.localScale;
+        transform.localScale = new Vector3(0, 0, 0);
+        tutorialClone = GameObject.Instantiate(tutorialCharacter);
+
+        if (Inventory.GetInstance().amountOfCrownPieces > 0 || Debugger.OnDevice())
+        {
+            tutorialClone.SetActive(false);
+        }
     }
 
-    void Update()
+    private void Update()
     {
+        if (canStart && !tutorialClone.activeSelf)
+        {
+            SetTreasureGame();
+            canStart = false;
+        }
+
+        if (tutorialClone.activeSelf)
+        {
+            return;
+        }
+
+        if (!rules.StartGame())
+        {
+            return;
+        }
+
+        if (!Debugger.OnDevice())
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                done = true;
+            }
+        }
+
+        FoundPiece();
+
         if (done)
         {
-            Debugger.WriteData("You did it !!!");
+            // play animation
+            animator.SetBool("openChest", true);
             return;
         }
 
@@ -43,9 +88,21 @@ public class MobileVibration : MonoBehaviour
             {
                 rotateValue--;
             }
+
+            differenceInValue = Mathf.Abs(lockPickValue - rotateValue);
+            VibrationTimer();
         }
 
-        VibrationTimer();
+    }
+
+    private void SetTreasureGame()
+    {
+        rules.SetRules();
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        transform.localScale = originalScale;
+        gyroEnabled = EnableGyro();
+        animator = FindObjectOfType<Animator>();
+        lockPickValue = Random.Range(-100, 100);
     }
 
     private bool EnableGyro()
@@ -61,36 +118,69 @@ public class MobileVibration : MonoBehaviour
         return false;
     }
 
+    public void OpenChest()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        Inventory.GetInstance().amountOfCrownPieces++;
+
+        if(Inventory.GetInstance().amountOfCrownPieces == 4)
+        {
+            questID = PlayerPrefs.GetInt("questID");
+            PlayerPrefs.SetInt("questID", 7);
+            rules.SetPicture(true);
+            rules.rewardObject = finalReward;
+        }
+
+        rules.ShowReward(new Vector3(0,0, 5.0f));
+        foundPiece = true;
+    }
+
+    private void FoundPiece()
+    {
+        if (!foundPiece)
+        {
+            return;
+        }
+
+        if (rules.photoCapture.tookPhoto && rules.photoCapture.gameObject.activeSelf)
+        {
+            PlayerPrefs.SetInt("questID", questID);
+            rules.CheckOffQuest();
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if(Inventory.GetInstance().amountOfCrownPieces == 1)
+                {
+                    rules.rewardObject.SetActive(false);
+                    tutorialClone.SetActive(true);
+                    FindObjectOfType<Tutorial>().LastLine();
+                }
+                else
+                {
+                    rules.CheckOffQuest();
+                }
+
+            }
+        }
+    }
+
     private void VibrationTimer()
     {
-        int DifferenceInValue = Mathf.Abs(lockPickValue - rotateValue);
-
-        if(canGetNewValue)
+   //     Debugger.WriteData($"{rotateValue} == {lockPickValue}");
+        if (canGetNewValue)
         {
-            if(DifferenceInValue < 40)
-            {
-                vibrationDuration = 1.0f;
-            }
+            int y = differenceInValue / 10;
+            float duration = (5 - y) * 0.5f;
 
-            if (DifferenceInValue < 30)
-            {
-                vibrationDuration = 1.5f;
-            }
-
-            if (DifferenceInValue < 20)
-            {
-                vibrationDuration = 2.0f;
-            }
-
-            if (DifferenceInValue < 10)
-            {
-                vibrationDuration = 2.5f;
-            }
+            vibrationDuration = duration;
 
             canGetNewValue = false;
         }
 
-        if(DifferenceInValue > 40)
+        if(differenceInValue > 40)
         {
             coolDownDuration = 3.0f;
             canGetNewValue = true;

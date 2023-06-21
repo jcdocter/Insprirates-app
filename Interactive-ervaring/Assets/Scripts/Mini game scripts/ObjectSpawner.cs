@@ -24,7 +24,7 @@ public class Models
     }
 }
 
-public class ObjectSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour, IGoBack
 {
     public List<Models> modelList = new List<Models>();
 
@@ -34,7 +34,8 @@ public class ObjectSpawner : MonoBehaviour
         {
             if(modelList[i].CheckID())
             {
-                GameObject model = Instantiate(modelList[i].model, transform.position, transform.rotation);
+                //GameObject model = Instantiate(modelList[i].model, transform.position, transform.rotation);
+                GameObject model = Instantiate(modelList[i].model, modelList[i].model.transform.position, modelList[i].model.transform.rotation);
                 model.transform.parent = this.transform;
             }
         }
@@ -46,5 +47,10 @@ public class ObjectSpawner : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         }
+    }
+
+    public void ReturnToPage()
+    {
+        SceneManager.LoadScene("ListPage");
     }
 }

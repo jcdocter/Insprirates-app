@@ -6,27 +6,40 @@ using UnityEngine.UI;
 
 public class PhotoCapture : MonoBehaviour
 {
-    public Image photoDisplayArea;
+    public bool tookPhoto = false;
+    public GameObject returnButton;
 
+    private RecCamera recCam;
     private Button photoButton;
     private Texture2D screenCapture;
 
     private void Start()
     {
+        recCam = FindObjectOfType<RecCamera>();
         photoButton = GetComponentInChildren<Button>();
-        photoDisplayArea.enabled = false;
+    }
+
+    private void Update()
+    {
+        if(!this.gameObject.activeSelf)
+        {
+            recCam.canSwitchCam = false;
+        }
+        else
+        {
+            recCam.canSwitchCam = true;
+        }
     }
 
     public void TakePicture()
     {
-        photoButton.enabled = false;
-        SetScreenCapture();
-        StartCoroutine(CapturePhoto());
-    }
-
-    public void SetScreenCapture()
-    {
+        photoButton.gameObject.SetActive(false);
+        returnButton.SetActive(false);
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        StartCoroutine(CapturePhoto());
+
+        tookPhoto = true;
+        returnButton.SetActive(true);
     }
 
     public IEnumerator CapturePhoto()
@@ -38,24 +51,14 @@ public class PhotoCapture : MonoBehaviour
         screenCapture.ReadPixels(regionToRead, 0, 0, false);
         screenCapture.Apply();
 
-        ShowPhoto();
         SavePhoto();
-    }
-
-    private void ShowPhoto()
-    {
-        Sprite photoSprite = Sprite.Create(screenCapture, new Rect(0.0f, 0.0f, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f), 100.0f);
-
-        photoDisplayArea.sprite = photoSprite;
-        photoDisplayArea.enabled = true;
     }
 
     private void SavePhoto()
     {
         var bytes = screenCapture.EncodeToPNG();
-
         var folder = Directory.CreateDirectory(Application.persistentDataPath + "/Treasure-map-pieces/");
 
-        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetString("modelID") + ".png", bytes);
+        File.WriteAllBytes(folder + "TreasurePiece_" + PlayerPrefs.GetInt("questID") + ".png", bytes);
     }
 }
