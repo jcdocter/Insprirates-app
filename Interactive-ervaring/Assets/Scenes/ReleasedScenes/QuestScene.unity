@@ -1198,6 +1198,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 534ad12a07544df48b153ed604feccf9, type: 3}
+    - target: {fileID: 3622170993651866233, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
+      propertyPath: returnButton
+      value: 
+      objectReference: {fileID: 278291672}
     - target: {fileID: 9014837982208813935, guid: dfafde72589de07469ed8e66f023a8a5, type: 3}
       propertyPath: m_Name
       value: Photo camera

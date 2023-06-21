@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PhotoCapture : MonoBehaviour
 {
     public bool tookPhoto = false;
+    public GameObject returnButton;
 
     private RecCamera recCam;
     private Button photoButton;
@@ -33,10 +34,12 @@ public class PhotoCapture : MonoBehaviour
     public void TakePicture()
     {
         photoButton.gameObject.SetActive(false);
+        returnButton.SetActive(false);
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         StartCoroutine(CapturePhoto());
 
         tookPhoto = true;
+        returnButton.SetActive(true);
     }
 
     public IEnumerator CapturePhoto()
