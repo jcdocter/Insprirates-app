@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Recruit 16
   m_EditorClassIdentifier: 
   ID: 16
+  QRID: raft_2
   isDone: 0
   hasFish: 0
   hasCrown: 0
   hasRecruits: 1
   amountToTrack: 5
-  descriptionNextQuest: aantal masker mannetjes dat je hebt gevonden
-  QRID: raft_2
-  descriptionObject: {fileID: 0}
+  descriptionNextQuest: Het aantal masker mannetjes dat je hebt gevonden
   nextQuest: {fileID: 11400000, guid: c070fec3e099a1241b463eb50b32635f, type: 2}

@@ -169,7 +169,7 @@ public class MobileVibration : MonoBehaviour
 
     private void VibrationTimer()
     {
-        Debugger.WriteData($"{rotateValue} == {lockPickValue}");
+   //     Debugger.WriteData($"{rotateValue} == {lockPickValue}");
         if (canGetNewValue)
         {
             int y = differenceInValue / 10;

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: treasure 7
   m_EditorClassIdentifier: 
   ID: 7
+  QRID: treasure_1
   isDone: 0
   hasFish: 0
   hasCrown: 1
   hasRecruits: 0
   amountToTrack: 4
-  descriptionNextQuest: De hoeveelheid schatkisten die je heb gevonden
-  QRID: treasure_1
+  descriptionNextQuest: Het aantal schatkisten die je heb gevonden
   nextQuest: {fileID: 0}

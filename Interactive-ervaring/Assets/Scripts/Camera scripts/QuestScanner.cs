@@ -60,7 +60,7 @@ public class QuestScanner : RecCamera, IGoBack
                     return;
                 }
             }
-            Debugger.WriteData("Sorry no quest available");
+            Debugger.WriteData("Sorry deze queeste is niet beschikbaar");
 
         }
         catch
